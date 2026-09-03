@@ -1,0 +1,3621 @@
+[
+ {
+  "id": "01",
+  "file": "01.webp",
+  "nome": "COSTANTINO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 47,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 4,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "02",
+  "file": "02.webp",
+  "nome": "SALVATORE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 99,
+  "att": {
+   "forza": 5,
+   "agilita": 2,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "03",
+  "file": "03.webp",
+  "nome": "PEPPINO GALLO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 85,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 1,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "04",
+  "file": "04.webp",
+  "nome": "CORRADO DA LONDRA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "05",
+  "file": "05.webp",
+  "nome": "LO ZAMPOGNARO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 92,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "06",
+  "file": "06.webp",
+  "nome": "MICHELE DELLA FRASCA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "07",
+  "file": "07.webp",
+  "nome": "FRANCESCO MURILLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 43,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "08",
+  "file": "08.webp",
+  "nome": "DON ALFREDO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 78,
+  "att": {
+   "forza": 3,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "09",
+  "file": "09.webp",
+  "nome": "FILIPPO 2",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 54,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 4,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "10",
+  "file": "10.webp",
+  "nome": "BOZZELLI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 89,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "11",
+  "file": "11.webp",
+  "nome": "PAOLO NOTARO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 91,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "12",
+  "file": "12.webp",
+  "nome": "MESSER FAUSTUS",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 1,
+   "agilita": 6,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "13",
+  "file": "13.webp",
+  "nome": "FRANCHINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 95,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 0
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 4,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "14",
+  "file": "14.webp",
+  "nome": "SPEDINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 97,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 4,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "15",
+  "file": "15.webp",
+  "nome": "GIGI MUROLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 4,
+   "agilita": 1,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "16",
+  "file": "16.webp",
+  "nome": "NICHOLAS",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 95,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "17",
+  "file": "17.webp",
+  "nome": "YANOJ ALSKIJ",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 92,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "18",
+  "file": "18.webp",
+  "nome": "FILIPPO QUAGLIONE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 82,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "19",
+  "file": "19.webp",
+  "nome": "LO ZIO MASSENZIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 91,
+  "att": {
+   "forza": 6,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "20",
+  "file": "20.webp",
+  "nome": "GEPPERSON",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 64,
+  "att": {
+   "forza": 1,
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "21",
+  "file": "21.webp",
+  "nome": "NONNO MAFIOSO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 97,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "22",
+  "file": "22.webp",
+  "nome": "FRANCHINO SOBRIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 80,
+  "att": {
+   "forza": 4,
+   "agilita": 4,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "23",
+  "file": "23.webp",
+  "nome": "ARNALDO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 69,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 6,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "24",
+  "file": "24.webp",
+  "nome": "ZI' PIPPI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 55,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "25",
+  "file": "25.webp",
+  "nome": "STERMINIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 95,
+  "att": {
+   "forza": 3,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "26",
+  "file": "26.webp",
+  "nome": "PEPPE SANTULLO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 41,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "27",
+  "file": "27.webp",
+  "nome": "ORAZIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 82,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "28",
+  "file": "28.webp",
+  "nome": "GUMBOW E. S. JOHNSON",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 95,
+  "att": {
+   "forza": 5,
+   "agilita": 5,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 5,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "29",
+  "file": "29.webp",
+  "nome": "MANDINGO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 88,
+  "att": {
+   "forza": 3,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 6,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "30",
+  "file": "30.webp",
+  "nome": "IL PERCHIE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 76,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 6,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "31",
+  "file": "31.webp",
+  "nome": "ANTONELLO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 77,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "32",
+  "file": "32.webp",
+  "nome": "DON PASQUALINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 80,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 2,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "33",
+  "file": "33.webp",
+  "nome": "ALFREDO FORENZA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 79,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "34",
+  "file": "34.webp",
+  "nome": "MAMBU'",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 4,
+   "agilita": 4,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "35",
+  "file": "35.webp",
+  "nome": "MICCHELE",
+  "tipo": "soggettone",
+  "rarita": "FOTTUTAMENTE RARO",
+  "ignoranza": 100,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  },
+  "ignoranzaInfinita": true
+ },
+ {
+  "id": "36",
+  "file": "36.webp",
+  "nome": "MARCO MONOPOLI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 65,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "37",
+  "file": "37.webp",
+  "nome": "ANGELONE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "38",
+  "file": "38.webp",
+  "nome": "PEPPE GIAMMARINO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 78,
+  "att": {
+   "forza": 5,
+   "agilita": 0,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "39",
+  "file": "39.webp",
+  "nome": "LO CHEF",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 89,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "40",
+  "file": "40.webp",
+  "nome": "PEPPE SANTULLO BAMBINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 35,
+  "att": {
+   "forza": 0,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "41",
+  "file": "41.webp",
+  "nome": "MATTIA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 86,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "42",
+  "file": "42.webp",
+  "nome": "SATMAN",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 91,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "43",
+  "file": "43.webp",
+  "nome": "TONINO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 81,
+  "att": {
+   "forza": 4,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "44",
+  "file": "44.webp",
+  "nome": "SAMUELE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 84,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "45",
+  "file": "45.webp",
+  "nome": "NONNO MAFIOSO GIOVANE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 73,
+  "att": {
+   "forza": 5,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "46",
+  "file": "46.webp",
+  "nome": "SIG.RA GIAMMARINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 79,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "47",
+  "file": "47.webp",
+  "nome": "L'ARCHITETTO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 93,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "48",
+  "file": "48.webp",
+  "nome": "FIGONA RUMENA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 82,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 0
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "49",
+  "file": "49.webp",
+  "nome": "ANA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 39,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "50",
+  "file": "50.webp",
+  "nome": "PIERPAOLO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 81,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "51",
+  "file": "51.webp",
+  "nome": "PINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 65,
+  "att": {
+   "forza": 5,
+   "agilita": 5,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 1,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "52",
+  "file": "52.webp",
+  "nome": "STEFANO SCIPIONI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "53",
+  "file": "53.webp",
+  "nome": "SERGIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 60,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "54",
+  "file": "54.webp",
+  "nome": "ANGELA PENNETTA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 80,
+  "att": {
+   "forza": 5,
+   "agilita": 0,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "55",
+  "file": "55.webp",
+  "nome": "MARCO DI MICHELE MARISI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 11,
+  "att": {
+   "forza": 1,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 0,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "56",
+  "file": "56.webp",
+  "nome": "IVO MENNA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 78,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "57",
+  "file": "57.webp",
+  "nome": "SORELLA DI MARIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 51,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "58",
+  "file": "58.webp",
+  "nome": "STEFANO SANTICCHIA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 4,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "59",
+  "file": "59.webp",
+  "nome": "BIG MARIO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 94,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "60",
+  "file": "60.webp",
+  "nome": "FRANCESCOPAOLO D'ADAMO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 86,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "61",
+  "file": "61.webp",
+  "nome": "DOMENICO DEL NEW OLD",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 80,
+  "att": {
+   "forza": 3,
+   "agilita": 4,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "62",
+  "file": "62.webp",
+  "nome": "SANTINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 94,
+  "att": {
+   "forza": 5,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "63",
+  "file": "63.webp",
+  "nome": "IL PELATONE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 65,
+  "att": {
+   "forza": 3,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "64",
+  "file": "64.webp",
+  "nome": "CELESTINO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 5,
+   "agilita": 0,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "65",
+  "file": "65.webp",
+  "nome": "QUELLO DEL VENTIDUESETTE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 38,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 4,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "66",
+  "file": "66.webp",
+  "nome": "L'ARCHITETTO CATTIVO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 76,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "67",
+  "file": "67.webp",
+  "nome": "LA CONTESSA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 9,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "68",
+  "file": "68.webp",
+  "nome": "MARIOLINA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 42,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "69",
+  "file": "69.webp",
+  "nome": "NANDO CAUTILLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 6,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "70",
+  "file": "70.webp",
+  "nome": "DONNA LINA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 29,
+  "att": {
+   "forza": 0,
+   "agilita": 0,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "71",
+  "file": "71.webp",
+  "nome": "ALEN",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "72",
+  "file": "72.webp",
+  "nome": "FAUSTO FAUSTMASTER",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 95,
+  "att": {
+   "forza": 5,
+   "agilita": 0,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "73",
+  "file": "73.webp",
+  "nome": "ANICETO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 96,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "74",
+  "file": "74.webp",
+  "nome": "QUELLO DEL DOCKER'S",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 53,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 1,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "75",
+  "file": "75.webp",
+  "nome": "PEPPE DEL PRETE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 82,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "76",
+  "file": "76.webp",
+  "nome": "PEPPONE LATTANZIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 93,
+  "att": {
+   "forza": 5,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "77",
+  "file": "77.webp",
+  "nome": "GABRIELE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 49,
+  "att": {
+   "forza": 3,
+   "agilita": 6,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "78",
+  "file": "78.webp",
+  "nome": "BEAUTY",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 84,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "79",
+  "file": "79.webp",
+  "nome": "GIGGINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 80,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "80",
+  "file": "80.webp",
+  "nome": "PIK PUK",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 77,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "81",
+  "file": "81.webp",
+  "nome": "VALERIA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 87,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "82",
+  "file": "82.webp",
+  "nome": "MICHELE DEL PIANO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 61,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "83",
+  "file": "83.webp",
+  "nome": "DON VITALE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 93,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "84",
+  "file": "84.webp",
+  "nome": "ANDREA DI LORETO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 33,
+  "att": {
+   "forza": 5,
+   "agilita": 3,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "85",
+  "file": "85.webp",
+  "nome": "MAURIZIO SANGIOVANNI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 55,
+  "att": {
+   "forza": 0,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "86",
+  "file": "86.webp",
+  "nome": "GIUSEPPE RITUCCI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 41,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "87",
+  "file": "87.webp",
+  "nome": "MISTER APULIA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 73,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "88",
+  "file": "88.webp",
+  "nome": "NINNI' / LILLINO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 79,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "89",
+  "file": "89.webp",
+  "nome": "ETELWARDO SIGISMONDI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 51,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "90",
+  "file": "90.webp",
+  "nome": "ROSTIC CICCOTOSTO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 64,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 0
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "91",
+  "file": "91.webp",
+  "nome": "VLADIC CICCOTOSTO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 83,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "92",
+  "file": "92.webp",
+  "nome": "GIANNI RODINI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 81,
+  "att": {
+   "forza": 1,
+   "agilita": 3,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "93",
+  "file": "93.webp",
+  "nome": "ANDREA LA PANTERA PARISI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "94",
+  "file": "94.webp",
+  "nome": "ELVIS DI TIERI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 73,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "95",
+  "file": "95.webp",
+  "nome": "MIRKO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 77,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "96",
+  "file": "96.webp",
+  "nome": "PINO GIOVANE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 5,
+   "agilita": 5,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "97",
+  "file": "97.webp",
+  "nome": "SOCIO DI MICHELE DELLA FRASCA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 6,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "98",
+  "file": "98.webp",
+  "nome": "FERNANDO DEL BAR VENEZIA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 37,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "99",
+  "file": "99.webp",
+  "nome": "QUELLO NUOVO DEL BAR VENEZIA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 44,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 2,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "100",
+  "file": "100.webp",
+  "nome": "LUCIANO DEL NEW OLD",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 87,
+  "att": {
+   "forza": 5,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "101",
+  "file": "101.webp",
+  "nome": "MR. ZAMPOGNO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 49,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "102",
+  "file": "102.webp",
+  "nome": "DON VITALE MILITARE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 73,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "103",
+  "file": "103.webp",
+  "nome": "TONINO POLLICE/CAPPELLA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 4,
+   "agilita": 5,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 5,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "104",
+  "file": "104.webp",
+  "nome": "PEPPINO GALLO SEMINUDO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 1,
+   "agilita": 6,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "105",
+  "file": "105.webp",
+  "nome": "TONINO CON BARBA E BAFFI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 79,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 4,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "106",
+  "file": "106.webp",
+  "nome": "FIGLIA DI ANGELONE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 34,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "107",
+  "file": "107.webp",
+  "nome": "STEFAN",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 81,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "108",
+  "file": "108.webp",
+  "nome": "MICHAEL LUTHOR",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 4,
+   "agilita": 6,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 6,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "109",
+  "file": "109.webp",
+  "nome": "STANLIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "110",
+  "file": "110.webp",
+  "nome": "OLLIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 4,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "111",
+  "file": "111.webp",
+  "nome": "LO PODEROSO UOMINO FORZUTO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 97,
+  "att": {
+   "forza": 6,
+   "agilita": 0,
+   "intelligenza": 0
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "112",
+  "file": "112.webp",
+  "nome": "DARTH SAMUELE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 88,
+  "att": {
+   "forza": 4,
+   "agilita": 4,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "113",
+  "file": "113.webp",
+  "nome": "ZIO ERCOLE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 77,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "114",
+  "file": "114.webp",
+  "nome": "BABBO BOZZELLI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "115",
+  "file": "115.webp",
+  "nome": "BOZZELLI CHE LAVORA",
+  "tipo": "soggettone",
+  "rarita": "FOTTUTAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "116",
+  "file": "116.webp",
+  "nome": "BOZZELLI BAMBINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 43,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "117",
+  "file": "117.webp",
+  "nome": "SUPERCHEF",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 92,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "118",
+  "file": "118.webp",
+  "nome": "DON GIANFRANCO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 76,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "119",
+  "file": "119.webp",
+  "nome": "IL VESCOVO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 80,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "120",
+  "file": "120.webp",
+  "nome": "SARGASSO PERCHINUNNO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 93,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "121",
+  "file": "121.webp",
+  "nome": "MIAN DONER KEBAB",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 75,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 1,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "122",
+  "file": "122.webp",
+  "nome": "BAD TRAMVIER",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 72,
+  "att": {
+   "forza": 4,
+   "agilita": 4,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "123",
+  "file": "123.webp",
+  "nome": "ZACCARIA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 86,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "124",
+  "file": "124.webp",
+  "nome": "GOFFREDO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 71,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "125",
+  "file": "125.webp",
+  "nome": "ARNALDO BAMBINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 45,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 5,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "126",
+  "file": "126.webp",
+  "nome": "CORRADO PAGLIARI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 91,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "127",
+  "file": "127.webp",
+  "nome": "MARISA DI MATTEO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 89,
+  "att": {
+   "forza": 6,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "128",
+  "file": "128.webp",
+  "nome": "LA SALLESE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 79,
+  "att": {
+   "forza": 1,
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 6,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "129",
+  "file": "129.webp",
+  "nome": "SAT-PIPISTRELLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 95,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "130",
+  "file": "130.webp",
+  "nome": "TONINO QUADRO DEL '500",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 83,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "131",
+  "file": "131.webp",
+  "nome": "MAURIZIO FANELLI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 45,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "132",
+  "file": "132.webp",
+  "nome": "SUPER GIUSEPPE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 79,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "133",
+  "file": "133.webp",
+  "nome": "QUELLO DI ARGENTIERI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 67,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "134",
+  "file": "134.webp",
+  "nome": "IL RE DEL PESCE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 90,
+  "att": {
+   "forza": 6,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "135",
+  "file": "135.webp",
+  "nome": "BUCCIARELLI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 21,
+  "att": {
+   "forza": 0,
+   "agilita": 2,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 1,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "136",
+  "file": "136.webp",
+  "nome": "FLORIO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 72,
+  "att": {
+   "forza": 3,
+   "agilita": 5,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 6,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "137",
+  "file": "137.webp",
+  "nome": "WOLVERINE DI VASTO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 83,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "138",
+  "file": "138.webp",
+  "nome": "PANFILO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 76,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "139",
+  "file": "139.webp",
+  "nome": "LEANDRO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 0,
+   "agilita": 4,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "140",
+  "file": "140.webp",
+  "nome": "SPINAZZOLA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 61,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "141",
+  "file": "141.webp",
+  "nome": "FRISCO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 64,
+  "att": {
+   "forza": 5,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 3,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "142",
+  "file": "142.webp",
+  "nome": "FRANCESCO LATTANZIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 68,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "143",
+  "file": "143.webp",
+  "nome": "GIUSEPPE MANZI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 96,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "144",
+  "file": "144.webp",
+  "nome": "CHEF TONY",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 76,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "145",
+  "file": "145.webp",
+  "nome": "PEPPONE PIRATA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 95,
+  "att": {
+   "forza": 5,
+   "agilita": 4,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "146",
+  "file": "146.webp",
+  "nome": "DON DOMENICO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 45,
+  "att": {
+   "forza": 2,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 0,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "147",
+  "file": "147.webp",
+  "nome": "VALENTE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 49,
+  "att": {
+   "forza": 4,
+   "agilita": 0,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "148",
+  "file": "148.webp",
+  "nome": "DAVEEDE MARCHESANEE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 68,
+  "att": {
+   "forza": 2,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 5,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "149",
+  "file": "149.webp",
+  "nome": "GIORGIO MASTROTA",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 65,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "150",
+  "file": "150.webp",
+  "nome": "ZACCARIA PELATO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 4,
+   "agilita": 6,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 4,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "151",
+  "file": "151.webp",
+  "nome": "AMANCIO PRADA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 37,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "152",
+  "file": "152.webp",
+  "nome": "DON DECIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 63,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "153",
+  "file": "153.webp",
+  "nome": "MICHELE GAZICH",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 3,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "154",
+  "file": "154.webp",
+  "nome": "FILIPPO 2 MACHO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 70,
+  "att": {
+   "forza": 6,
+   "agilita": 4,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "155",
+  "file": "155.webp",
+  "nome": "LUCIANINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 85,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "156",
+  "file": "156.webp",
+  "nome": "FERNANDO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 96,
+  "att": {
+   "forza": 5,
+   "agilita": 4,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "157",
+  "file": "157.webp",
+  "nome": "MARIA CAULI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 78,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "158",
+  "file": "158.webp",
+  "nome": "L'ARCHEOLOGO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 74,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "159",
+  "file": "159.webp",
+  "nome": "MATTIA BAMBINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 10,
+  "att": {
+   "forza": 1,
+   "agilita": 4,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "160",
+  "file": "160.webp",
+  "nome": "PALMERINO / ALBERINO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 2,
+   "agilita": 6,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "161",
+  "file": "161.webp",
+  "nome": "BIG BAD MURILLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 67,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 4,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "162",
+  "file": "162.webp",
+  "nome": "SAMUELE POMPIERE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 80,
+  "att": {
+   "forza": 3,
+   "agilita": 4,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "163",
+  "file": "163.webp",
+  "nome": "IL TIZIO ESTREMAMENTE SGRADEVOLE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 92,
+  "att": {
+   "forza": 5,
+   "agilita": 0,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "164",
+  "file": "164.webp",
+  "nome": "VALENS PUER",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 18,
+  "att": {
+   "forza": 2,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "165",
+  "file": "165.webp",
+  "nome": "SALVINI DI VASTO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 79,
+  "att": {
+   "forza": 4,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "166",
+  "file": "166.webp",
+  "nome": "ZIO GIANNI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 89,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "167",
+  "file": "167.webp",
+  "nome": "STROBO-GEPPERSON",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 71,
+  "att": {
+   "forza": 2,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 0,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "168",
+  "file": "168.webp",
+  "nome": "FRANCO DI GIAMMARINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 61,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "169",
+  "file": "169.webp",
+  "nome": "SUOCERO DI ANDREA DI LORETO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 36,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "170",
+  "file": "170.webp",
+  "nome": "QUELLO DELL'ANFE'",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 97,
+  "att": {
+   "forza": 6,
+   "agilita": 2,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 4,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "171",
+  "file": "171.webp",
+  "nome": "ARNALDO DI VASTO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 35,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "172",
+  "file": "172.webp",
+  "nome": "PESCE STAMPANTE 3D",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 70,
+  "att": {
+   "forza": 0,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 0,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "173",
+  "file": "173.webp",
+  "nome": "PADRE DI BOZZELLI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 52,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "174",
+  "file": "174.webp",
+  "nome": "PIERLUIGI DI GISSI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 76,
+  "att": {
+   "forza": 2,
+   "agilita": 2,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "175",
+  "file": "175.webp",
+  "nome": "VENERANDO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 90,
+  "att": {
+   "forza": 4,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 2,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "176",
+  "file": "176.webp",
+  "nome": "PERCHIE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 52,
+  "att": {
+   "forza": 0,
+   "agilita": 4,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 4,
+   "ubriachezza": 1
+  }
+ },
+ {
+  "id": "177",
+  "file": "177.webp",
+  "nome": "ERIK",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 61,
+  "att": {
+   "forza": 3,
+   "agilita": 4,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "178",
+  "file": "178.webp",
+  "nome": "CAMERIERO VIGNUOLO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 43,
+  "att": {
+   "forza": 1,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 2,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "179",
+  "file": "179.webp",
+  "nome": "GIANLUCA CARLUCCI",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 85,
+  "att": {
+   "forza": 0,
+   "agilita": 1,
+   "intelligenza": 0
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 1,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "180",
+  "file": "180.webp",
+  "nome": "EDDY IL LOSCO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 92,
+  "att": {
+   "forza": 1,
+   "agilita": 6,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "181",
+  "file": "181.webp",
+  "nome": "CAZZODORO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 4,
+   "agilita": 2,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 6,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "182",
+  "file": "182.webp",
+  "nome": "ZACCARIA SUPER PELATO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 85,
+  "att": {
+   "forza": 4,
+   "agilita": 6,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "183",
+  "file": "183.webp",
+  "nome": "NICHOLAS LYCAEUM",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 81,
+  "att": {
+   "forza": 4,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 1,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "184",
+  "file": "184.webp",
+  "nome": "ERMENEGILDO D'ASCANIO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 98,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 6,
+   "arrapamento": 3,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "185",
+  "file": "185.webp",
+  "nome": "BOBO VINCENZI",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 75,
+  "att": {
+   "forza": 4,
+   "agilita": 1,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "186",
+  "file": "186.webp",
+  "nome": "IL DÒTTORE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 40,
+  "att": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 6
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 2,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "187",
+  "file": "187.webp",
+  "nome": "LO SPAGNOLO",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 43,
+  "att": {
+   "forza": 2,
+   "agilita": 5,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 6,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "188",
+  "file": "188.webp",
+  "nome": "BOZZELLI GIOVANE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 87,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 4,
+   "arrapamento": 4,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "189",
+  "file": "189.webp",
+  "nome": "ITALO VIAGGI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 83,
+  "att": {
+   "forza": 1,
+   "agilita": 3,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "190",
+  "file": "190.webp",
+  "nome": "IL CONTE",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 21,
+  "att": {
+   "forza": 1,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 3,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "191",
+  "file": "191.webp",
+  "nome": "MAMMA DI QUELLO DEL VENTIDUESETTE",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 27,
+  "att": {
+   "forza": 2,
+   "agilita": 1,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 1,
+   "ubriachezza": 4
+  }
+ },
+ {
+  "id": "192",
+  "file": "192.webp",
+  "nome": "TONINO SCOPPETTA",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 93,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 1
+  },
+  "dif": {
+   "incazzamento": 5,
+   "arrapamento": 2,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "193",
+  "file": "193.webp",
+  "nome": "SEXY MURILLO",
+  "tipo": "soggettone",
+  "rarita": "DECISAMENTE RARO",
+  "ignoranza": 50,
+  "att": {
+   "forza": 5,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 5,
+   "ubriachezza": 0
+  }
+ },
+ {
+  "id": "194",
+  "file": "194.webp",
+  "nome": "PAPA' DI ARNALDO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 62,
+  "att": {
+   "forza": 1,
+   "agilita": 5,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "195",
+  "file": "195.webp",
+  "nome": "ANGELO POLLUTRI",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 57,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 1,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "196",
+  "file": "196.webp",
+  "nome": "FRANCO DI MONTEODORISIO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 83,
+  "att": {
+   "forza": 2,
+   "agilita": 2,
+   "intelligenza": 4
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": 3
+  }
+ },
+ {
+  "id": "197",
+  "file": "197.webp",
+  "nome": "MASCIOTTA",
+  "tipo": "soggettone",
+  "rarita": "DISCRETAMENTE RARO",
+  "ignoranza": 91,
+  "att": {
+   "forza": 6,
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "dif": {
+   "incazzamento": 2,
+   "arrapamento": 4,
+   "ubriachezza": 5
+  }
+ },
+ {
+  "id": "198",
+  "file": "198.webp",
+  "nome": "NICOLA PALLAE SUDATAE",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 70,
+  "att": {
+   "forza": 3,
+   "agilita": 3,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 3,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "199",
+  "file": "199.webp",
+  "nome": "OSVALDO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 52,
+  "att": {
+   "forza": 3,
+   "agilita": 2,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 0,
+   "arrapamento": 3,
+   "ubriachezza": 2
+  }
+ },
+ {
+  "id": "200",
+  "file": "200.webp",
+  "nome": "MARIO DI COSTANTINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 99,
+  "att": {
+   "forza": 5,
+   "agilita": 1,
+   "intelligenza": 3
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 5,
+   "ubriachezza": 6
+  }
+ },
+ {
+  "id": "201",
+  "file": "201.webp",
+  "nome": "GIGINO",
+  "tipo": "soggettone",
+  "rarita": "COMUNE",
+  "ignoranza": 55,
+  "att": {
+   "forza": 2,
+   "agilita": 3,
+   "intelligenza": 5
+  },
+  "dif": {
+   "incazzamento": 1,
+   "arrapamento": 0,
+   "ubriachezza": 0
+  }
+ }
+]

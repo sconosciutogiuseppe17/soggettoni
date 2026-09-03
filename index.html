@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soggettoni</title>
+<meta name="description" content="Il gioco di carte dei Soggettoni, da giocare online con gli amici.">
+<meta name="theme-color" content="#b21f24">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23b21f24'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='Arial Black,sans-serif' fill='%23f0a03c'>S</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================ INGRESSO ============================ -->
+<div id="schermata-ingresso" class="schermata attiva">
+  <div class="ingresso">
+    <h1 class="marchio">Soggettoni</h1>
+    <p class="sottotitolo">I personaggi più iconici di Vasto, uno contro l'altro.</p>
+
+    <div id="pannello-scelta" class="pannello">
+      <label class="campo">
+        <span>Il tuo nome</span>
+        <input id="in-nome" type="text" maxlength="20" placeholder="Come ti chiamano" autocomplete="nickname">
+      </label>
+
+      <div class="due-bottoni">
+        <button id="btn-vai-crea" class="bottone grande">Crea partita</button>
+        <button id="btn-vai-entra" class="bottone grande fantasma">Entra con un codice</button>
+      </div>
+      <button id="btn-locale" class="bottone testo">Provala da solo su questo schermo</button>
+    </div>
+
+    <div id="pannello-crea" class="pannello nascosto">
+      <p class="etichetta-gruppo">Quanti siete?</p>
+      <div class="modalita">
+        <button class="scelta-modalita selezionata" data-modalita="1v1">
+          <strong>2 giocatori</strong><span>uno contro uno</span></button>
+        <button class="scelta-modalita" data-modalita="1v1v1">
+          <strong>3 giocatori</strong><span>tutti contro tutti</span></button>
+        <button class="scelta-modalita" data-modalita="2v2">
+          <strong>4 giocatori</strong><span>due contro due</span></button>
+      </div>
+      <button id="btn-crea" class="bottone grande">Apri la stanza</button>
+      <button class="bottone testo indietro">Torna indietro</button>
+    </div>
+
+    <div id="pannello-entra" class="pannello nascosto">
+      <label class="campo">
+        <span>Codice della stanza</span>
+        <input id="in-codice" type="text" maxlength="5" placeholder="ABCDE" autocapitalize="characters" autocomplete="off" spellcheck="false">
+      </label>
+      <button id="btn-entra" class="bottone grande">Entra</button>
+      <button class="bottone testo indietro">Torna indietro</button>
+    </div>
+
+    <p id="errore-ingresso" class="errore" role="alert"></p>
+  </div>
+</div>
+
+<!-- ============================= LOBBY ============================== -->
+<div id="schermata-lobby" class="schermata">
+  <div class="ingresso">
+    <h2 class="marchio piccolo">Stanza aperta</h2>
+    <div class="codice-grande" id="codice-stanza">—</div>
+    <p class="sottotitolo">Passa questo codice agli altri. Devono aprire lo stesso sito e premere «Entra con un codice».</p>
+    <button id="btn-copia" class="bottone fantasma">Copia il link d'invito</button>
+
+    <ul id="lista-lobby" class="lista-giocatori"></ul>
+
+    <button id="btn-inizia" class="bottone grande" disabled>Inizia la partita</button>
+    <p id="attesa-lobby" class="sottotitolo"></p>
+  </div>
+</div>
+
+<!-- ============================= TAVOLO ============================= -->
+<div id="schermata-tavolo" class="schermata">
+  <header class="barra">
+    <span class="marchio minuscolo">Soggettoni</span>
+    <span id="barra-turno" class="turno">—</span>
+    <span class="spinta"></span>
+    <button id="btn-regole" class="bottone minuto fantasma">Regole</button>
+    <button id="btn-registro" class="bottone minuto fantasma">Registro</button>
+  </header>
+
+  <main class="tavolo">
+    <section id="avversari" class="avversari"></section>
+
+    <section class="fascia-luogo">
+      <div class="posto posto-luogo" id="posto-luogo">
+        <span class="posto-nome">Carta luogo</span>
+        <div class="contenuto" id="contenuto-luogo"></div>
+      </div>
+      <div id="messaggio-tavolo" class="messaggio" role="status"></div>
+    </section>
+
+    <section id="mia-plancia" class="plancia mia"></section>
+
+    <section class="fascia-mano">
+      <div id="azioni" class="azioni"></div>
+      <div id="mano" class="mano"></div>
+    </section>
+  </main>
+</div>
+
+<!-- =========================== SOVRAPPOSTI =========================== -->
+<div id="lente" class="lente nascosto" role="dialog" aria-label="Carta ingrandita">
+  <div class="lente-dentro">
+    <img id="lente-img" alt="">
+    <div id="lente-testo" class="lente-testo"></div>
+  </div>
+</div>
+
+<div id="foglio" class="foglio nascosto" role="dialog">
+  <div class="foglio-dentro">
+    <button class="chiudi" data-chiudi-foglio aria-label="Chiudi">×</button>
+    <div id="foglio-contenuto"></div>
+  </div>
+</div>
+
+<!-- PeerJS ospitato nel repo: niente dipendenze da CDN esterni -->
+<script src="js/vendor/peerjs.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

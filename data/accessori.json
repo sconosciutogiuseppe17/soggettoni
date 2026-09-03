@@ -1,0 +1,423 @@
+[
+ {
+  "id": "A1",
+  "file": "A1.webp",
+  "nome": "SUNRISE",
+  "tipo": "luogo",
+  "sottotipo": "LOCALE",
+  "ignoranza": 43,
+  "mod": {
+   "forza": 0,
+   "agilita": 0,
+   "intelligenza": -1,
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 3
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "CELESTINO"
+   ]
+  },
+  "testo": "Porta al massimo tutti i valori della carta \"Celestino\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "A2",
+  "file": "A2.webp",
+  "nome": "PLAZA DE DON ALFREDO",
+  "tipo": "luogo",
+  "sottotipo": "LOCALE",
+  "ignoranza": 16,
+  "mod": {
+   "forza": 1,
+   "agilita": 0,
+   "intelligenza": 0,
+   "incazzamento": -1,
+   "arrapamento": 1,
+   "ubriachezza": 3
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "DON ALFREDO"
+   ]
+  },
+  "testo": "Porta al massimo i valori della carta \"Don Alfredo\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "A3",
+  "file": "A3.webp",
+  "nome": "BAGNO DEGLI AUTISTI",
+  "tipo": "luogo",
+  "sottotipo": "DISSERVIZIO",
+  "ignoranza": 63,
+  "mod": {
+   "forza": 0,
+   "agilita": 1,
+   "intelligenza": -2,
+   "incazzamento": 3,
+   "arrapamento": 1,
+   "ubriachezza": 0
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "SATMAN",
+    "FRANCHINO SOBRIO"
+   ]
+  },
+  "testo": "Porta al massimo i valori delle carte \"Satman\" e \"Franchino Sobrio\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "A4",
+  "file": "A4.webp",
+  "nome": "GELATERIA DA COSTANTINO",
+  "tipo": "luogo",
+  "sottotipo": "LOCALE",
+  "ignoranza": 5,
+  "mod": {
+   "forza": 3,
+   "agilita": 1,
+   "intelligenza": 1,
+   "incazzamento": -1,
+   "arrapamento": 0,
+   "ubriachezza": 0
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "COSTANTINO"
+   ]
+  },
+  "testo": "Porta al massimo tutti i valori della carta \"Costantino\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "A5",
+  "file": "A5.webp",
+  "nome": "PIAZZA ROSSETTI",
+  "tipo": "luogo",
+  "sottotipo": "PUNTO D'INCONTRO",
+  "ignoranza": 9,
+  "mod": {
+   "forza": 0,
+   "agilita": 2,
+   "intelligenza": 1,
+   "incazzamento": 1,
+   "arrapamento": 2,
+   "ubriachezza": -2
+  },
+  "speciale": {
+   "kind": "solo_vastesi"
+  },
+  "testo": "I valori di tutte le carte variano secondo quanto sopra. Non vale se i soggetti delle carte non sono vastesi"
+ },
+ {
+  "id": "A6",
+  "file": "A6.webp",
+  "nome": "VILLETTA DEI RUMENI",
+  "tipo": "luogo",
+  "sottotipo": "DISSERVIZIO",
+  "ignoranza": 55,
+  "mod": {
+   "forza": 3,
+   "agilita": 0,
+   "intelligenza": -2,
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 2
+  },
+  "speciale": {
+   "kind": "solo_vastesi"
+  },
+  "testo": "I valori di tutte le carte variano secondo quanto sopra. Non vale se i soggetti delle carte non sono vastesi"
+ },
+ {
+  "id": "A7",
+  "file": "A7.webp",
+  "nome": "BAU BAR",
+  "tipo": "luogo",
+  "sottotipo": "LOCALE",
+  "ignoranza": 67,
+  "mod": {
+   "forza": 0,
+   "agilita": -1,
+   "intelligenza": -2,
+   "incazzamento": 1,
+   "arrapamento": 3,
+   "ubriachezza": 4
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "SALVATORE",
+    "ANA"
+   ]
+  },
+  "testo": "Porta al massimo tutti i valori delle carte \"Salvatore\" e \"Ana\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "A8",
+  "file": "A8.webp",
+  "nome": "REGNO DEI VERMI",
+  "tipo": "luogo",
+  "sottotipo": "DISSERVIZIO",
+  "ignoranza": 47,
+  "mod": {
+   "forza": 1,
+   "agilita": 3,
+   "intelligenza": -2,
+   "incazzamento": 1,
+   "arrapamento": 1,
+   "ubriachezza": 1
+  },
+  "speciale": {
+   "kind": "solo_vastesi"
+  },
+  "testo": "I valori di tutte le carte variano secondo quanto sopra. Non vale se i soggetti delle carte non sono vastesi"
+ },
+ {
+  "id": "A9",
+  "file": "A9.webp",
+  "nome": "AUTOBUS DI TESSITORE",
+  "tipo": "luogo",
+  "sottotipo": "DISSERVIZIO",
+  "ignoranza": 60,
+  "mod": {
+   "forza": 4,
+   "agilita": -1,
+   "intelligenza": -2,
+   "incazzamento": 3,
+   "arrapamento": 0,
+   "ubriachezza": 0
+  },
+  "speciale": {
+   "kind": "max_all_for",
+   "nomi": [
+    "SATMAN",
+    "FRANCHINO SOBRIO"
+   ]
+  },
+  "testo": "Porta al massimo i valori delle carte \"Satman\" e \"Franchino Sobrio\". I valori delle altre carte variano secondo quanto sopra"
+ },
+ {
+  "id": "B1",
+  "file": "B1.webp",
+  "nome": "DEPRESSIONE POST-SBRONZA",
+  "tipo": "abilita",
+  "sottotipo": "ABILITA' DECISAMENTE SPECIALE",
+  "mod": {
+   "arrapamento": 1,
+   "ubriachezza": 4
+  },
+  "testo": "Il soggetto assieme al quale è schierata la carta subisce un aumento dei due valori sopra specificati pari al punteggio indicato"
+ },
+ {
+  "id": "B2",
+  "file": "B2.webp",
+  "nome": "SCORREGGIA NOTTURNA",
+  "tipo": "abilita",
+  "sottotipo": "ABILITA' DECISAMENTE SPECIALE",
+  "mod": {
+   "agilita": 3,
+   "ubriachezza": 1
+  },
+  "testo": "Il soggetto assieme al quale è schierata la carta subisce un aumento dei due valori sopra specificati pari al punteggio indicato"
+ },
+ {
+  "id": "B3",
+  "file": "B3.webp",
+  "nome": "SUPERFIUTO PER IL TARTUFO",
+  "tipo": "abilita",
+  "sottotipo": "ABILITA' DECISAMENTE SPECIALE",
+  "mod": {
+   "agilita": 3,
+   "intelligenza": 2
+  },
+  "testo": "Il soggetto assieme al quale è schierata la carta subisce un aumento dei due valori sopra specificati pari al punteggio indicato"
+ },
+ {
+  "id": "B4",
+  "file": "B4.webp",
+  "nome": "MESSAGGI POCO CHIARI",
+  "tipo": "abilita",
+  "sottotipo": "ABILITA' DECISAMENTE SPECIALE",
+  "mod": {
+   "ubriachezza": 3,
+   "intelligenza": 2
+  },
+  "testo": "Il soggetto assieme al quale è schierata la carta subisce un aumento dei due valori sopra specificati pari al punteggio indicato"
+ },
+ {
+  "id": "B5",
+  "file": "B5.webp",
+  "nome": "ECCESSO DI FICA",
+  "tipo": "abilita",
+  "sottotipo": "ABILITA' DECISAMENTE SPECIALE",
+  "mod": {
+   "arrapamento": 5,
+   "agilita": 1
+  },
+  "testo": "Il soggetto assieme al quale è schierata la carta subisce un aumento dei due valori sopra specificati pari al punteggio indicato"
+ },
+ {
+  "id": "D1",
+  "file": "D1.webp",
+  "nome": "SUPERFORZA",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "forza",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Forza\" della carta assieme alla quale è schierata. Se la forza del soggetto è già massima (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D2",
+  "file": "D2.webp",
+  "nome": "SUPERAGILITA'",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "agilita",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Agilità\" della carta assieme alla quale è schierata. Se l'agilità del soggetto è già massima (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D3",
+  "file": "D3.webp",
+  "nome": "SUPERINTELLIGENZA",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "intelligenza",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Intelligenza\" della carta assieme alla quale è schierata. Se l'intelligenza del soggetto è già massima (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D4",
+  "file": "D4.webp",
+  "nome": "SUPERINCAZZAMENTO",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "incazzamento",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Incazzamento\" della carta assieme alla quale è schierata. Se l'incazzamento del soggetto è già massimo (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D5",
+  "file": "D5.webp",
+  "nome": "SUPERARRAPAMENTO",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "arrapamento",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Arrapamento\" della carta assieme alla quale è schierata. Se l'arrapamento del soggetto è già massimo (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D6",
+  "file": "D6.webp",
+  "nome": "SUPERUBRIACHEZZA",
+  "tipo": "aumentazione",
+  "sottotipo": "DECISA AUMENTAZIONE",
+  "stat": "ubriachezza",
+  "unaVolta": true,
+  "testo": "Aumenta al massimo il valore \"Ubriachezza\" della carta assieme alla quale è schierata. Se l'ubriachezza del soggetto è già massima (giallo) non ha alcun effetto"
+ },
+ {
+  "id": "D7",
+  "file": "D7.webp",
+  "nome": "SUPERDEBOLEZZA",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "forza",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Forza\" della carta che si sta attaccando. Se la forza del soggetto è già minima (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D8",
+  "file": "D8.webp",
+  "nome": "SUPERIMPEDIMENTO",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "agilita",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Agilità\" della carta che si sta attaccando. Se l'agilità del soggetto è già minima (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D9",
+  "file": "D9.webp",
+  "nome": "SUPERRINCOGLIONIMENTO",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "intelligenza",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Intelligenza\" della carta che si sta attaccando. Se l'intelligenza del soggetto è già minima (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D10",
+  "file": "D10.webp",
+  "nome": "SUPERCALMA",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "incazzamento",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Incazzamento\" della carta che si sta attaccando. Se l'incazzamento del soggetto è già minimo (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D11",
+  "file": "D11.webp",
+  "nome": "SUPERCASTITA'",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "arrapamento",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Arrapamento\" della carta che si sta attaccando. Se l'arrapamento del soggetto è già minimo (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D12",
+  "file": "D12.webp",
+  "nome": "SUPERLUCIDITA'",
+  "tipo": "diminuzione",
+  "sottotipo": "DRASTICA DIMINUZIONE",
+  "stat": "ubriachezza",
+  "unaVolta": true,
+  "testo": "Diminuisce al minimo il valore \"Ubriachezza\" della carta che si sta attaccando. Se l'ubriachezza del soggetto è già minima (tutto grigio) non ha alcun effetto"
+ },
+ {
+  "id": "D13",
+  "file": "D13.webp",
+  "nome": "+10 PUNTI IGNORANZA",
+  "tipo": "ignoranza",
+  "sottotipo": "BONUS IGNORANZA",
+  "punti": 10,
+  "unaVolta": true,
+  "testo": "Aumenta di 10 punti il valore ignoranza del soggetto con il quale viene schierata. Non può essere usata se al soggetto mancano meno di 10 punti per giungere al valore massimo di 100"
+ },
+ {
+  "id": "D14",
+  "file": "D14.webp",
+  "nome": "+20 PUNTI IGNORANZA",
+  "tipo": "ignoranza",
+  "sottotipo": "BONUS IGNORANZA",
+  "punti": 20,
+  "unaVolta": true,
+  "testo": "Aumenta di 20 punti il valore ignoranza del soggetto con il quale viene schierata. Non può essere usata se al soggetto mancano meno di 20 punti per giungere al valore massimo di 100"
+ },
+ {
+  "id": "D15",
+  "file": "D15.webp",
+  "nome": "+30 PUNTI IGNORANZA",
+  "tipo": "ignoranza",
+  "sottotipo": "BONUS IGNORANZA",
+  "punti": 30,
+  "unaVolta": true,
+  "testo": "Aumenta di 30 punti il valore ignoranza del soggetto con il quale viene schierata. Non può essere usata se al soggetto mancano meno di 30 punti per giungere al valore massimo di 100"
+ },
+ {
+  "id": "D16",
+  "file": "D16.webp",
+  "nome": "+40 PUNTI IGNORANZA",
+  "tipo": "ignoranza",
+  "sottotipo": "BONUS IGNORANZA",
+  "punti": 40,
+  "unaVolta": true,
+  "testo": "Aumenta di 40 punti il valore ignoranza del soggetto con il quale viene schierata. Non può essere usata se al soggetto mancano meno di 40 punti per giungere al valore massimo di 100"
+ }
+]
