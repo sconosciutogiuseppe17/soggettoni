@@ -1,0 +1,4 @@
+# Il gioco è raggiungibile da chi ha il link, ma non lo mettiamo nei motori di ricerca:
+# le carte sono foto di persone vere.
+User-agent: *
+Disallow: /
