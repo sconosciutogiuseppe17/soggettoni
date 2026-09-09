@@ -1,0 +1,2213 @@
+{
+ "aggiornato": "2026-09-09",
+ "carte": [
+  {
+   "num": "202",
+   "nome": "Jacopo Scialuppa",
+   "rarita": "Comune",
+   "ign": 78,
+   "val": [
+    3,
+    4,
+    5,
+    2,
+    2,
+    6
+   ],
+   "testo": "Alcolismo polacco, comunismo d’accatto",
+   "img": "galleria/202.webp"
+  },
+  {
+   "num": "203",
+   "nome": "Colavirus",
+   "rarita": "Comune",
+   "ign": 32,
+   "val": [
+    1,
+    6,
+    5,
+    0,
+    6,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/203.webp"
+  },
+  {
+   "num": "204",
+   "nome": "Gabriele del futuro",
+   "rarita": "Comune",
+   "ign": 86,
+   "val": [
+    4,
+    6,
+    4,
+    3,
+    6,
+    4
+   ],
+   "testo": "“Business, Business!”",
+   "img": "galleria/204.webp"
+  },
+  {
+   "num": "205",
+   "nome": "Nicola della Gatta",
+   "rarita": "Comune",
+   "ign": 0,
+   "val": [
+    0,
+    0,
+    2,
+    0,
+    0,
+    0
+   ],
+   "testo": "Età indefinita, così come l'orientamento sessuale",
+   "img": "galleria/205.webp"
+  },
+  {
+   "num": "206",
+   "nome": "Francesco Menna",
+   "rarita": "Comune",
+   "ign": 13,
+   "val": [
+    1,
+    1,
+    4,
+    4,
+    4,
+    0
+   ],
+   "testo": "Mangiare escrementi in diretta social. O era AI?",
+   "img": "galleria/206.webp"
+  },
+  {
+   "num": "207",
+   "nome": "Del Viscio",
+   "rarita": "Comune",
+   "ign": 49,
+   "val": [
+    4,
+    2,
+    4,
+    3,
+    3,
+    7
+   ],
+   "testo": "Disertare il Consiglio comunale per scolarsi qualche decina di",
+   "img": "galleria/207.webp"
+  },
+  {
+   "num": "208",
+   "nome": "Ana Boskov",
+   "rarita": "Comune",
+   "ign": 14,
+   "val": [
+    0,
+    3,
+    1,
+    0,
+    6,
+    0
+   ],
+   "testo": "Ambire al soglio sindacale  ma venire sparata da Nicola della Gatta",
+   "img": "galleria/208.webp"
+  },
+  {
+   "num": "209",
+   "nome": "Quello del Wast Coast",
+   "rarita": "Comune",
+   "ign": 89,
+   "val": [
+    5,
+    1,
+    2,
+    6,
+    1,
+    5
+   ],
+   "testo": "Anche lui minaccia di chiudere da anni",
+   "img": "galleria/209.webp"
+  },
+  {
+   "num": "210",
+   "nome": "Il Lupo",
+   "rarita": "Comune",
+   "ign": 82,
+   "val": [
+    3,
+    6,
+    6,
+    4,
+    5,
+    0
+   ],
+   "testo": "",
+   "img": "galleria/210.webp"
+  },
+  {
+   "num": "211",
+   "nome": "Il Conte",
+   "rarita": "Comune",
+   "ign": 94,
+   "val": [
+    5,
+    6,
+    4,
+    6,
+    5,
+    6
+   ],
+   "testo": "",
+   "img": "galleria/211.webp"
+  },
+  {
+   "num": "212",
+   "nome": "Alfonso Calvitti",
+   "rarita": "Comune",
+   "ign": 90,
+   "val": [
+    5,
+    4,
+    4,
+    6,
+    4,
+    5
+   ],
+   "testo": "Rimpianto omone dalla voce cavernosa",
+   "img": "galleria/212.webp"
+  },
+  {
+   "num": "213",
+   "nome": "Centopanini",
+   "rarita": "Comune",
+   "ign": 84,
+   "val": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    6
+   ],
+   "testo": "Suocero di Filippo in una timeline alternativa",
+   "img": "galleria/213.webp"
+  },
+  {
+   "num": "214",
+   "nome": "Patata Bollente",
+   "rarita": "Comune",
+   "ign": 88,
+   "val": [
+    5,
+    6,
+    3,
+    6,
+    6,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/214.webp"
+  },
+  {
+   "num": "215",
+   "nome": "Gedeone",
+   "rarita": "Comune",
+   "ign": 76,
+   "val": [
+    5,
+    6,
+    5,
+    4,
+    6,
+    0
+   ],
+   "testo": "Cuore d’oro e positività strabordante",
+   "img": "galleria/215.webp"
+  },
+  {
+   "num": "217",
+   "nome": "Maestro dei giochi",
+   "rarita": "Comune",
+   "ign": 37,
+   "val": [
+    4,
+    6,
+    6,
+    0,
+    4,
+    4
+   ],
+   "testo": "Il più grande esperto vastese di giochi da tavolo, forse perché è anche l’unico",
+   "img": "galleria/217.webp"
+  },
+  {
+   "num": "218",
+   "nome": "Chef del futuro",
+   "rarita": "Discretamente raro",
+   "ign": 61,
+   "val": [
+    4,
+    4,
+    5,
+    3,
+    2,
+    3
+   ],
+   "testo": "Sovrappeso, scoppato e paziente padre di famiglia",
+   "img": "galleria/218.webp"
+  },
+  {
+   "num": "219",
+   "nome": "Mattia del futuro",
+   "rarita": "Discretamente raro",
+   "ign": 71,
+   "val": [
+    4,
+    2,
+    5,
+    5,
+    2,
+    3
+   ],
+   "testo": "Calvissimo, solingo ingegnere e artista marziale ferrarese, amato zio",
+   "img": "galleria/219.webp"
+  },
+  {
+   "num": "221",
+   "nome": "Francesco d'Addazio",
+   "rarita": "Discretamente raro",
+   "ign": 62,
+   "val": [
+    3,
+    2,
+    3,
+    1,
+    2,
+    4
+   ],
+   "testo": "Abile organettista",
+   "img": "galleria/221.webp"
+  },
+  {
+   "num": "222",
+   "nome": "Wuilian",
+   "rarita": "Discretamente raro",
+   "ign": 68,
+   "val": [
+    6,
+    5,
+    1,
+    4,
+    6,
+    0
+   ],
+   "testo": "Ha finalmente ragigunto la sua forma finale. Non ha più nulla da nascondere",
+   "img": "galleria/222.webp"
+  },
+  {
+   "num": "224",
+   "nome": "Angelo Pastorini",
+   "rarita": "Discretamente raro",
+   "ign": 92,
+   "val": [
+    6,
+    6,
+    2,
+    7,
+    4,
+    2
+   ],
+   "testo": "Iracondo  contadino e tamburellista svizzero/molisano",
+   "img": "galleria/224.webp"
+  },
+  {
+   "num": "225",
+   "nome": "Agente del Mossab",
+   "rarita": "Discretamente raro",
+   "ign": 58,
+   "val": [
+    6,
+    6,
+    6,
+    3,
+    0,
+    0
+   ],
+   "testo": "Negrone ebreo ortodosso esperto di krav-maga alle calcagna di Jib al-Jibu",
+   "img": "galleria/225.webp"
+  },
+  {
+   "num": "227",
+   "nome": "Malachia Ciccoele",
+   "rarita": "Discretamente raro",
+   "ign": 12,
+   "val": [
+    5,
+    4,
+    6,
+    0,
+    0,
+    0
+   ],
+   "testo": "",
+   "img": "galleria/227.webp"
+  },
+  {
+   "num": "228",
+   "nome": "Cucciolone",
+   "rarita": "Discretamente raro",
+   "ign": 85,
+   "val": [
+    4,
+    1,
+    2,
+    6,
+    0,
+    1
+   ],
+   "testo": "Testa molto grande e sguardo da cucciolo. La confusione è presto fatta",
+   "img": "galleria/228.webp"
+  },
+  {
+   "num": "229",
+   "nome": "Il Piccoletto del Dockers",
+   "rarita": "Discretamente raro",
+   "ign": 87,
+   "val": [
+    4,
+    5,
+    5,
+    1,
+    4,
+    6
+   ],
+   "testo": "Ex-camionista inspiegabilmente detenuto in una prigione africana quindi gerente di compianto locale vastese",
+   "img": "galleria/229.webp"
+  },
+  {
+   "num": "231",
+   "nome": "Centopanina",
+   "rarita": "Discretamente raro",
+   "ign": 22,
+   "val": [
+    2,
+    4,
+    5,
+    2,
+    5,
+    5
+   ],
+   "testo": "Moglie di Filippo in una timeline alternativa",
+   "img": "galleria/231.webp"
+  },
+  {
+   "num": "232",
+   "nome": "Morrison Dockers",
+   "rarita": "Discretamente raro",
+   "ign": 84,
+   "val": [
+    3,
+    3,
+    4,
+    6,
+    5,
+    5
+   ],
+   "testo": "Ostracizzato dal suo vecchio locale, è stato accolto da Centopanini come un fratello",
+   "img": "galleria/232.webp"
+  },
+  {
+   "num": "234",
+   "nome": "Oca egiziana",
+   "rarita": "Discretamente raro",
+   "ign": 83,
+   "val": [
+    3,
+    7,
+    6,
+    2,
+    5,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/234.webp"
+  },
+  {
+   "num": "235",
+   "nome": "Angiolino",
+   "rarita": "Discretamente raro",
+   "ign": 94,
+   "val": [
+    4,
+    1,
+    2,
+    4,
+    4,
+    4
+   ],
+   "testo": "Migliaia di documentari soporiferi sulla storia d’Abruzzo",
+   "img": "galleria/235.webp"
+  },
+  {
+   "num": "238",
+   "nome": "Marco Colagioia",
+   "rarita": "Decisamente raro",
+   "ign": 96,
+   "val": [
+    1,
+    4,
+    2,
+    2,
+    6,
+    7
+   ],
+   "testo": "Molesta donzelle tra una cirrosi e l'altra",
+   "img": "galleria/238.webp"
+  },
+  {
+   "num": "241",
+   "nome": "Arcangelo Iocchi",
+   "rarita": "Decisamente raro",
+   "ign": 91,
+   "val": [
+    3,
+    4,
+    4,
+    4,
+    4,
+    5
+   ],
+   "testo": "Italiano tornito e tediosa ricerca dello scoop",
+   "img": "galleria/241.webp"
+  },
+  {
+   "num": "243",
+   "nome": "Carmine Mario",
+   "rarita": "Decisamente raro",
+   "ign": 100,
+   "val": [
+    3,
+    2,
+    3,
+    5,
+    7,
+    7
+   ],
+   "testo": "Eccessiva generosità e scopata con suore",
+   "img": "galleria/243.webp"
+  },
+  {
+   "num": "244",
+   "nome": "Gregorio Rotolo",
+   "rarita": "Decisamente raro",
+   "ign": 60,
+   "val": [
+    6,
+    5,
+    6,
+    3,
+    4,
+    6
+   ],
+   "testo": "L’eroe della pastorizia abruzzese",
+   "img": "galleria/244.webp"
+  },
+  {
+   "num": "245",
+   "nome": "Paolo Notaro del futuro",
+   "rarita": "Decisamente raro",
+   "ign": 62,
+   "val": [
+    3,
+    6,
+    4,
+    3,
+    1,
+    0
+   ],
+   "testo": "Preoccupante magrezza associata a preoccupante glabritudine",
+   "img": "galleria/245.webp"
+  },
+  {
+   "num": "246",
+   "nome": "Micchele del futuro",
+   "rarita": "Fottutamente raro",
+   "ign": 50,
+   "val": [
+    2,
+    4,
+    3,
+    1,
+    4,
+    4
+   ],
+   "testo": "Ha avuto 10 anni per affinare la tecnica e rendersi irrintracciabile",
+   "img": "galleria/246.webp"
+  },
+  {
+   "num": "247",
+   "nome": "Il Maestro",
+   "rarita": "Fottutamente raro",
+   "ign": 27041995,
+   "val": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "testo": "È lui, il Maestro. Ricordi?",
+   "img": "galleria/247.webp"
+  },
+  {
+   "num": "249",
+   "nome": "Salvatore Zombie",
+   "rarita": "Fottutamente raro",
+   "ign": 97,
+   "val": [
+    3,
+    1,
+    0,
+    6,
+    1,
+    5
+   ],
+   "testo": "Un inefficace rituale di negromanzia lo ha riportato brevemente tra noi",
+   "img": "galleria/249.webp"
+  },
+  {
+   "num": "251",
+   "nome": "Quello di Martone",
+   "rarita": "Comune",
+   "ign": 58,
+   "val": [
+    3,
+    5,
+    4,
+    3,
+    2,
+    3
+   ],
+   "testo": "Prezzi onesti, ottimo caffè, radi scontrini, antipatia e cordialità ben dosate",
+   "img": "galleria/251.webp"
+  },
+  {
+   "num": "252",
+   "nome": "Lorenzo Caldarelli",
+   "rarita": "Comune",
+   "ign": 86,
+   "val": [
+    2,
+    4,
+    4,
+    1,
+    5,
+    6
+   ],
+   "testo": "Bambino imprenditore che si ciuccia il pollice e tifa Roma",
+   "img": "galleria/252.webp"
+  },
+  {
+   "num": "253",
+   "nome": "Claudio",
+   "rarita": "Comune",
+   "ign": 61,
+   "val": [
+    4,
+    4,
+    3,
+    1,
+    4,
+    3
+   ],
+   "testo": "Homer Simpson dei poveri, che biascica servendo il caffè all’alba a una clientela discutibile",
+   "img": "galleria/253.webp"
+  },
+  {
+   "num": "254",
+   "nome": "Capitano dei carabinieri",
+   "rarita": "Comune",
+   "ign": 76,
+   "val": [
+    5,
+    5,
+    5,
+    2,
+    1,
+    1
+   ],
+   "testo": "Di birra e di fregna il baffo s’impregna",
+   "img": "galleria/254.webp"
+  },
+  {
+   "num": "255",
+   "nome": "Madonna dell’Ufo",
+   "rarita": "Comune",
+   "ign": 36,
+   "val": [
+    5,
+    0,
+    4,
+    0,
+    4,
+    3
+   ],
+   "testo": "Ci protegge dai malvagi invasori alieni",
+   "img": "galleria/255.webp"
+  },
+  {
+   "num": "256",
+   "nome": "Cesare Vicoli",
+   "rarita": "Comune",
+   "ign": 32,
+   "val": [
+    6,
+    0,
+    7,
+    0,
+    4,
+    0
+   ],
+   "testo": "Il Giacomo Leopardi vastese che lavora nel magazzino della cartolibreria di famiglia",
+   "img": "galleria/256.webp"
+  },
+  {
+   "num": "257",
+   "nome": "Cesare Vicoli ninja",
+   "rarita": "Comune",
+   "ign": 46,
+   "val": [
+    6,
+    3,
+    7,
+    0,
+    4,
+    1
+   ],
+   "testo": "Fogli A4 dalla cartolibreria di famiglia come Shuriken",
+   "img": "galleria/257.webp"
+  },
+  {
+   "num": "258",
+   "nome": "Martina di Martino",
+   "rarita": "Comune",
+   "ign": 70,
+   "val": [
+    5,
+    2,
+    5,
+    5,
+    4,
+    6
+   ],
+   "testo": "Non può bere in gravidanza pur preparando ottimi cocktails",
+   "img": "galleria/258.webp"
+  },
+  {
+   "num": "259",
+   "nome": "Del Viscio giovane",
+   "rarita": "Comune",
+   "ign": 32,
+   "val": [
+    4,
+    4,
+    4,
+    1,
+    4,
+    5
+   ],
+   "testo": "Alcolismo cresciuto parallelamente alle delusioni con la Consulta giovanile",
+   "img": "galleria/259.webp"
+  },
+  {
+   "num": "260",
+   "nome": "Conte Zappula",
+   "rarita": "Comune",
+   "ign": 17,
+   "val": [
+    4,
+    6,
+    6,
+    1,
+    5,
+    0
+   ],
+   "testo": "Si trasforma in pipistrello e romba sul suo carro funebre. Comanda orde di vampiri romeni casciamortari impomatati",
+   "img": "galleria/260.webp"
+  },
+  {
+   "num": "261",
+   "nome": "Dottor Memmo",
+   "rarita": "Comune",
+   "ign": 7,
+   "val": [
+    1,
+    2,
+    1,
+    3,
+    6,
+    2
+   ],
+   "testo": "Lucra sulla bruttezza della zoccola media",
+   "img": "galleria/261.webp"
+  },
+  {
+   "num": "262",
+   "nome": "La figlia del capo",
+   "rarita": "Comune",
+   "ign": 92,
+   "val": [
+    6,
+    1,
+    1,
+    6,
+    6,
+    5
+   ],
+   "testo": "È l’odiosa spasisimante di Satman",
+   "img": "galleria/262.webp"
+  },
+  {
+   "num": "263",
+   "nome": "Il capo",
+   "rarita": "Comune",
+   "ign": 12,
+   "val": [
+    2,
+    5,
+    3,
+    5,
+    5,
+    0
+   ],
+   "testo": "È il dispotico capo di Satman",
+   "img": "galleria/263.webp"
+  },
+  {
+   "num": "264",
+   "nome": "Angelo Finamore",
+   "rarita": "Comune",
+   "ign": 13,
+   "val": [
+    1,
+    6,
+    3,
+    3,
+    0,
+    0
+   ],
+   "testo": "Mento Asburgico",
+   "img": "galleria/264.webp"
+  },
+  {
+   "num": "265",
+   "nome": "Papa Giovanni Paolo II",
+   "rarita": "Comune",
+   "ign": 76,
+   "val": [
+    4,
+    5,
+    5,
+    0,
+    2,
+    3
+   ],
+   "testo": "Estrema rigenerazione che lo rende immune alle armi da fuoco",
+   "img": "galleria/265.webp"
+  },
+  {
+   "num": "266",
+   "nome": "Papa Francesco",
+   "rarita": "Comune",
+   "ign": 88,
+   "val": [
+    2,
+    3,
+    6,
+    5,
+    4,
+    4
+   ],
+   "testo": "Cazzottoni a chi tocca la sua mamma",
+   "img": "galleria/266.webp"
+  },
+  {
+   "num": "267",
+   "nome": "Rino",
+   "rarita": "Comune",
+   "ign": 92,
+   "val": [
+    3,
+    4,
+    3,
+    1,
+    1,
+    5
+   ],
+   "testo": "Baffoni e prezzi altissimi",
+   "img": "galleria/267.webp"
+  },
+  {
+   "num": "268",
+   "nome": "Valerio",
+   "rarita": "Comune",
+   "ign": 67,
+   "val": [
+    1,
+    5,
+    4,
+    0,
+    4,
+    6
+   ],
+   "testo": "Vegetarianesimo ben perseguito, ma passione latente per i fegatazzi",
+   "img": "galleria/268.webp"
+  },
+  {
+   "num": "269",
+   "nome": "Mosè",
+   "rarita": "Comune",
+   "ign": 18,
+   "val": [
+    4,
+    5,
+    5,
+    3,
+    1,
+    1
+   ],
+   "testo": "L’ultimo degli adepti di Pino",
+   "img": "galleria/269.webp"
+  },
+  {
+   "num": "270",
+   "nome": "Rota temporis",
+   "rarita": "Comune",
+   "ign": 90,
+   "val": [
+    4,
+    5,
+    2,
+    5,
+    6,
+    5
+   ],
+   "testo": "Muscoli, panze, cornemuse stonate, birra, sesso sfrenato e omosessualità repressa",
+   "img": "galleria/270.webp"
+  },
+  {
+   "num": "271",
+   "nome": "Signor Topo",
+   "rarita": "Comune",
+   "ign": 31,
+   "val": [
+    0,
+    5,
+    4,
+    1,
+    5,
+    2
+   ],
+   "testo": "Simpatico e cordiale roditore vastese. Da quando è coinquilino dello Chef, come spesso accade in casi simili, il rapporto si è andato deteriorando",
+   "img": "galleria/271.webp"
+  },
+  {
+   "num": "272",
+   "nome": "Michele d’Annunzio",
+   "rarita": "Comune",
+   "ign": 26,
+   "val": [
+    1,
+    2,
+    6,
+    1,
+    1,
+    2
+   ],
+   "testo": "Competente giornalista che trasuda tristezza e solitudine. Bei baffetti",
+   "img": "galleria/272.webp"
+  },
+  {
+   "num": "273",
+   "nome": "Max Bushido",
+   "rarita": "Comune",
+   "ign": 41,
+   "val": [
+    2,
+    3,
+    0,
+    3,
+    5,
+    4
+   ],
+   "testo": "Fancazzista montenerese, sempre a Vasto",
+   "img": "galleria/273.webp"
+  },
+  {
+   "num": "274",
+   "nome": "Paolo Toscano",
+   "rarita": "Comune",
+   "ign": 15,
+   "val": [
+    0,
+    5,
+    4,
+    0,
+    3,
+    0
+   ],
+   "testo": "Teorico del judo, presenza mattiniera costante in biblioteca. Evidente abbondanza di tempo libero",
+   "img": "galleria/274.webp"
+  },
+  {
+   "num": "275",
+   "nome": "Spallone de Spallibus",
+   "rarita": "Comune",
+   "ign": 74,
+   "val": [
+    4,
+    6,
+    4,
+    1,
+    3,
+    6
+   ],
+   "testo": "Noto come “lo Spallaro”, è uno dei migliori chitarristi abruzzesi",
+   "img": "galleria/275.webp"
+  },
+  {
+   "num": "276",
+   "nome": "Martina di Martino giovane",
+   "rarita": "Comune",
+   "ign": 81,
+   "val": [
+    4,
+    3,
+    4,
+    5,
+    5,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/276.webp"
+  },
+  {
+   "num": "277",
+   "nome": "Peppino forte",
+   "rarita": "Comune",
+   "ign": 24,
+   "val": [
+    2,
+    3,
+    5,
+    2,
+    3,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/277.webp"
+  },
+  {
+   "num": "278",
+   "nome": "Nicolino belfiore",
+   "rarita": "Comune",
+   "ign": 76,
+   "val": [
+    4,
+    4,
+    3,
+    2,
+    2,
+    2
+   ],
+   "testo": "",
+   "img": "galleria/278.webp"
+  },
+  {
+   "num": "279",
+   "nome": "Alfredo belfiore",
+   "rarita": "Comune",
+   "ign": 76,
+   "val": [
+    4,
+    4,
+    3,
+    2,
+    2,
+    2
+   ],
+   "testo": "",
+   "img": "galleria/279.webp"
+  },
+  {
+   "num": "280",
+   "nome": "Padre pio",
+   "rarita": "Comune",
+   "ign": 6,
+   "val": [
+    1,
+    1,
+    5,
+    0,
+    0,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/280.webp"
+  },
+  {
+   "num": "281",
+   "nome": "Padre di Micchele",
+   "rarita": "Comune",
+   "ign": 32,
+   "val": [
+    4,
+    3,
+    3,
+    2,
+    2,
+    2
+   ],
+   "testo": "",
+   "img": "galleria/281.webp"
+  },
+  {
+   "num": "282",
+   "nome": "Nduccio",
+   "rarita": "Comune",
+   "ign": 82,
+   "val": [
+    3,
+    2,
+    4,
+    1,
+    4,
+    6
+   ],
+   "testo": "",
+   "img": "galleria/282.webp"
+  },
+  {
+   "num": "283",
+   "nome": "Giuseppe Simone",
+   "rarita": "Comune",
+   "ign": 69,
+   "val": [
+    4,
+    2,
+    1,
+    5,
+    6,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/283.webp"
+  },
+  {
+   "num": "284",
+   "nome": "Barbero",
+   "rarita": "Comune",
+   "ign": 16,
+   "val": [
+    1,
+    2,
+    6,
+    4,
+    5,
+    3
+   ],
+   "testo": "Un Gigi Murolo che ce l’ha fatta",
+   "img": "galleria/284.webp"
+  },
+  {
+   "num": "285",
+   "nome": "Angelo di Masso",
+   "rarita": "Comune",
+   "ign": 74,
+   "val": [
+    5,
+    1,
+    4,
+    0,
+    2,
+    4
+   ],
+   "testo": "Per una decina d'anni è stato convinto che satman e lo zampognaro fossero la stessa persona",
+   "img": "galleria/285.webp"
+  },
+  {
+   "num": "286",
+   "nome": "Antonello del bau Bar",
+   "rarita": "Discretamente raro",
+   "ign": 82,
+   "val": [
+    5,
+    6,
+    5,
+    1,
+    5,
+    5
+   ],
+   "testo": "Lunga capigliatura, camminata dinoccolata ed eloquio convincente",
+   "img": "galleria/286.webp"
+  },
+  {
+   "num": "287",
+   "nome": "Nicolino Natarelli",
+   "rarita": "Discretamente raro",
+   "ign": 91,
+   "val": [
+    6,
+    1,
+    4,
+    4,
+    3,
+    6
+   ],
+   "testo": "L’eroe dei capodogli, è anche acerrimo nemico della Sciampagnino inc.",
+   "img": "galleria/287.webp"
+  },
+  {
+   "num": "288",
+   "nome": "Gepposlaw Geppowski",
+   "rarita": "Discretamente raro",
+   "ign": 21,
+   "val": [
+    3,
+    3,
+    3,
+    2,
+    6,
+    4
+   ],
+   "testo": "Nie rozumie i nie pamięta ga, marnuje mnóstwo czasu na p***y (pierdoły), ale teraz robi świetne słodycze i napoje",
+   "img": "galleria/288.webp"
+  },
+  {
+   "num": "289",
+   "nome": "جيب الجيبو",
+   "rarita": "Discretamente raro",
+   "ign": 24,
+   "val": [
+    4,
+    3,
+    4,
+    3,
+    5,
+    2
+   ],
+   "testo": "ما بيفهم ولا بيتذكر خا، وبضيّع كتير وقت على زت (تفاهات)، بس هلّأ بيعمل أحلى حلويات ومشروبات",
+   "img": "galleria/289.webp"
+  },
+  {
+   "num": "290",
+   "nome": "Geppes Geppeau",
+   "rarita": "Discretamente raro",
+   "ign": 26,
+   "val": [
+    3,
+    3,
+    3,
+    2,
+    3,
+    4
+   ],
+   "testo": "Il ne pige et ne retient que d**e, il perd un temps fou en c*******s, mais maintenant il fait d'excellents desserts et boissons",
+   "img": "galleria/290.webp"
+  },
+  {
+   "num": "291",
+   "nome": "Sonny de Vito",
+   "rarita": "Discretamente raro",
+   "ign": 96,
+   "val": [
+    4,
+    1,
+    1,
+    3,
+    4,
+    6
+   ],
+   "testo": "How you doin’ cabcol?",
+   "img": "galleria/291.webp"
+  },
+  {
+   "num": "292",
+   "nome": "Jap Japsen",
+   "rarita": "Discretamente raro",
+   "ign": 23,
+   "val": [
+    3,
+    4,
+    3,
+    4,
+    2,
+    4
+   ],
+   "testo": "Hij snapt en onthoudt geen kt, verspilt bergen tijd aan g**l, maar nu maakt hij uitstekende zoetigheden en drankjes",
+   "img": "galleria/292.webp"
+  },
+  {
+   "num": "293",
+   "nome": "Joe Bavota",
+   "rarita": "Discretamente raro",
+   "ign": 90,
+   "val": [
+    3,
+    6,
+    2,
+    3,
+    4,
+    5
+   ],
+   "testo": "Triste imitazione molisana di Elvis Presley e collega di Zappula",
+   "img": "galleria/293.webp"
+  },
+  {
+   "num": "294",
+   "nome": "Tony Dance Discoboy",
+   "rarita": "Discretamente raro",
+   "ign": 15,
+   "val": [
+    1,
+    6,
+    5,
+    4,
+    4,
+    2
+   ],
+   "testo": "Uno che sa godersi la vita",
+   "img": "galleria/294.webp"
+  },
+  {
+   "num": "295",
+   "nome": "Lo Smilzo",
+   "rarita": "Discretamente raro",
+   "ign": 54,
+   "val": [
+    2,
+    5,
+    1,
+    2,
+    2,
+    1
+   ],
+   "testo": "Fantastico ristoratore dall’esile corpicino. Generose porzioni e prezzi esigui",
+   "img": "galleria/295.webp"
+  },
+  {
+   "num": "296",
+   "nome": "Cugino smilzo del futuro",
+   "rarita": "Discretamente raro",
+   "ign": 65,
+   "val": [
+    3,
+    4,
+    1,
+    1,
+    4,
+    5
+   ],
+   "testo": "Crazy",
+   "img": "galleria/296.webp"
+  },
+  {
+   "num": "297",
+   "nome": "Giuseppe Paviglianiti",
+   "rarita": "Discretamente raro",
+   "ign": 95,
+   "val": [
+    6,
+    0,
+    2,
+    0,
+    1,
+    3
+   ],
+   "testo": "Meteorismo e pasta e fagioli",
+   "img": "galleria/297.webp"
+  },
+  {
+   "num": "298",
+   "nome": "Francesca Tirone",
+   "rarita": "Discretamente raro",
+   "ign": 92,
+   "val": [
+    2,
+    5,
+    1,
+    1,
+    5,
+    3
+   ],
+   "testo": "La più anziana ciclista di Palermo",
+   "img": "galleria/298.webp"
+  },
+  {
+   "num": "299",
+   "nome": "Prof. Giordano",
+   "rarita": "Discretamente raro",
+   "ign": 89,
+   "val": [
+    3,
+    3,
+    3,
+    6,
+    4,
+    3
+   ],
+   "testo": "Portentoso sputo (-3 agilità e forza del rivale)",
+   "img": "galleria/299.webp"
+  },
+  {
+   "num": "300",
+   "nome": "Il terribile Rocco Cane",
+   "rarita": "Discretamente raro",
+   "ign": 94,
+   "val": [
+    3,
+    5,
+    0,
+    0,
+    7,
+    2
+   ],
+   "testo": "Si farebbe chiunque e infesta le campagne palermitane",
+   "img": "galleria/300.webp"
+  },
+  {
+   "num": "301",
+   "nome": "Fantozzi rag.Ugo",
+   "rarita": "Discretamente raro",
+   "ign": 28,
+   "val": [
+    1,
+    1,
+    2,
+    2,
+    5,
+    1
+   ],
+   "testo": "Servile, sottomesso e frustrato ragioniere",
+   "img": "galleria/301.webp"
+  },
+  {
+   "num": "302",
+   "nome": "Rag. Filini",
+   "rarita": "Discretamente raro",
+   "ign": 65,
+   "val": [
+    1,
+    3,
+    1,
+    1,
+    2,
+    3
+   ],
+   "testo": "Troppa voglia di fare e di coinvolgere. Eccessiva miopia",
+   "img": "galleria/302.webp"
+  },
+  {
+   "num": "303",
+   "nome": "Peppantonio",
+   "rarita": "Discretamente raro",
+   "ign": 77,
+   "val": [
+    2,
+    2,
+    3,
+    5,
+    6,
+    2
+   ],
+   "testo": "L’omosessuale sindaco di Gabriele al suo ennesimo mandato",
+   "img": "galleria/303.webp"
+  },
+  {
+   "num": "304",
+   "nome": "Peppe fetish",
+   "rarita": "Discretamente raro",
+   "ign": 98,
+   "val": [
+    0,
+    3,
+    1,
+    3,
+    6,
+    3
+   ],
+   "testo": "Da chiamare solo se non è richiesto grosso preavviso",
+   "img": "galleria/304.webp"
+  },
+  {
+   "num": "305",
+   "nome": "Padre di Gabriele",
+   "rarita": "Discretamente raro",
+   "ign": 71,
+   "val": [
+    2,
+    6,
+    4,
+    4,
+    1,
+    1
+   ],
+   "testo": "Suoni onomatopeici di contrarietà. Riduce di 1 tutte le statistiche di Gabriele e altre forme",
+   "img": "galleria/305.webp"
+  },
+  {
+   "num": "306",
+   "nome": "Ilaria tesei",
+   "rarita": "Discretamente raro",
+   "ign": 87,
+   "val": [
+    6,
+    0,
+    4,
+    4,
+    3,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/306.webp"
+  },
+  {
+   "num": "307",
+   "nome": "Pasquale Caranfa",
+   "rarita": "Discretamente raro",
+   "ign": 76,
+   "val": [
+    3,
+    1,
+    5,
+    5,
+    1,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/307.webp"
+  },
+  {
+   "num": "308",
+   "nome": "Vittorio il Fenomeno",
+   "rarita": "Discretamente raro",
+   "ign": 96,
+   "val": [
+    4,
+    6,
+    3,
+    1,
+    4,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/308.webp"
+  },
+  {
+   "num": "309",
+   "nome": "Roby Santini",
+   "rarita": "Discretamente raro",
+   "ign": 72,
+   "val": [
+    2,
+    4,
+    1,
+    1,
+    5,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/309.webp"
+  },
+  {
+   "num": "310",
+   "nome": "Gigione",
+   "rarita": "Discretamente raro",
+   "ign": 93,
+   "val": [
+    2,
+    3,
+    2,
+    2,
+    4,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/310.webp"
+  },
+  {
+   "num": "311",
+   "nome": "Jo donatello",
+   "rarita": "Discretamente raro",
+   "ign": 80,
+   "val": [
+    3,
+    3,
+    1,
+    1,
+    5,
+    3
+   ],
+   "testo": "",
+   "img": "galleria/311.webp"
+  },
+  {
+   "num": "312",
+   "nome": "Peppino Busico",
+   "rarita": "Decisamente raro",
+   "ign": 26,
+   "val": [
+    5,
+    1,
+    4,
+    1,
+    3,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/312.webp"
+  },
+  {
+   "num": "313",
+   "nome": "Sorella di Bice",
+   "rarita": "Decisamente raro",
+   "ign": 56,
+   "val": [
+    4,
+    5,
+    4,
+    2,
+    4,
+    3
+   ],
+   "testo": "Dolci squisiti, cazzellitti con le foglie e fagioli giganti",
+   "img": "galleria/313.webp"
+  },
+  {
+   "num": "314",
+   "nome": "Bice",
+   "rarita": "Decisamente raro",
+   "ign": 40,
+   "val": [
+    3,
+    5,
+    4,
+    1,
+    3,
+    2
+   ],
+   "testo": "Pettegolezzo estremo",
+   "img": "galleria/314.webp"
+  },
+  {
+   "num": "315",
+   "nome": "Bice bifronte",
+   "rarita": "Decisamente raro",
+   "ign": 71,
+   "val": [
+    5,
+    5,
+    5,
+    0,
+    1,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/315.webp"
+  },
+  {
+   "num": "316",
+   "nome": "Hitchcock molisano",
+   "rarita": "Decisamente raro",
+   "ign": 27,
+   "val": [
+    4,
+    1,
+    3,
+    3,
+    2,
+    4
+   ],
+   "testo": "Inquietante foto ma ottimo buonello",
+   "img": "galleria/316.webp"
+  },
+  {
+   "num": "317",
+   "nome": "Cesare Vicoli del futuro",
+   "rarita": "Decisamente raro",
+   "ign": 50,
+   "val": [
+    6,
+    2,
+    7,
+    0,
+    4,
+    1
+   ],
+   "testo": "Magro e affermato autore di abruzzesistica",
+   "img": "galleria/317.webp"
+  },
+  {
+   "num": "318",
+   "nome": "Cyber Memmo",
+   "rarita": "Decisamente raro",
+   "ign": 46,
+   "val": [
+    4,
+    4,
+    3,
+    4,
+    5,
+    1
+   ],
+   "testo": "Tramutatosi in androide grazie al denaro spillato alle zoccole locali",
+   "img": "galleria/318.webp"
+  },
+  {
+   "num": "319",
+   "nome": "Nunzio-Lucio Volante",
+   "rarita": "Decisamente raro",
+   "ign": 90,
+   "val": [
+    3,
+    5,
+    0,
+    2,
+    3,
+    4
+   ],
+   "testo": "“Vulè vulà, n’ha vulate”",
+   "img": "galleria/319.webp"
+  },
+  {
+   "num": "320",
+   "nome": "Geom. Calboni",
+   "rarita": "Decisamente raro",
+   "ign": 46,
+   "val": [
+    4,
+    3,
+    1,
+    4,
+    4,
+    4
+   ],
+   "testo": "“Ci porti tre Scotches, grazie”",
+   "img": "galleria/320.webp"
+  },
+  {
+   "num": "321",
+   "nome": "Andrea Alonzi",
+   "rarita": "Decisamente raro",
+   "ign": 83,
+   "val": [
+    3,
+    3,
+    1,
+    3,
+    4,
+    5
+   ],
+   "testo": "Comunismo d’accatto, cazzeggio, nuova vita in Sicilia",
+   "img": "galleria/321.webp"
+  },
+  {
+   "num": "322",
+   "nome": "Celestino V",
+   "rarita": "Decisamente raro",
+   "ign": 94,
+   "val": [
+    5,
+    5,
+    4,
+    5,
+    1,
+    5
+   ],
+   "testo": "Papa asceta e coerente. Gli piaceva la Maiella",
+   "img": "galleria/322.webp"
+  },
+  {
+   "num": "323",
+   "nome": "Ahi Madonna",
+   "rarita": "Decisamente raro",
+   "ign": 86,
+   "val": [
+    6,
+    5,
+    4,
+    1,
+    4,
+    6
+   ],
+   "testo": "Poderoso battito di mani che stordisce l’avversario (-4 intelligenza al rivale)",
+   "img": "galleria/323.webp"
+  },
+  {
+   "num": "324",
+   "nome": "Paolo Baronio",
+   "rarita": "Decisamente raro",
+   "ign": 80,
+   "val": [
+    3,
+    4,
+    5,
+    7,
+    3,
+    0
+   ],
+   "testo": "Selezionare per turno una delle seguenti abilità: Intortare l’avversario con giochi da tavola (-3 intelligenza del rivale), poderoso incazzamento (-2 forza, -4 arrapamento dell’avversario)",
+   "img": "galleria/324.webp"
+  },
+  {
+   "num": "325",
+   "nome": "Anthony del Futuro del passato",
+   "rarita": "Decisamente raro",
+   "ign": 26,
+   "val": [
+    4,
+    2,
+    5,
+    0,
+    2,
+    1
+   ],
+   "testo": "È in realtà Jörg Wolters, il bellissimo suonatore di carillon",
+   "img": "galleria/325.webp"
+  },
+  {
+   "num": "326",
+   "nome": "La Vecchia",
+   "rarita": "Decisamente raro",
+   "ign": 96,
+   "val": [
+    5,
+    1,
+    3,
+    5,
+    4,
+    3
+   ],
+   "testo": "Romanità ostentata e vacanze con Eurospin",
+   "img": "galleria/326.webp"
+  },
+  {
+   "num": "327",
+   "nome": "Maledetto povero",
+   "rarita": "Decisamente raro",
+   "ign": 85,
+   "val": [
+    2,
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/327.webp"
+  },
+  {
+   "num": "328",
+   "nome": "Maledetto cieco",
+   "rarita": "Decisamente raro",
+   "ign": 97,
+   "val": [
+    1,
+    5,
+    3,
+    4,
+    0,
+    6
+   ],
+   "testo": "",
+   "img": "galleria/328.webp"
+  },
+  {
+   "num": "329",
+   "nome": "Del viscido",
+   "rarita": "Decisamente raro",
+   "ign": 32,
+   "val": [
+    3,
+    3,
+    1,
+    1,
+    5,
+    4
+   ],
+   "testo": "È il cugino provolone di Del Viscio",
+   "img": "galleria/329.webp"
+  },
+  {
+   "num": "330",
+   "nome": "Kangooniglio demoniaco",
+   "rarita": "Decisamente raro",
+   "ign": 93,
+   "val": [
+    3,
+    4,
+    1,
+    3,
+    3,
+    4
+   ],
+   "testo": "Endless summer blblblbl",
+   "img": "galleria/330.webp"
+  },
+  {
+   "num": "331",
+   "nome": "Amedeo pennetta",
+   "rarita": "Decisamente raro",
+   "ign": 14,
+   "val": [
+    1,
+    1,
+    5,
+    2,
+    4,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/331.webp"
+  },
+  {
+   "num": "332",
+   "nome": "Gigi Murolo del futuro",
+   "rarita": "Decisamente raro",
+   "ign": 56,
+   "val": [
+    1,
+    1,
+    6,
+    4,
+    2,
+    2
+   ],
+   "testo": "",
+   "img": "galleria/332.webp"
+  },
+  {
+   "num": "333",
+   "nome": "Gigi Murolo del passato",
+   "rarita": "Decisamente raro",
+   "ign": 31,
+   "val": [
+    3,
+    3,
+    5,
+    4,
+    5,
+    3
+   ],
+   "testo": "",
+   "img": "galleria/333.webp"
+  },
+  {
+   "num": "334",
+   "nome": "Big show",
+   "rarita": "Decisamente raro",
+   "ign": 89,
+   "val": [
+    7,
+    1,
+    3,
+    6,
+    3,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/334.webp"
+  },
+  {
+   "num": "335",
+   "nome": "Silvia mucci",
+   "rarita": "Decisamente raro",
+   "ign": 85,
+   "val": [
+    5,
+    2,
+    4,
+    3,
+    5,
+    3
+   ],
+   "testo": "",
+   "img": "galleria/335.webp"
+  },
+  {
+   "num": "336",
+   "nome": "Camilla Sangiovanni",
+   "rarita": "Decisamente raro",
+   "ign": 16,
+   "val": [
+    4,
+    3,
+    3,
+    2,
+    5,
+    2
+   ],
+   "testo": "È nata lo stesso giorno di Satman",
+   "img": "galleria/336.webp"
+  },
+  {
+   "num": "337",
+   "nome": "Ignoto di Scanno",
+   "rarita": "Introvabile",
+   "ign": 18,
+   "val": [
+    2,
+    4,
+    2,
+    0,
+    0,
+    1
+   ],
+   "testo": "",
+   "img": "galleria/337.webp"
+  },
+  {
+   "num": "338",
+   "nome": "Roberto Maroni di Vasto",
+   "rarita": "Comune",
+   "ign": 65,
+   "val": [
+    3,
+    0,
+    3,
+    2,
+    4,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/338.webp"
+  },
+  {
+   "num": "339",
+   "nome": "Peppino edicolante",
+   "rarita": "Decisamente raro",
+   "ign": 35,
+   "val": [
+    3,
+    2,
+    4,
+    1,
+    5,
+    1
+   ],
+   "testo": "Tornato a riprendersi ciò che gli è stato sottratto.",
+   "img": "galleria/339.webp"
+  },
+  {
+   "num": "340",
+   "nome": "Zio Peppe in vacanza",
+   "rarita": "Comune",
+   "ign": 82,
+   "val": [
+    5,
+    1,
+    4,
+    3,
+    5,
+    2
+   ],
+   "testo": "Fa lunghe vacanze senza mai uscire dai villaggi turistici; approfondite conoscenze dei doganieri canadesi",
+   "img": "galleria/340.webp"
+  },
+  {
+   "num": "341",
+   "nome": "Gepperson Babysitter",
+   "rarita": "Comune",
+   "ign": 59,
+   "val": [
+    4,
+    4,
+    3,
+    0,
+    0,
+    0
+   ],
+   "testo": "È un paziente babysitter, che impara il dialetto dai suoi clienti",
+   "img": "galleria/341.webp"
+  },
+  {
+   "num": "342",
+   "nome": "Mario Fizzani",
+   "rarita": "Comune",
+   "ign": 84,
+   "val": [
+    5,
+    0,
+    2,
+    0,
+    2,
+    3
+   ],
+   "testo": "Discreto sassofonista di campagna, ormai sempre più grasso",
+   "img": "galleria/342.webp"
+  },
+  {
+   "num": "343",
+   "nome": "Mario Enrico Testa",
+   "rarita": "Comune",
+   "ign": 67,
+   "val": [
+    4,
+    2,
+    5,
+    2,
+    1,
+    5
+   ],
+   "testo": "",
+   "img": "galleria/343.webp"
+  },
+  {
+   "num": "344",
+   "nome": "Nicholas del futuro del passato",
+   "rarita": "Comune",
+   "ign": 93,
+   "val": [
+    2,
+    5,
+    1,
+    2,
+    3,
+    6
+   ],
+   "testo": "È stato visto morire. Risurrezione: la prima volta che viene sconfitto non finisce nel mazzo vittoria avversario ma torna subito nel tuo terreno di gioco",
+   "img": "galleria/344.webp"
+  },
+  {
+   "num": "345",
+   "nome": "Lo Zio Rocco",
+   "rarita": "Comune",
+   "ign": 89,
+   "val": [
+    4,
+    3,
+    4,
+    5,
+    2,
+    5
+   ],
+   "testo": "Ha lo sciampagnino sul menù",
+   "img": "galleria/345.webp"
+  },
+  {
+   "num": "346",
+   "nome": "Peppone di Castel Frentano",
+   "rarita": "Discretamente raro",
+   "ign": 83,
+   "val": [
+    4,
+    1,
+    2,
+    5,
+    1,
+    4
+   ],
+   "testo": "",
+   "img": "galleria/346.webp"
+  },
+  {
+   "num": "347",
+   "nome": "Quello de lu CR7",
+   "rarita": "Discretamente raro",
+   "ign": 98,
+   "val": [
+    6,
+    0,
+    1,
+    1,
+    4,
+    6
+   ],
+   "testo": "",
+   "img": "galleria/347.webp"
+  },
+  {
+   "num": "348",
+   "nome": "Paradox",
+   "rarita": "Fottutamente raro",
+   "ign": 99,
+   "val": [
+    7,
+    7,
+    4,
+    2,
+    0,
+    0
+   ],
+   "testo": "",
+   "img": "galleria/348.webp"
+  },
+  {
+   "num": "349",
+   "nome": "Nicholas astemio",
+   "rarita": "Fottutamente raro",
+   "ign": 61,
+   "val": [
+    4,
+    3,
+    5,
+    2,
+    4,
+    0
+   ],
+   "testo": "",
+   "img": "galleria/349.webp"
+  },
+  {
+   "num": "350",
+   "nome": "Il Cafone",
+   "rarita": "Discretamente raro",
+   "ign": 89,
+   "val": [
+    4,
+    1,
+    2,
+    6,
+    2,
+    4
+   ],
+   "testo": "Ristoratore gissano noto per le sagne appezzate",
+   "img": "galleria/350.webp"
+  },
+  {
+   "num": "351",
+   "nome": "Gerry Scotti",
+   "rarita": "Comune",
+   "ign": 57,
+   "val": [
+    5,
+    2,
+    4,
+    0,
+    4,
+    6
+   ],
+   "testo": "",
+   "img": "galleria/351.webp"
+  },
+  {
+   "num": "352",
+   "nome": "Dottor Pellegrinelli",
+   "rarita": "Comune",
+   "ign": 1,
+   "val": [
+    1,
+    4,
+    6,
+    1,
+    1,
+    1
+   ],
+   "testo": "camicia a maniche corte, cravatta e piedi scalzi (manco da ubriachi)",
+   "img": "galleria/352.webp"
+  }
+ ]
+}
