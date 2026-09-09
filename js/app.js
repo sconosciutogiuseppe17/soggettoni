@@ -177,9 +177,10 @@ function disegnaLobby(lobby) {
   const btn = $('#btn-inizia');
   if (app.rete?.sonoHost) {
     btn.disabled = !pieno;
+    const mancano = lobby.postiTotali - lobby.giocatori.length;
     $('#attesa-lobby').textContent = pieno
       ? 'Ci siete tutti.'
-      : `Mancano ${lobby.postiTotali - lobby.giocatori.length} giocatori.`;
+      : mancano === 1 ? 'Manca un giocatore.' : `Mancano ${mancano} giocatori.`;
   } else {
     btn.classList.add('nascosto');
     $('#attesa-lobby').textContent = pieno
