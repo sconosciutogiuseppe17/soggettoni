@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soggettoni — Dashboard carte</title>
+<style>
+  :root{
+    --arancio:#f5872e; --arancio-scuro:#d96f1c; --rosso:#ee3b24; --oro:#ffc90e;
+    --fondo:#1d1b19; --pannello:#292623; --pannello2:#332f2b; --bordo:#453f39;
+    --testo:#f2ece4; --testo2:#a89c8e; --verde:#5fbf6a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fondo);color:var(--testo);
+       font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;height:100vh;overflow:hidden}
+  button{font:inherit;cursor:pointer}
+
+  header{display:flex;align-items:center;gap:16px;padding:10px 18px;background:var(--pannello);
+         border-bottom:1px solid var(--bordo);height:54px}
+  header h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.02em}
+  header h1 span{color:var(--arancio)}
+  #stato{margin-left:auto;font-size:12.5px;color:var(--testo2);display:flex;align-items:center;gap:8px}
+  #pallino{width:8px;height:8px;border-radius:50%;background:var(--testo2)}
+  #pallino.ok{background:var(--verde)} #pallino.lavoro{background:var(--oro)} #pallino.err{background:var(--rosso)}
+
+  #app{display:grid;grid-template-columns:270px minmax(0,1fr) 380px;height:calc(100vh - 54px)}
+  @media(max-width:1200px){#app{grid-template-columns:220px minmax(0,1fr) 330px}}
+
+  aside{border-right:1px solid var(--bordo);display:flex;flex-direction:column;min-height:0;background:var(--pannello)}
+  #cerca{margin:10px;padding:8px 10px;background:var(--pannello2);border:1px solid var(--bordo);
+         border-radius:7px;color:var(--testo);font:inherit}
+  #cerca:focus{outline:2px solid var(--arancio);outline-offset:-1px}
+  #lista{overflow-y:auto;flex:1;padding:0 6px 10px}
+  .voce{display:flex;gap:8px;align-items:baseline;padding:7px 9px;border-radius:7px;cursor:pointer;line-height:1.3}
+  .voce:hover{background:var(--pannello2)}
+  .voce.sel{background:var(--arancio);color:#241a10;font-weight:600}
+  .voce .n{font-variant-numeric:tabular-nums;font-size:12px;opacity:.75;min-width:26px}
+  .voce.sel .n{opacity:.85}
+  .voce .mod{margin-left:auto;color:var(--oro);font-size:16px;line-height:1}
+  .voce.sel .mod{color:#241a10}
+
+  main{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+       padding:16px;overflow:auto;min-width:0;gap:10px}
+  #telaio{position:relative;line-height:0;box-shadow:0 10px 34px #0009;border-radius:10px}
+  canvas#carta{max-height:calc(100vh - 150px);width:auto;border-radius:10px;display:block}
+  #zonafoto{position:absolute;border:2px dashed transparent;border-radius:4px;
+            cursor:grab;display:none;transition:border-color .15s}
+  #zonafoto:hover{border-color:rgba(255,255,255,.6)}
+  #telaio.foto #zonafoto{display:block}
+  #zonafoto.trascino{cursor:grabbing;border-color:var(--oro)}
+  #suggerimento{font-size:12px;color:var(--testo2);text-align:center}
+
+  section#form{border-left:1px solid var(--bordo);background:var(--pannello);overflow-y:auto;padding:16px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--testo2);
+     margin:22px 0 10px;font-weight:700}
+  h2:first-child{margin-top:0}
+  label{display:block;font-size:12.5px;color:var(--testo2);margin-bottom:5px}
+  input[type=text],input[type=number],select,textarea{
+     width:100%;padding:8px 10px;background:var(--pannello2);border:1px solid var(--bordo);
+     border-radius:7px;color:var(--testo);font:inherit}
+  textarea{resize:vertical;min-height:66px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--arancio);outline-offset:-1px}
+  .riga{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat{display:grid;grid-template-columns:104px 1fr 30px;align-items:center;gap:9px;margin-bottom:7px}
+  .stat span{font-size:12.5px}
+  .stat input[type=range]{width:100%;accent-color:var(--arancio)}
+  .stat b{font-variant-numeric:tabular-nums;text-align:right;font-size:13px}
+  .stat b.oro{color:var(--oro)} .stat b.arc{background:linear-gradient(90deg,#e2231a,#f39200,#ffde00,#009e49,#0074bc);
+     -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+  .nota{font-size:11.5px;color:var(--testo2);margin-top:6px}
+  #intro{padding:40px;max-width:620px;margin:60px auto;text-align:center}
+  #intro h3{font-size:20px;margin:0 0 12px}
+  #intro p{color:var(--testo2);margin:0 0 22px}
+  #scegli{background:var(--arancio);color:#241a10;border:0;border-radius:9px;padding:12px 22px;
+          font-weight:700;font-size:15px}
+  #scegli:hover{background:#ff9840}
+  .avviso{background:#3a2a18;border:1px solid #7a5a26;color:#ffd899;padding:10px 12px;
+          border-radius:8px;font-size:12.5px;margin-bottom:14px}
+  #barrafoto{display:flex;align-items:center;gap:10px}
+  #barrafoto input[type=range]{flex:1;accent-color:var(--arancio)}
+  .minibtn{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+           border-radius:6px;padding:5px 10px;font-size:12px}
+  .minibtn:hover{border-color:var(--arancio)}
+  #menufoto{position:fixed;z-index:50;display:none;min-width:170px;padding:4px;
+            background:var(--pannello2);border:1px solid var(--bordo);border-radius:9px;
+            box-shadow:0 10px 26px #000a}
+  #menufoto button{display:block;width:100%;text-align:left;background:none;border:0;
+            color:var(--testo);padding:8px 11px;border-radius:6px;font-size:13px}
+  #menufoto button:hover{background:var(--arancio);color:#241a10}
+  #pannellodoc{width:100%;max-width:900px;background:var(--pannello);border:1px solid var(--bordo);
+      border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.5;display:none}
+  #pannellodoc.on{display:block}
+  #pannellodoc h3{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--arancio)}
+  #pannellodoc ul{list-style:none;margin:0;padding:0;max-height:230px;overflow:auto}
+  #pannellodoc li{display:flex;gap:9px;align-items:flex-start;padding:4px 2px;border-top:1px solid var(--bordo)}
+  #pannellodoc li:first-child{border-top:0}
+  #pannellodoc .dett{color:var(--testo2);font-size:12px}
+  #pannellodoc .azioni{display:flex;gap:9px;align-items:center;margin-top:10px}
+  #pannellodoc .vai{background:var(--arancio);color:#241a10;border:0;border-radius:7px;padding:7px 14px;font-weight:700}
+  #trascina{position:fixed;inset:0;background:#000c;z-index:80;display:none;
+      align-items:center;justify-content:center;font-size:18px;color:var(--testo);
+      border:3px dashed var(--arancio)}
+  #trascina.on{display:flex}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Soggettoni <span>· Le nuove leve</span></h1>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v6 · documento da Drive</span>
+  <div id="stato"><i id="pallino"></i><span id="statotxt">Nessuna cartella collegata</span></div>
+</header>
+
+<div id="benvenuto">
+  <div id="intro">
+    <h3>Collega la cartella dell'espansione</h3>
+    <p>Scegli la cartella <b>Le nuove leve - Espansione</b>: la dashboard legge le foto e i dati,
+       e riscrive da sola i PNG in <i>Carte nuove / Alta risoluzione</i> ogni volta che modifichi una carta.
+       La versione precedente viene messa da parte in <i>_versioni precedenti</i>.</p>
+    <button id="scegli">Scegli la cartella…</button>
+    <p class="nota" style="margin-top:18px">Serve Chrome o Edge. Il permesso va concesso una volta per sessione.</p>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <aside>
+    <input id="cerca" type="text" placeholder="Cerca per nome o numero…" autocomplete="off">
+    <div id="lista"></div>
+  </aside>
+
+  <main>
+    <div id="pannellodoc"></div>
+    <div id="telaio">
+      <canvas id="carta" width="1396" height="2156"></canvas>
+      <div id="zonafoto"></div>
+    </div>
+    <div id="suggerimento">Trascina la foto per spostarla · rotellina per lo zoom · tasto destro per rimuoverla</div>
+  </main>
+
+  <section id="form">
+    <div id="campi"></div>
+  </section>
+</div>
+
+<div id="menufoto"><button id="mf-rimuovi">Rimuovi foto dalla carta</button></div>
+<div id="trascina">Lascia qui il documento .docx per aggiornare i dati</div>
+
+<script>
+"use strict";
+
+/* ─────────────────────────  costanti di disegno  ───────────────────────── */
+
+const TEMI = {
+  standard: {
+    sfondo:'sfondo.png', inchiostro:'#242119', oroPip:true,
+    foto:{x:268,y:256,lato:860},
+    ign:{x:78,y:82,corpo:55,max:676},
+    badge:{x:780,y:55},
+    nome:{cx:698,y:1169,corpo:108,max:1170,alt:76},
+    pip:{xs:[144,204,264,324,384, 552,612,672,732,792, 960,1020,1080,1140,1200], ys:[1408,1608],
+         lato:45, rosso:'#ee3b24', grigio:'#c9c9c9',
+         arco:['#e2231a','#f39200','#ffde00','#009e49','#0074bc']},
+    testo:{x:147,cy:1920,corpo:64,max:1140,alt:330,interlinea:1.22}
+  },
+  fottutamente: {
+    sfondo:'sfondo-fottutamente.png', inchiostro:'#fce500', oroPip:true,
+    foto:{x:268,y:256,lato:860},
+    ign:{x:78,y:82,corpo:55,max:676},
+    badge:{x:780,y:55},
+    nome:{cx:698,y:1169,corpo:108,max:1170,alt:76},
+    pip:{xs:[144,204,264,324,384, 552,612,672,732,792, 960,1020,1080,1140,1200], ys:[1408,1608],
+         lato:45, rosso:'#ee3b24', grigio:'#c9c9c9',
+         arco:['#e2231a','#f39200','#ffde00','#009e49','#0074bc']},
+    testo:{x:147,cy:1920,corpo:64,max:1140,alt:330,interlinea:1.22}
+  },
+  introvabile: {
+    sfondo:'sfondo-introvabile.png', inchiostro:'#6b2fa6', oroPip:false,
+    foto:{x:268,y:224,lato:860},
+    ign:{x:75,y:60,corpo:58,max:700},
+    badge:null,
+    nome:{cx:698,y:1148,corpo:92,max:1170,alt:65},
+    pip:{xs:[140,200,260,320,380, 552,612,672,732,792, 968,1028,1088,1148,1208], ys:[1380,1625],
+         lato:45, rosso:'#6b2fa6', grigio:'#e2dcd2',
+         arco:['#e2231a','#f39200','#ffde00','#009e49','#0074bc']},
+    testo:{x:148,cy:1900,corpo:62,max:1072,alt:320,interlinea:1.22}
+  }
+};
+const RARITA = ['Comune','Discretamente raro','Decisamente raro','Fottutamente raro','Introvabile'];
+const BADGEFILE = {'Comune':'badge-comune.png','Discretamente raro':'badge-discretamente.png',
+                   'Decisamente raro':'badge-decisamente.png',
+                   'Fottutamente raro':'badge-fottutamente-nera.png'};
+const NOMISTAT = ['Forza','Agilità','Intelligenza','Incazzamento','Arrapamento','Ubriachezza'];
+const SIGLE = ['F','A','I','Inc','Arr','Ubr'];
+const FONT = 'SoggettoniBI';          // Liberation Sans Bold Italic
+const FONT_AR = 'SoggettoniAR';       // DejaVu Sans Bold, per arabo ed ebraico
+const FAMIGLIE = `"${FONT}","${FONT_AR}"`;
+const RTL = /[֐-׿؀-ۿ܀-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/;
+
+/* ─────────────────────────  motore di disegno  ───────────────────────── */
+
+const R = {  // risorse
+  sfondi:{}, oro:null, badge:{}, fontPronto:false
+};
+
+function inkMetrics(ctx, testo){
+  const m = ctx.measureText(testo);
+  return {
+    sx: m.actualBoundingBoxLeft,           // quanto l'inchiostro sborda a sinistra dell'origine
+    larg: m.actualBoundingBoxLeft + m.actualBoundingBoxRight,
+    alt: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent,
+    su: m.actualBoundingBoxAscent,
+    avanz: m.width
+  };
+}
+function scriviInk(ctx, testo, xInk, yInk){
+  const m = inkMetrics(ctx, testo);
+  ctx.fillText(testo, xInk + Math.max(0, m.sx), yInk + m.su);
+  return m;
+}
+function scriviInkDx(ctx, testo, xDestro, yInk){   // allinea a destra: per l'arabo
+  const m = inkMetrics(ctx, testo);
+  ctx.fillText(testo, xDestro + m.sx - m.larg, yInk + m.su);
+  return m;
+}
+function spezza(ctx, testo, maxLarg){
+  const righe=[];
+  for(const par of testo.split(/\n+/)){
+    let cur='';
+    for(const p of par.split(/\s+/).filter(Boolean)){
+      const t = cur ? cur+' '+p : p;
+      if(ctx.measureText(t).width <= maxLarg || !cur) cur = t;
+      else { righe.push(cur); cur = p; }
+    }
+    if(cur) righe.push(cur);
+  }
+  return righe;
+}
+function temaDi(c){
+  if(c.rarita==='Introvabile') return TEMI.introvabile;
+  if(c.rarita==='Fottutamente raro') return TEMI.fottutamente;
+  return TEMI.standard;
+}
+function testoDi(c){
+  return [ (c.ab||'').trim(), (c.desc||'').trim() ].filter(Boolean).join('\n');
+}
+
+function ritaglioFoto(img, c, T){
+  const base = Math.max(T.foto.lato/img.width, T.foto.lato/img.height);
+  const s = base * (c.zoom||1);
+  const nw = img.width*s, nh = img.height*s;
+  const ox = (nw-T.foto.lato) * (c.panX ?? .5);
+  const oy = (nh-T.foto.lato) * (c.panY ?? .38);
+  return {sx: ox/s, sy: oy/s, sl: T.foto.lato/s};
+}
+
+function disegnaCarta(ctx, c, foto){
+  const T = temaDi(c);
+  ctx.clearRect(0,0,1396,2156);
+  ctx.drawImage(R.sfondi[T.sfondo], 0, 0);
+
+  // foto
+  if(foto){
+    const r = ritaglioFoto(foto, c, T);
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.save(); ctx.beginPath();
+    ctx.rect(T.foto.x, T.foto.y, T.foto.lato, T.foto.lato); ctx.clip();
+    ctx.drawImage(foto, r.sx, r.sy, r.sl, r.sl, T.foto.x, T.foto.y, T.foto.lato, T.foto.lato);
+    ctx.restore();
+  }
+
+  ctx.fillStyle = T.inchiostro;
+  ctx.textBaseline = 'alphabetic';
+
+  // ignoranza
+  const sIgn = `IGNORANZA — ${c.ign}/100`;
+  let corpo = T.ign.corpo;
+  while(corpo > 10){
+    ctx.font = `${corpo}px ${FAMIGLIE}`;
+    if(inkMetrics(ctx,sIgn).larg <= T.ign.max) break;
+    corpo--;
+  }
+  ctx.font = `${corpo}px ${FAMIGLIE}`;
+  scriviInk(ctx, sIgn, T.ign.x, T.ign.y);
+
+  // badge rarità
+  if(T.badge && R.badge[c.rarita]) ctx.drawImage(R.badge[c.rarita], T.badge.x, T.badge.y);
+
+  // nome
+  const nome = (c.nome||'').toUpperCase();
+  corpo = T.nome.corpo;
+  while(corpo > 10){
+    ctx.font = `${corpo}px ${FAMIGLIE}`;
+    const m = inkMetrics(ctx,nome);
+    if(m.larg <= T.nome.max && m.alt <= T.nome.alt) break;
+    corpo--;
+  }
+  ctx.font = `${corpo}px ${FAMIGLIE}`;
+  const mn = inkMetrics(ctx,nome);
+  scriviInk(ctx, nome, T.nome.cx - mn.larg/2, T.nome.y);
+
+  // quadretti
+  for(let i=0;i<6;i++){
+    const v = Math.max(0, Math.min(7, c.val[i]|0));
+    for(let p=0;p<5;p++){
+      const x = T.pip.xs[(i%3)*5+p], y = T.pip.ys[i<3?0:1];
+      if(v===6 && R.oro && T.oroPip){ ctx.drawImage(R.oro, x, y); continue; }
+      ctx.fillStyle = v===7 ? T.pip.arco[p]
+                    : v===6 ? '#ffd42a'
+                    : (p < v ? T.pip.rosso : T.pip.grigio);
+      ctx.fillRect(x, y, T.pip.lato, T.pip.lato);
+    }
+  }
+
+  // testo del riquadro: abilità speciale e/o descrizione, centrato in verticale
+  const testo = testoDi(c);
+  if(testo){
+    ctx.fillStyle = T.inchiostro;
+    let cp = T.testo.corpo, righe, passo;
+    for(; cp>9; cp--){
+      ctx.font = `${cp}px ${FAMIGLIE}`;
+      righe = spezza(ctx, testo, T.testo.max);
+      passo = Math.floor(cp*T.testo.interlinea);
+      if((righe.length-1)*passo + cp <= T.testo.alt) break;
+    }
+    ctx.font = `${cp}px ${FAMIGLIE}`;
+    const altMaiusc = inkMetrics(ctx,'HX').alt;
+    const cima = Math.round(T.testo.cy - ((righe.length-1)*passo + altMaiusc)/2);
+    const dx = RTL.test(testo);
+    righe.forEach((r,i)=> dx ? scriviInkDx(ctx, r, T.testo.x + T.testo.max, cima + i*passo)
+                             : scriviInk(ctx, r, T.testo.x, cima + i*passo));
+  }
+}
+
+/* ─────────────────  lettura del documento Word (.docx)  ───────────────── */
+
+async function xmlDaDocx(buf){
+  const dv = new DataView(buf), td = new TextDecoder();
+  let eocd = -1;
+  for(let i=buf.byteLength-22; i>=0 && i>buf.byteLength-66000; i--)
+    if(dv.getUint32(i,true)===0x06054b50){ eocd=i; break; }
+  if(eocd<0) throw new Error('Non sembra un file .docx');
+  const n = dv.getUint16(eocd+10,true), cd = dv.getUint32(eocd+16,true);
+  let p = cd, tgt = null;
+  for(let k=0;k<n;k++){
+    const lenN=dv.getUint16(p+28,true), lenE=dv.getUint16(p+30,true), lenC=dv.getUint16(p+32,true);
+    const nome = td.decode(new Uint8Array(buf,p+46,lenN));
+    if(nome==='word/document.xml')
+      tgt = {metodo:dv.getUint16(p+10,true), off:dv.getUint32(p+42,true), dim:dv.getUint32(p+20,true)};
+    p += 46+lenN+lenE+lenC;
+  }
+  if(!tgt) throw new Error('document.xml non trovato nel .docx');
+  const ln=dv.getUint16(tgt.off+26,true), le=dv.getUint16(tgt.off+28,true);
+  const dati = new Uint8Array(buf, tgt.off+30+ln+le, tgt.dim);
+  if(tgt.metodo===0) return td.decode(dati);
+  const flusso = new Blob([dati]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  return await new Response(flusso).text();
+}
+
+/* Documento su Google Drive: la chiave va creata nella Google Cloud Console
+   (Drive API abilitata, chiave limitata al dominio di pubblicazione) e il file
+   condiviso come "chiunque abbia il link". Si può anche mettere in
+   _dashboard/drive.json come {"chiave":"...","file":"..."} */
+const DRIVE = { chiave: 'AIzaSyBlNVo9EMRe5ThmFf1TrM1tkaTKNubVBHk', file: '1h4lAFjq4BTLufjJLnPiM5_mLEcqDNVT5' };
+
+async function scaricaDaDrive(){
+  if(!DRIVE.chiave || !DRIVE.file) return null;
+  const url = `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(DRIVE.file)}`
+            + `?alt=media&key=${encodeURIComponent(DRIVE.chiave)}`;
+  const r = await fetch(url, {cache:'no-store'});
+  if(!r.ok) throw new Error('Drive ha risposto ' + r.status);
+  return await r.arrayBuffer();
+}
+
+const RARITA_DOC = {'comune':'Comune','discretamente raro':'Discretamente raro',
+  'decisamente raro':'Decisamente raro','fottutamente raro':'Fottutamente raro',
+  'introvabili':'Introvabile','introvabile':'Introvabile'};
+
+function righeDelDocumento(xml){
+  const doc = new DOMParser().parseFromString(xml,'application/xml');
+  const body = doc.getElementsByTagName('w:body')[0];
+  if(!body) return [];
+  const testoDi = el => Array.from(el.getElementsByTagName('w:t')).map(t=>t.textContent).join('');
+  const celle = tr => Array.from(tr.children).filter(c=>c.tagName==='w:tc').map(c=>testoDi(c).trim());
+  const out = []; let rarita = null;
+  for(const el of Array.from(body.children)){
+    if(el.tagName==='w:p'){
+      const t = testoDi(el).trim().toLowerCase().replace(/[^a-zà-ù ]/g,'').trim();
+      if(RARITA_DOC[t]) rarita = RARITA_DOC[t];
+    } else if(el.tagName==='w:tbl'){
+      const righe = Array.from(el.getElementsByTagName('w:tr'));
+      if(righe.length<2 || !rarita) continue;
+      const h = celle(righe[0]).map(x=>x.toLowerCase());
+      if(h[0]!=='#' || h[1]!=='nome' || h[2]!=='ign') continue;   // solo tabelle personaggi
+      for(const tr of righe.slice(1)){
+        const c = celle(tr);
+        const nome = (c[1]||'').replace(/\s*[-–]?\s*FOTO\s*$/i,'').replace(/^\s*FOTO\s*[-–]?\s*/i,'').trim();
+        if(!nome) continue;
+        const ign = (c[2]||'').trim();
+        const val = c.slice(3,9).map(v=>{ const m=/(\d)/.exec(v||''); return m?+m[1]:null; });
+        if(!/^\d+$/.test(ign) || val.some(v=>v===null)) continue;   // statistiche incomplete
+        out.push({num:(c[0]||'').trim(), nome, rarita, ign:+ign, val,
+                  ab:(c[9]||'').trim(), desc:(c[10]||'').trim(),
+                  fotoNelDoc:/FOTO/i.test(c[1]||'')});
+      }
+    }
+  }
+  return out;
+}
+
+/* confronto documento ↔ dashboard */
+const chiave = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+                    .replace(/[^a-z0-9؀-ۿ]+/g,'');
+
+function confronta(righe){
+  const perChiave = new Map();
+  for(const c of dati.carte){
+    perChiave.set(chiave(c.docNome || c.nome), c);
+    if(c.docNome) perChiave.set(chiave(c.nome), c);
+  }
+  const fotoPerChiave = new Map();
+  for(const f of fotoDisponibili) fotoPerChiave.set(chiave(f.replace(/\.[a-z0-9]+$/i,'')), f);
+  const perNum = new Map(dati.carte.map(c=>[String(c.num), c]));
+  const nuove = [], modifiche = []; let agganciate = 0;
+  // abbinamento uno-a-uno: prima i nomi identici, poi il numero, infine i nomi contenuti
+  const presa = new Set(), abbinate = new Map();
+  const daFare = [];
+  for(const r of righe){
+    const k = chiave(r.nome);
+    let c = perChiave.get(k);
+    if(c && presa.has(c)) c = null;
+    if(!c && r.num){ const d = perNum.get(String(r.num)); if(d && !presa.has(d)) c = d; }
+    if(c){ presa.add(c); abbinate.set(r, c); } else daFare.push(r);
+  }
+  const avanzate = dati.carte.filter(c=>!presa.has(c));
+  for(const r of daFare){
+    const k = chiave(r.nome);
+    const vicine = avanzate.filter(c=>{
+        const x = chiave(c.docNome||c.nome);
+        if(x.length<8 || presa.has(c)) return false;
+        if(!(k.startsWith(x) || x.startsWith(k))) return false;
+        // solo code "decorative": traslitterazioni, parentesi, trattini — non varianti del personaggio
+        const lungo = k.length>=x.length ? r.nome : (c.docNome||c.nome);
+        return /[\u0590-\u08FF]/.test(lungo) || /\(|\s[-–]\s/.test(lungo);
+      });
+    const gemelle = daFare.filter(r2=>{ const k2 = chiave(r2.nome);
+        return vicine.some(c=>{ const x = chiave(c.docNome||c.nome);
+          return k2.includes(x) || x.includes(k2); }); });
+    if(vicine.length===1 && gemelle.length===1){ presa.add(vicine[0]); abbinate.set(r, vicine[0]); }
+  }
+  for(const r of righe){
+    const k = chiave(r.nome);
+    const c = abbinate.get(r);
+    if(!c){
+      const foto = fotoPerChiave.get(k);
+      if(foto) nuove.push({riga:r, foto});
+      continue;
+    }
+    if(c.docNome !== r.nome){ c.docNome = r.nome; agganciate++; }
+    const diff = [];
+    if(c.nome !== r.nome && chiave(c.nome)!==k) diff.push(['nome', c.nome, r.nome]);
+    if(String(c.ign) !== String(r.ign)) diff.push(['ignoranza', c.ign, r.ign]);
+    if(c.val.join(',') !== r.val.join(',')) diff.push(['valori', c.val.join(' '), r.val.join(' ')]);
+    if(c.rarita !== r.rarita) diff.push(['rarità', c.rarita, r.rarita]);
+    const testoVecchio = [(c.ab||'').trim(),(c.desc||'').trim()].filter(Boolean).join(' / ');
+    const testoNuovo   = [(r.ab||'').trim(),(r.desc||'').trim()].filter(Boolean).join(' / ');
+    if(testoVecchio !== testoNuovo && testoNuovo) diff.push(['testo', testoVecchio, testoNuovo]);
+    if(!c.foto){
+      const foto = fotoPerChiave.get(k);
+      if(foto) diff.push(['foto', '—', foto]);
+    }
+    if(diff.length) modifiche.push({carta:c, riga:r, diff});
+  }
+  return {nuove, modifiche, agganciate};
+}
+
+/* ─────────────────────────  accesso alla cartella  ───────────────────────── */
+
+let dir = null, cart = {}, dati = null, sel = null, fotoCache = new Map(), fotoDisponibili = [];
+const $ = s => document.querySelector(s);
+
+function segnala(txt, classe){
+  $('#statotxt').textContent = txt;
+  $('#pallino').className = classe || '';
+}
+
+async function sotto(handle, nome, crea=false){
+  return await handle.getDirectoryHandle(nome, {create:crea});
+}
+async function leggiFile(dirh, nome){
+  const fh = await dirh.getFileHandle(nome);
+  return await fh.getFile();
+}
+async function scriviFile(dirh, nome, blobOTesto){
+  const fh = await dirh.getFileHandle(nome, {create:true});
+  const w = await fh.createWritable();
+  await w.write(blobOTesto);
+  await w.close();
+}
+
+async function apriCartella(handle){
+  dir = handle;
+  segnala('Carico le risorse…','lavoro');
+  cart.dashboard   = await sotto(dir, '_dashboard');
+  cart.foto        = await sotto(dir, 'Foto');
+  cart.carteNuove  = await sotto(dir, 'Carte nuove');
+  cart.alta        = await sotto(cart.carteNuove, 'Alta risoluzione');
+  cart.versioni    = await sotto(cart.carteNuove, '_versioni precedenti', true);
+
+  // font
+  const fbuf = await (await leggiFile(cart.dashboard,'LiberationSans-BoldItalic.ttf')).arrayBuffer();
+  const ff = new FontFace(FONT, fbuf);
+  await ff.load(); document.fonts.add(ff); R.fontPronto = true;
+  try{
+    const abuf = await (await leggiFile(cart.dashboard,'DejaVuSans-Bold.ttf')).arrayBuffer();
+    const fa = new FontFace(FONT_AR, abuf);
+    await fa.load(); document.fonts.add(fa);
+  }catch(e){ console.warn('font arabo non trovato', e); }
+
+  // immagini
+  for(const t of Object.values(TEMI))
+    R.sfondi[t.sfondo] = await immagineDa(await leggiFile(cart.dashboard, t.sfondo));
+  R.oro = await immagineDa(await leggiFile(cart.dashboard,'oro.png'));
+  for(const [rar,f] of Object.entries(BADGEFILE))
+    R.badge[rar] = await immagineDa(await leggiFile(cart.dashboard, f));
+
+  fotoDisponibili = [];
+  for await (const [n,h] of cart.foto.entries()) if(h.kind==='file') fotoDisponibili.push(n);
+  fotoDisponibili.sort((a,b)=> a.localeCompare(b,'it'));
+
+  dati = JSON.parse(await (await leggiFile(cart.dashboard,'dati.json')).text());
+  dati.carte.forEach(c=>{ c.zoom = c.zoom||1; c.panX = c.panX ?? .5; c.panY = c.panY ?? .38;
+                          c.file = c.file || nomeFile(c); });
+
+  await salvaHandle(handle);
+  $('#benvenuto').style.display='none';
+  $('#app').style.display='grid';
+  disegnaLista();
+  scegliCarta(dati.carte[0]);
+  segnala('Cartella collegata','ok');
+  controllaDocumento();
+}
+async function immagineDa(file){
+  const b = await createImageBitmap(file);
+  return b;
+}
+
+/* handle salvato in IndexedDB, così alla riapertura basta un clic */
+function idb(){
+  return new Promise((ris,rif)=>{
+    const r = indexedDB.open('soggettoni-dash',1);
+    r.onupgradeneeded = ()=> r.result.createObjectStore('kv');
+    r.onsuccess = ()=> ris(r.result); r.onerror = ()=> rif(r.error);
+  });
+}
+async function salvaHandle(h){ try{
+  const db = await idb();
+  await new Promise(r=>{ const t=db.transaction('kv','readwrite'); t.objectStore('kv').put(h,'dir'); t.oncomplete=r; });
+}catch(e){} }
+async function handleSalvato(){ try{
+  const db = await idb();
+  return await new Promise(r=>{ const t=db.transaction('kv','readonly');
+    const q=t.objectStore('kv').get('dir'); q.onsuccess=()=>r(q.result); q.onerror=()=>r(null); });
+}catch(e){ return null; } }
+
+/* ─────────────────────────  interfaccia  ───────────────────────── */
+
+function disegnaLista(){
+  const q = $('#cerca').value.trim().toLowerCase();
+  const l = $('#lista'); l.innerHTML='';
+  for(const c of dati.carte){
+    if(q && !(c.nome.toLowerCase().includes(q) || c.num.includes(q))) continue;
+    const d = document.createElement('div');
+    d.className = 'voce' + (sel===c ? ' sel':'');
+    d.innerHTML = `<span class="n">${c.num}</span><span>${escapeHtml(c.nome)}</span>` +
+                  (c._mod ? '<span class="mod">•</span>' : '');
+    d.onclick = ()=> scegliCarta(c);
+    l.appendChild(d);
+  }
+}
+function escapeHtml(s){ return s.replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch])); }
+
+function scegliCarta(c){
+  sel = c; disegnaLista(); costruisciForm(); aggiornaAnteprima();
+}
+
+function costruisciForm(){
+  const c = sel;
+  const opz = RARITA.map(r=>`<option${r===c.rarita?' selected':''}>${r}</option>`).join('');
+  $('#campi').innerHTML = `
+    <h2>Carta ${c.num}</h2>
+    <label for="f-nome">Nome</label>
+    <input id="f-nome" type="text" value="${escapeHtml(c.nome)}" spellcheck="false">
+    <div class="nota" style="margin-bottom:16px">file: ${escapeHtml(c.file||'—')}</div>
+
+    <div class="riga">
+      <div><label for="f-ign">Ignoranza</label><input id="f-ign" type="number" value="${c.ign}"></div>
+      <div><label for="f-rar">Rarità</label><select id="f-rar">${opz}</select></div>
+    </div>
+
+    <h2>Valori di scontro</h2>
+    ${NOMISTAT.map((n,i)=>`
+      <div class="stat">
+        <span>${n}</span>
+        <input type="range" min="0" max="7" step="1" value="${c.val[i]}" data-i="${i}" class="f-val">
+        <b id="v-${i}">${etichettaVal(c.val[i])}</b>
+      </div>`).join('')}
+    <div class="nota">6 = quadretti oro · 7 = arcobaleno</div>
+
+    <h2>Testo del riquadro</h2>
+    <label for="f-ab">Abilità speciale</label>
+    <textarea id="f-ab">${escapeHtml(c.ab||'')}</textarea>
+    <label for="f-desc" style="margin-top:10px">Descrizione</label>
+    <textarea id="f-desc">${escapeHtml(c.desc||'')}</textarea>
+    <div class="nota">Se compili tutt'e due vanno una sotto l'altra, senza etichette.</div>
+
+    <h2>Foto</h2>
+    <select id="f-foto">
+      <option value=""${c.foto?'':' selected'}>— nessuna foto —</option>
+      ${fotoDisponibili.map(f=>`<option${f===c.foto?' selected':''}>${escapeHtml(f)}</option>`).join('')}
+      ${c.foto && !fotoDisponibili.includes(c.foto) ? `<option selected>${escapeHtml(c.foto)}</option>` : ''}
+    </select>
+    <div style="height:10px"></div>
+    <div id="barrafoto">
+      <span style="font-size:12px;color:var(--testo2)">zoom</span>
+      <input id="f-zoom" type="range" min="100" max="300" step="1" value="${Math.round((c.zoom||1)*100)}">
+      <button class="minibtn" id="f-reset">azzera</button>
+    </div>
+    <div class="nota">Trascina la foto direttamente sull'anteprima.</div>
+  `;
+  $('#f-nome').oninput = e => {
+    c.nome = e.target.value.replace(/[\\\/:*?"<>|]/g,'').trim() || c.nome;
+    cambiata(); disegnaLista();
+  };
+  $('#f-ign').oninput = e => { const v=parseInt(e.target.value,10); c.ign = isNaN(v)?0:v; cambiata(); };
+  $('#f-rar').onchange = e => { c.rarita = e.target.value; cambiata(); };
+  document.querySelectorAll('.f-val').forEach(el=>{
+    el.oninput = e => { const i=+e.target.dataset.i; c.val[i] = +e.target.value;
+      const b=$('#v-'+i); b.textContent = etichettaVal(c.val[i]);
+      b.className = c.val[i]===7?'arc':(c.val[i]===6?'oro':''); cambiata(); };
+    const i=+el.dataset.i, b=$('#v-'+i);
+    b.className = c.val[i]===7?'arc':(c.val[i]===6?'oro':'');
+  });
+  $('#f-ab').oninput = e => { c.ab = e.target.value; cambiata(); };
+  $('#f-desc').oninput = e => { c.desc = e.target.value; cambiata(); };
+  $('#f-foto').onchange = e => {
+    c.foto = e.target.value; c.zoom=1; c.panX=.5; c.panY=.38;
+    costruisciForm(); cambiata(); aggiornaAnteprima();
+  };
+  $('#f-zoom').oninput = e => { c.zoom = (+e.target.value)/100; cambiata(); };
+  $('#f-reset').onclick = () => { c.zoom=1; c.panX=.5; c.panY=.38; $('#f-zoom').value=100; cambiata(); };
+}
+function etichettaVal(v){ return v===7?'arc':(v===6?'oro':String(v)); }
+
+let tRender=null, tSalva=null;
+function cambiata(){
+  sel._mod = true;
+  clearTimeout(tRender); tRender = setTimeout(aggiornaAnteprima, 60);
+  clearTimeout(tSalva);  tSalva  = setTimeout(()=>salvaCarta(sel), 1100);
+  segnala('Modifiche in corso…','lavoro');
+}
+
+async function fotoDi(c){
+  if(!c.foto) return null;
+  if(fotoCache.has(c.foto)) return fotoCache.get(c.foto);
+  try{
+    const img = await immagineDa(await leggiFile(cart.foto, c.foto));
+    fotoCache.set(c.foto, img); return img;
+  }catch(e){ fotoCache.set(c.foto,null); return null; }
+}
+
+async function aggiornaAnteprima(){
+  const c = sel, cv = $('#carta'), ctx = cv.getContext('2d');
+  const foto = await fotoDi(c);
+  disegnaCarta(ctx, c, foto);
+  const T = temaDi(c), tel = $('#telaio');
+  tel.classList.toggle('foto', !!foto);
+  const k = cv.clientWidth / 1396;
+  const z = $('#zonafoto');
+  z.style.left = (T.foto.x*k)+'px'; z.style.top = (T.foto.y*k)+'px';
+  z.style.width = (T.foto.lato*k)+'px'; z.style.height = (T.foto.lato*k)+'px';
+}
+
+/* trascinamento foto */
+(function(){
+  const z = document.getElementById('zonafoto');
+  let giu=null;
+  z.addEventListener('pointerdown', e=>{
+    if(!sel) return;
+    giu = {x:e.clientX, y:e.clientY, panX:sel.panX, panY:sel.panY};
+    z.classList.add('trascino'); z.setPointerCapture(e.pointerId);
+  });
+  z.addEventListener('pointermove', async e=>{
+    if(!giu || !sel) return;
+    const img = await fotoDi(sel); if(!img) return;
+    const T = temaDi(sel);
+    const base = Math.max(T.foto.lato/img.width, T.foto.lato/img.height) * (sel.zoom||1);
+    const nw = img.width*base, nh = img.height*base;
+    const k = $('#carta').clientWidth/1396;
+    const dx = (e.clientX-giu.x)/k, dy = (e.clientY-giu.y)/k;
+    if(nw > T.foto.lato) sel.panX = Math.max(0, Math.min(1, giu.panX - dx/(nw-T.foto.lato)));
+    if(nh > T.foto.lato) sel.panY = Math.max(0, Math.min(1, giu.panY - dy/(nh-T.foto.lato)));
+    cambiata();
+  });
+  const su = ()=>{ giu=null; z.classList.remove('trascino'); };
+  z.addEventListener('pointerup', su); z.addEventListener('pointercancel', su);
+  const menu = document.getElementById('menufoto');
+  z.addEventListener('contextmenu', e=>{
+    if(!sel || !sel.foto) return;
+    e.preventDefault();
+    menu.style.left = Math.min(e.clientX, innerWidth-190)+'px';
+    menu.style.top  = Math.min(e.clientY, innerHeight-60)+'px';
+    menu.style.display = 'block';
+  });
+  document.addEventListener('click', ()=> menu.style.display='none');
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') menu.style.display='none'; });
+  document.getElementById('mf-rimuovi').onclick = ()=>{
+    menu.style.display='none';
+    if(!sel) return;
+    sel.foto=''; sel.zoom=1; sel.panX=.5; sel.panY=.38;
+    costruisciForm(); cambiata(); aggiornaAnteprima();
+  };
+  z.addEventListener('wheel', e=>{
+    if(!sel) return; e.preventDefault();
+    sel.zoom = Math.max(1, Math.min(3, (sel.zoom||1) * (e.deltaY<0?1.06:1/1.06)));
+    const r = document.getElementById('f-zoom'); if(r) r.value = Math.round(sel.zoom*100);
+    cambiata();
+  }, {passive:false});
+})();
+
+/* ─────────────────────────  salvataggio  ───────────────────────── */
+
+function nomeFile(c){ return `${c.num} - ${c.nome}.png`; }
+function nomeValido(n){ return (n||'').replace(/[\\\/:*?"<>|]/g,' ').replace(/\s+/g,' ').trim(); }
+function oggi(){ const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+function rigaElenco(c){
+  const st = c.val.map((v,i)=> SIGLE[i]+v+(v===7?' (arcobaleno)':'')).join(' ');
+  return String(c.num).padEnd(3)+'  '+c.nome.padEnd(36)+c.rarita.padEnd(21)+
+         ('Ign '+c.ign).padEnd(14)+st+'   [foto: '+(c.foto||'')+']';
+}
+async function aggiornaElenco(c){
+  let txt;
+  try{ txt = await (await leggiFile(cart.carteNuove,'_elenco.txt')).text(); }catch(e){ return; }
+  const righe = txt.split('\n');
+  let trovata = false;
+  for(let i=0;i<righe.length;i++){
+    if(righe[i].startsWith(c.num+'  ')){ righe[i] = rigaElenco(c); trovata = true; break; }
+  }
+  if(trovata) await scriviFile(cart.carteNuove,'_elenco.txt', righe.join('\n'));
+}
+
+let inCorso = false, riprova = null;
+async function salvaCarta(c){
+  if(inCorso){ riprova = c; return; }
+  inCorso = true;
+  try{
+    segnala('Salvo…','lavoro');
+    const nome = nomeFile(c);
+    const vecchioFile = c.file || nome;
+
+    // 1. copia di sicurezza della versione precedente (una al giorno)
+    const nomeBk = vecchioFile.replace(/\.png$/i,'') + ` — ${oggi()}.png`;
+    let esiste = true;
+    try{ await cart.versioni.getFileHandle(nomeBk); }catch(e){ esiste = false; }
+    if(!esiste){
+      try{
+        const vecchio = await leggiFile(cart.alta, vecchioFile);
+        await scriviFile(cart.versioni, nomeBk, vecchio);
+      }catch(e){ /* la carta non esisteva ancora */ }
+    }
+
+    // 2. rigenera il PNG (e, se il nome è cambiato, elimina il file vecchio)
+    const cv = document.createElement('canvas'); cv.width=1396; cv.height=2156;
+    disegnaCarta(cv.getContext('2d'), c, await fotoDi(c));
+    const blob = await new Promise(r=> cv.toBlob(r,'image/png'));
+    await scriviFile(cart.alta, nome, blob);
+    if(vecchioFile !== nome){
+      try{ await cart.alta.removeEntry(vecchioFile); }catch(e){ console.warn('vecchio file non rimosso', e); }
+    }
+    c.file = nome;
+
+    // 3. elenco + dati
+    await aggiornaElenco(c);
+    await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+
+    c._mod = false; disegnaLista();
+    const o=new Date();
+    segnala('Salvata alle '+String(o.getHours()).padStart(2,'0')+':'+String(o.getMinutes()).padStart(2,'0'),'ok');
+  }catch(e){
+    console.error(e);
+    segnala('Errore nel salvataggio: '+e.message,'err');
+  }finally{
+    inCorso = false;
+    if(riprova){ const r=riprova; riprova=null; salvaCarta(r); }
+  }
+}
+
+/* ─────────────  pannello differenze col documento  ───────────── */
+
+let righeDoc = null, ultimoConfronto = null, origineDoc = '';
+
+async function controllaDocumento(){
+  // eventuale configurazione nella cartella
+  try{
+    const cfg = JSON.parse(await (await leggiFile(cart.dashboard,'drive.json')).text());
+    if(cfg.chiave) DRIVE.chiave = cfg.chiave;
+    if(cfg.file) DRIVE.file = cfg.file;
+  }catch(e){}
+  // 1. il documento vivo su Drive (solo se la pagina è pubblicata: da file:// il referer è vuoto)
+  if(DRIVE.chiave && location.protocol.startsWith('http')){
+    try{
+      segnala('Scarico il documento da Drive…','lavoro');
+      const buf = await scaricaDaDrive();
+      if(buf){ await usaDocumento(buf, true, 'Drive'); segnala('Documento letto da Drive','ok'); return; }
+    }catch(e){
+      segnala('Drive non raggiungibile: '+e.message,'err');
+    }
+  }
+  // 2. la copia salvata nella cartella
+  try{
+    const f = await leggiFile(cart.dashboard, 'documento.docx');
+    await usaDocumento(await f.arrayBuffer(), false, 'copia locale');
+  }catch(e){
+    $('#pannellodoc').className = 'on';
+    $('#pannellodoc').innerHTML =
+      `<h3>Documento</h3><div class="dett">Nella cartella non c'è ancora una copia del documento.
+       Scarica <b>Soggettoni_Nuove_Leve.docx</b> da Drive e trascinalo qui sopra: da allora in poi
+       la dashboard lo rilegge a ogni ricaricamento.</div>`;
+  }
+}
+
+async function usaDocumento(buf, salvaCopia, provenienza){
+  origineDoc = provenienza || 'copia locale';
+  try{
+    righeDoc = righeDelDocumento(await xmlDaDocx(buf));
+  }catch(e){ segnala('Documento illeggibile: '+e.message,'err'); return; }
+  if(salvaCopia){
+    try{ await scriviFile(cart.dashboard,'documento.docx', new Blob([buf])); }catch(e){}
+  }
+  ultimoConfronto = confronta(righeDoc);
+  if(ultimoConfronto.agganciate){
+    try{ await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1)); }catch(e){}
+  }
+  mostraPannello();
+}
+
+function mostraPannello(){
+  const p = $('#pannellodoc'), {nuove, modifiche} = ultimoConfronto;
+  p.className = 'on';
+  if(!nuove.length && !modifiche.length){
+    p.innerHTML = `<h3>Documento (${escapeHtml(origineDoc)})</h3><div class="dett">Tutto allineato —
+      ${righeDoc.length} righe con statistiche complete, nessuna differenza.</div>`;
+    return;
+  }
+  const voci = [];
+  nuove.forEach((n,i)=> voci.push(`<li><input type="checkbox" data-t="n" data-i="${i}" checked>
+     <div><b>${escapeHtml(n.riga.nome)}</b> — carta nuova, ${n.riga.rarita.toLowerCase()}
+     <div class="dett">foto: ${escapeHtml(n.foto)} · Ign ${n.riga.ign} · ${n.riga.val.join(' ')}</div></div></li>`));
+  modifiche.forEach((m,i)=> voci.push(`<li><input type="checkbox" data-t="m" data-i="${i}">
+     <div><b>${escapeHtml(m.carta.nome)}</b> (carta ${m.carta.num})
+     <div class="dett">${m.diff.map(d=>`${d[0]}: ${escapeHtml(String(d[1]).slice(0,60))} → <b>${escapeHtml(String(d[2]).slice(0,60))}</b>`).join('<br>')}</div></div></li>`));
+  p.innerHTML = `<h3>Dal documento (${escapeHtml(origineDoc)}): ${nuove.length} carte nuove, ${modifiche.length} differenze</h3>
+    <ul>${voci.join('')}</ul>
+    <div class="azioni"><button class="vai" id="doc-applica">Applica le selezionate</button>
+      <button class="minibtn" id="doc-tutte">Seleziona tutto</button>
+      <button class="minibtn" id="doc-chiudi">Chiudi</button>
+      <span class="dett" id="doc-stato"></span></div>`;
+  $('#doc-tutte').onclick = ()=> p.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=true);
+  $('#doc-chiudi').onclick = ()=> p.className = '';
+  $('#doc-applica').onclick = applicaDalDocumento;
+}
+
+async function applicaDalDocumento(){
+  const p = $('#pannellodoc');
+  const scelte = [...p.querySelectorAll('input[type=checkbox]:checked')];
+  if(!scelte.length) return;
+  const numeri = dati.carte.map(c=>parseInt(c.num,10)).filter(n=>!isNaN(n));
+  let prossimo = Math.max(...numeri) + 1;
+  let fatte = 0;
+  for(const ch of scelte){
+    const i = +ch.dataset.i;
+    if(ch.dataset.t === 'n'){
+      const {riga, foto} = ultimoConfronto.nuove[i];
+      const libero = riga.num && !dati.carte.some(c=>c.num===riga.num);
+      const c = {num: libero ? riga.num : String(prossimo++), nome: nomeValido(riga.nome), rarita: riga.rarita,
+                 ign: riga.ign, val: riga.val.slice(), ab: riga.ab, desc: riga.desc,
+                 foto, zoom:1, panX:.5, panY:.38, docNome: riga.nome};
+      c.file = nomeFile(c);
+      dati.carte.push(c);
+      dati.carte.sort((a,b)=> (parseInt(a.num,10)||0) - (parseInt(b.num,10)||0));
+      await salvaCarta(c);
+    } else {
+      const {carta, riga, diff} = ultimoConfronto.modifiche[i];
+      for(const [campo,,nuovo] of diff){
+        if(campo==='nome') carta.nome = nomeValido(nuovo);
+        else if(campo==='ignoranza') carta.ign = riga.ign;
+        else if(campo==='valori') carta.val = riga.val.slice();
+        else if(campo==='rarità') carta.rarita = riga.rarita;
+        else if(campo==='testo'){ carta.ab = riga.ab; carta.desc = riga.desc; }
+        else if(campo==='foto'){ carta.foto = nuovo; carta.zoom=1; carta.panX=.5; carta.panY=.38; }
+      }
+      carta.docNome = riga.nome;
+      await salvaCarta(carta);
+    }
+    fatte++;
+    $('#doc-stato').textContent = `${fatte}/${scelte.length}`;
+  }
+  fotoCache.clear();
+  disegnaLista();
+  ultimoConfronto = confronta(righeDoc);
+  mostraPannello();
+  segnala(`Applicate ${fatte} modifiche dal documento`,'ok');
+}
+
+/* trascinamento del .docx sulla pagina */
+(function(){
+  const velo = document.getElementById('trascina');
+  let dentro = 0;
+  window.addEventListener('dragenter', e=>{ e.preventDefault(); if(++dentro===1 && dir) velo.classList.add('on'); });
+  window.addEventListener('dragover', e=> e.preventDefault());
+  window.addEventListener('dragleave', e=>{ if(--dentro<=0){ dentro=0; velo.classList.remove('on'); } });
+  window.addEventListener('drop', async e=>{
+    e.preventDefault(); dentro=0; velo.classList.remove('on');
+    if(!dir) return;
+    const f = [...(e.dataTransfer.files||[])].find(x=>/\.docx$/i.test(x.name));
+    if(!f){ segnala('Serve un file .docx','err'); return; }
+    segnala('Leggo il documento…','lavoro');
+    await usaDocumento(await f.arrayBuffer(), true, 'file trascinato');
+    segnala('Documento letto','ok');
+  });
+})();
+
+/* ─────────────────────────  avvio  ───────────────────────── */
+
+$('#cerca').oninput = disegnaLista;
+$('#scegli').onclick = async ()=>{
+  try{
+    const h = await window.showDirectoryPicker({mode:'readwrite', id:'soggettoni'});
+    await apriCartella(h);
+  }catch(e){
+    if(e.name!=='AbortError'){ segnala('Errore: '+e.message,'err'); alert('Non riesco ad aprire la cartella:\n'+e.message); }
+  }
+};
+window.addEventListener('resize', ()=>{ if(sel) aggiornaAnteprima(); });
+
+(async function(){
+  if(!window.showDirectoryPicker){
+    $('#intro').innerHTML = '<div class="avviso">Questo browser non permette di scrivere nella cartella. '+
+      'Apri il file con Chrome o Edge.</div>';
+    return;
+  }
+  const h = await handleSalvato();
+  if(h){
+    const stato = await h.queryPermission({mode:'readwrite'});
+    const b = $('#scegli');
+    b.textContent = stato==='granted' ? 'Riapri la cartella collegata' : 'Riconnetti la cartella';
+    b.onclick = async ()=>{
+      try{
+        if(await h.queryPermission({mode:'readwrite'}) !== 'granted'){
+          if(await h.requestPermission({mode:'readwrite'}) !== 'granted') return;
+        }
+        await apriCartella(h);
+      }catch(e){ segnala('Errore: '+e.message,'err'); alert(e.message); }
+    };
+  }
+})();
+
+window.__soggettoni = { disegnaCarta, R, TEMI, immagineDa, FONT, xmlDaDocx, righeDelDocumento, chiave, stato:()=>dati };
+</script>
+</body>
+</html>
