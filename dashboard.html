@@ -19,11 +19,29 @@
          border-bottom:1px solid var(--bordo);height:54px}
   header h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.02em}
   header h1 span{color:var(--arancio)}
-  #stato{margin-left:auto;font-size:12.5px;color:var(--testo2);display:flex;align-items:center;gap:8px}
+  #stato{font-size:12.5px;color:var(--testo2);display:flex;align-items:center;gap:8px}
+  #famiglia{display:none;gap:0;border:1px solid var(--bordo);border-radius:20px;overflow:hidden;background:var(--pannello2)}
+  #famiglia button{background:none;border:0;color:var(--testo2);padding:5px 15px;font-size:12.5px}
+  #famiglia button:hover{color:var(--testo)}
+  #famiglia button.on{background:var(--arancio);color:#241a10;font-weight:700}
+  #btncompleta{margin-left:auto;background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+     border-radius:20px;padding:5px 13px;font-size:12.5px;display:none;align-items:center;gap:7px}
+  #btncompleta:hover{border-color:var(--arancio)}
+  #btncompleta.on{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
+  #btncompleta .badge{background:var(--rosso);color:#fff;border-radius:10px;padding:0 6px;
+     font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+  #btncompleta.on .badge{background:#241a10;color:var(--arancio)}
+  #storia{display:none;gap:0;border:1px solid var(--bordo);border-radius:20px;overflow:hidden;
+     background:var(--pannello2)}
+  #storia button{background:none;border:0;color:var(--testo2);padding:5px 13px;font-size:13px;line-height:1.2}
+  #storia button:hover:not(:disabled){color:var(--arancio)}
+  #storia button:disabled{opacity:.3;cursor:default}
+  #storia button + button{border-left:1px solid var(--bordo)}
   #pallino{width:8px;height:8px;border-radius:50%;background:var(--testo2)}
   #pallino.ok{background:var(--verde)} #pallino.lavoro{background:var(--oro)} #pallino.err{background:var(--rosso)}
 
   #app{display:grid;grid-template-columns:270px minmax(0,1fr) 380px;height:calc(100vh - 54px)}
+  body.condivisa #app{height:calc(100vh - 54px - 37px)}
   @media(max-width:1200px){#app{grid-template-columns:220px minmax(0,1fr) 330px}}
 
   aside{border-right:1px solid var(--bordo);display:flex;flex-direction:column;min-height:0;background:var(--pannello)}
@@ -36,8 +54,18 @@
   .voce.sel{background:var(--arancio);color:#241a10;font-weight:600}
   .voce .n{font-variant-numeric:tabular-nums;font-size:12px;opacity:.75;min-width:26px}
   .voce.sel .n{opacity:.85}
-  .voce .mod{margin-left:auto;color:var(--oro);font-size:16px;line-height:1}
+  .voce .mod{color:var(--oro);font-size:16px;line-height:1}
   .voce.sel .mod{color:#241a10}
+  .voce{min-width:0}
+  .voce .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .voce .spazio{flex:1 1 auto}
+  .voce .manca{font-size:11px;color:var(--testo2);white-space:nowrap}
+  .voce.sel .manca{color:#3f2c12}
+  .gruppo{margin:15px 9px 5px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+     color:var(--arancio);font-weight:700;display:flex;gap:8px;align-items:baseline}
+  .gruppo:first-child{margin-top:6px}
+  .gruppo .q{color:var(--testo2);font-weight:600;letter-spacing:0}
+  #vuotolista{color:var(--testo2);font-size:12.5px;padding:18px 9px;line-height:1.55}
 
   main{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
        padding:16px;overflow:auto;min-width:0;gap:10px}
@@ -50,7 +78,17 @@
   #zonafoto.trascino{cursor:grabbing;border-color:var(--oro)}
   #suggerimento{font-size:12px;color:var(--testo2);text-align:center}
 
-  section#form{border-left:1px solid var(--bordo);background:var(--pannello);overflow-y:auto;padding:16px}
+  section#form{border-left:1px solid var(--bordo);background:var(--pannello);
+     display:flex;flex-direction:column;min-height:0}
+  #campi{flex:1;overflow-y:auto;padding:16px}
+  #navcarte{display:none;align-items:center;gap:10px;padding:10px 14px;
+     background:var(--pannello2);border-top:1px solid var(--bordo)}
+  #navcarte button{flex:1 1 0;background:var(--pannello);border:1px solid var(--bordo);
+     color:var(--testo);border-radius:8px;padding:8px 6px;font-size:13px;font-weight:600}
+  #navcarte button:hover:not(:disabled){border-color:var(--arancio);color:var(--arancio)}
+  #navcarte button:disabled{opacity:.32;cursor:default}
+  #posizione{font-size:11.5px;color:var(--testo2);font-variant-numeric:tabular-nums;
+     min-width:74px;text-align:center;white-space:nowrap}
   h2{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--testo2);
      margin:22px 0 10px;font-weight:700}
   h2:first-child{margin-top:0}
@@ -74,13 +112,44 @@
   #scegli{background:var(--arancio);color:#241a10;border:0;border-radius:9px;padding:12px 22px;
           font-weight:700;font-size:15px}
   #scegli:hover{background:#ff9840}
+  #camposdrive{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+  #camposdrive input{padding:9px 11px;background:var(--pannello2);border:1px solid var(--bordo);
+     border-radius:7px;color:var(--testo);font:inherit;font-size:13px}
+  #camposdrive input:focus{outline:2px solid var(--arancio);outline-offset:-1px}
+  #d-apri{background:var(--pannello2);border:1px solid var(--arancio);color:var(--arancio);
+     border-radius:9px;padding:10px 18px;font-size:14px;font-weight:700;align-self:flex-start}
+  #d-apri:hover{background:var(--arancio);color:#241a10}
   .avviso{background:#3a2a18;border:1px solid #7a5a26;color:#ffd899;padding:10px 12px;
           border-radius:8px;font-size:12.5px;margin-bottom:14px}
   #barrafoto{display:flex;align-items:center;gap:10px}
   #barrafoto input[type=range]{flex:1;accent-color:var(--arancio)}
+  #zonaelimina{margin-top:30px;padding-top:18px;border-top:1px solid var(--bordo)}
+  .pericolo{width:100%;background:none;border:1px solid #7a3b34;color:#e08b80;
+            border-radius:8px;padding:9px 12px;font-size:13px}
+  .pericolo:hover{background:#3a1f1c;border-color:#a3554b;color:#ffb3a7}
+  #confermaelimina{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  #confermaelimina .dett{font-size:12.5px;color:var(--testo2);width:100%;margin-bottom:4px;line-height:1.45}
+  #el-si{flex:1;background:var(--rosso);border:0;color:#fff;border-radius:8px;padding:9px 12px;
+         font-weight:700;font-size:13px}
+  #el-si:hover{background:#ff4d35}
+  #el-no{flex:1}
   .minibtn{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
            border-radius:6px;padding:5px 10px;font-size:12px}
   .minibtn:hover{border-color:var(--arancio)}
+  #barraelenco{display:flex;gap:8px;margin:10px;align-items:stretch}
+  #barraelenco #cerca{margin:0;flex:1;min-width:0}
+  #nuova{background:var(--arancio);color:#241a10;border:0;border-radius:7px;
+         padding:7px 12px;font-weight:700;font-size:12.5px;white-space:nowrap}
+  #nuova:hover{background:#ff9840}
+  #menutipi{position:fixed;z-index:60;display:none;min-width:250px;padding:5px;
+            background:var(--pannello2);border:1px solid var(--bordo);border-radius:9px;
+            box-shadow:0 12px 30px #000b;max-height:70vh;overflow:auto}
+  #menutipi .capo{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;
+            color:var(--arancio);font-weight:700;padding:8px 11px 4px}
+  #menutipi button{display:flex;gap:9px;align-items:center;width:100%;text-align:left;
+            background:none;border:0;color:var(--testo);padding:7px 11px;border-radius:6px;font-size:13px}
+  #menutipi button:hover{background:var(--arancio);color:#241a10}
+  #menutipi .pallina{width:12px;height:12px;border-radius:3px;flex:none;border:1px solid #0004}
   #menufoto{position:fixed;z-index:50;display:none;min-width:170px;padding:4px;
             background:var(--pannello2);border:1px solid var(--bordo);border-radius:9px;
             box-shadow:0 10px 26px #000a}
@@ -97,9 +166,29 @@
   #pannellodoc .dett{color:var(--testo2);font-size:12px}
   #pannellodoc .azioni{display:flex;gap:9px;align-items:center;margin-top:10px}
   #pannellodoc .vai{background:var(--arancio);color:#241a10;border:0;border-radius:7px;padding:7px 14px;font-weight:700}
+  #semaforo{display:none;align-items:center;gap:12px;padding:7px 18px;font-size:12.5px;
+     border-bottom:1px solid var(--bordo);background:var(--pannello2)}
+  #semaforo .pallina{width:9px;height:9px;border-radius:50%;background:var(--testo2);flex:none}
+  #semaforo.mia .pallina{background:var(--verde)}
+  #semaforo.altrui .pallina{background:var(--oro)}
+  #semaforo.libera .pallina{background:var(--testo2)}
+  #semaforo.altrui{background:#3a2f1c}
+  #semaforo .chi{color:var(--testo2)}
+  #semaforo .richiesta{color:var(--oro);font-weight:700}
+  #semaforo .spinta{flex:1}
+  #semaforo button{background:var(--pannello);border:1px solid var(--bordo);color:var(--testo);
+     border-radius:7px;padding:5px 12px;font-size:12.5px}
+  #semaforo button:hover{border-color:var(--arancio);color:var(--arancio)}
+  #semaforo button.vivo{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
+  #semaforo .segui{color:var(--testo2);display:flex;align-items:center;gap:5px}
+  #sololettura{background:#3a2f1c;border:1px solid var(--oro);border-radius:8px;padding:9px 11px;
+     margin-bottom:14px;font-size:12.5px;color:var(--oro)}
+  #campi.spento input,#campi.spento textarea,#campi.spento select,#campi.spento button{
+     pointer-events:none;opacity:.5}
+  #campi.spento #zonalettura{pointer-events:auto;opacity:1}
   #trascina{position:fixed;inset:0;background:#000c;z-index:80;display:none;
-      align-items:center;justify-content:center;font-size:18px;color:var(--testo);
-      border:3px dashed var(--arancio)}
+      align-items:center;justify-content:center;text-align:center;line-height:1.6;
+      font-size:18px;color:var(--testo);border:3px dashed var(--arancio)}
   #trascina.on{display:flex}
 </style>
 </head>
@@ -107,7 +196,16 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v7 · arcobaleno laminato</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v27 · link per i collaboratori</span>
+  <div id="famiglia">
+    <button type="button" class="on" data-f="soggettone">Soggettoni</button>
+    <button type="button" data-f="accessorio">Accessori</button>
+  </div>
+  <div id="storia">
+    <button id="annulla" type="button">↶ Annulla</button>
+    <button id="rifai" type="button">Rifai ↷</button>
+  </div>
+  <button id="btncompleta" type="button">Da completare</button>
   <div id="stato"><i id="pallino"></i><span id="statotxt">Nessuna cartella collegata</span></div>
 </header>
 
@@ -119,12 +217,35 @@
        La versione precedente viene messa da parte in <i>_versioni precedenti</i>.</p>
     <button id="scegli">Scegli la cartella…</button>
     <p class="nota" style="margin-top:18px">Serve Chrome o Edge. Il permesso va concesso una volta per sessione.</p>
+    <hr style="border:0;border-top:1px solid var(--bordo);margin:22px 0 18px">
+    <h3 style="margin-top:0">Oppure lavora in due o tre sulla stessa cartella</h3>
+    <p>La cartella sta su Google Drive e ognuno la apre dal proprio portatile. Uno alla volta
+       ha la penna e modifica; gli altri vedono le carte cambiare in diretta.</p>
+    <div id="camposdrive">
+      <input id="d-client" type="text" spellcheck="false" placeholder="ID client OAuth (…apps.googleusercontent.com)">
+      <input id="d-cartella" type="text" spellcheck="false" placeholder="Indirizzo o ID della cartella su Drive">
+      <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+        <button id="d-apri">Apri da Google Drive</button>
+        <button id="d-link" class="minibtn" type="button" title="Copia un indirizzo già compilato da mandare agli altri">Copia il link per gli altri</button>
+        <span id="d-copiato" class="nota" style="margin:0"></span>
+      </div>
+    </div>
+    <p class="nota">Gli altri scrivono <b>gli stessi due valori</b>: non sono personali, l'unica
+       cosa personale è l'account Google con cui entrano. Col tasto qui sopra ti copi un
+       indirizzo già compilato da mandargli, così non devono scrivere niente.
+       Al primo accesso Google avvisa che l'applicazione non è verificata: si apre
+       «Avanzate» e si prosegue. L'autorizzazione va ridata ogni sette giorni.</p>
   </div>
 </div>
 
+<div id="semaforo"></div>
+
 <div id="app" style="display:none">
   <aside>
-    <input id="cerca" type="text" placeholder="Cerca per nome o numero…" autocomplete="off">
+    <div id="barraelenco">
+      <input id="cerca" type="text" placeholder="Cerca nome o numero…" autocomplete="off">
+      <button id="nuova" type="button" title="Crea una carta nuova">+ Nuova</button>
+    </div>
     <div id="lista"></div>
   </aside>
 
@@ -139,11 +260,17 @@
 
   <section id="form">
     <div id="campi"></div>
+    <div id="navcarte">
+      <button id="prec" type="button" title="Carta precedente (Alt+freccia su)">‹ Indietro</button>
+      <span id="posizione"></span>
+      <button id="succ" type="button" title="Carta successiva (Alt+freccia giù)">Avanti ›</button>
+    </div>
   </section>
 </div>
 
 <div id="menufoto"><button id="mf-rimuovi">Rimuovi foto dalla carta</button></div>
-<div id="trascina">Lascia qui il documento .docx per aggiornare i dati</div>
+<div id="menutipi"></div>
+<div id="trascina">Lascia qui un .docx per confrontarlo con le carte<br><span style="font-size:13px;opacity:.75">(il documento non viene più letto da solo)</span></div>
 
 <script>
 "use strict";
@@ -186,9 +313,64 @@ const TEMI = {
   }
 };
 const RARITA = ['Comune','Discretamente raro','Decisamente raro','Fottutamente raro','Introvabile'];
+
+/* Tipi di carta. I soggettoni usano i tre temi per rarità; tutti gli altri
+   condividono la stessa geometria e cambiano solo sfondo e contenuto delle celle.
+   testata: 'ign' = IGNORANZA — n/100 + badge · 'ignpiu' = IGNORANZA + n + badge
+            'piena' = nome del tipo centrato su tutta la testata
+   griglia: 'pip' = quadretti · 'mod' = modificatori con segno            */
+const SPECIE = {
+  soggettone:  {fam:'soggettone', et:'Soggettone', testata:'ign', badge:'rarita', griglia:'pip'},
+
+  creatura:    {fam:'accessorio', et:'Creatura', testata:'ign', badge:'rarita', griglia:'pip',
+                sfondo:'sfondo-creatura.png',     acc:'#EE3B24',
+                inkNome:'#FFF3E0', inkTesto:'#FFF3E0',
+                badgeFill:'#FFE800', badgeInk:'#242119'},
+
+  luogo:       {fam:'accessorio', et:'Luogo o evento', testata:'ignpiu', badge:'sotto', griglia:'mod',
+                sfondo:'sfondo-luogo.png',        acc:'#2E9B2E',
+                ink:'#101010', piu:'#FFFFFF', meno:'#E01010', ug:'#FCE500',
+                badgeFill:'#3DE83D', badgeInk:'#101010'},
+
+  abilita:     {fam:'accessorio', et:'Abilità decisamente speciale', testata:'piena', griglia:'mod',
+                sfondo:'sfondo-abilita.png',      acc:'#FCE500', bg:'#A03CB5',
+                ink:'#FCE500', inkTesto:'#FFFFFF', piu:'#FFFFFF', meno:'#FF8A7A', ug:'#FCE500'},
+
+  nutrizione:  {fam:'accessorio', et:'Nutrizione', testata:'piena', griglia:'mod',
+                sfondo:'sfondo-nutrizione.png',   acc:'#A87C4F',
+                ink:'#4E3620', piu:'#6F7F3C', meno:'#A33B2A', ug:'#A87C4F'},
+
+  aumentazione:{fam:'accessorio', et:'Decisa aumentazione', testata:'piena', griglia:'none',
+                sfondo:'sfondo-aumentazione.png', acc:'#F57E2D',
+                testoAlt:{x:147,cy:1695,max:1140,alt:650,interlinea:1.22,corpo:70},
+                box1:{top:1300,bottom:1690}, box2:{top:1730,bottom:2089}},
+
+  impedimento: {fam:'accessorio', et:'Drastica diminuzione', testata:'piena', griglia:'none',
+                sfondo:'sfondo-impedimento.png',  acc:'#414AC4',
+                testoAlt:{x:147,cy:1695,max:1140,alt:650,interlinea:1.22,corpo:70},
+                box1:{top:1300,bottom:1690}, box2:{top:1730,bottom:2089}},
+
+  bonus:       {fam:'accessorio', et:'Bonus ignoranza', testata:'piena', griglia:'none',
+                sfondo:'sfondo-bonus.png',        acc:'#830518',
+                testoAlt:{x:147,cy:1695,max:1140,alt:650,interlinea:1.22,corpo:70},
+                box1:{top:1300,bottom:1690}, box2:{top:1730,bottom:2089}},
+
+  inutilita:   {fam:'accessorio', et:'Evidente inutilità', testata:'piena', griglia:'mod',
+                sfondo:'sfondo-inutilita.png',    acc:'#B5544A',
+                ink:'#000000', meno:'#8C2A22', ug:'#6E6B68'}
+};
+const SOTTOTIPI_LUOGO = ['Locale','Disservizio',"Punto d'incontro",'Evento'];
+const specieDi = c => SPECIE[c.tipo || 'soggettone'] || SPECIE.soggettone;
+const famigliaDi = c => specieDi(c).fam;
 const BADGEFILE = {'Comune':'badge-comune.png','Discretamente raro':'badge-discretamente.png',
                    'Decisamente raro':'badge-decisamente.png',
                    'Fottutamente raro':'badge-fottutamente-nera.png'};
+const _BADGECOLORI_non_usato = {
+  'Comune': {fill:'#B5E61D', bordo:'#EE3B24'},
+  'Discretamente raro': {fill:'#FFE800', bordo:'#EE3B24'},
+  'Decisamente raro': {fill:'#D7111B', bordo:'#EE3B24'},
+  'Fottutamente raro': {fill:'#FFFFFF', bordo:'#FFC90E'}
+};
 const NOMISTAT = ['Forza','Agilità','Intelligenza','Incazzamento','Arrapamento','Ubriachezza'];
 const SIGLE = ['F','A','I','Inc','Arr','Ubr'];
 const FONT = 'SoggettoniBI';          // Liberation Sans Bold Italic
@@ -239,24 +421,145 @@ function spezza(ctx, testo, maxLarg){
    così non si confonde con l'arancione della carta */
 function _rgb(h){ return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]; }
 function _mix(c,d,t){ return 'rgb('+c.map((v,i)=>Math.round(v+(d[i]-v)*t)).join(',')+')'; }
-function pipLaminato(ctx,x,y,lato,hex){
+/* Arcobaleno metallizzato: stessa lavorazione del quadretto oro — sfumatura
+   diagonale continua dall'ombra alla luce, senza contorno. */
+function pipMetallizzato(ctx,x,y,lato,hex){
   const b=_rgb(hex);
-  const base=_mix(b,b,0), chiaro=_mix(b,[255,255,255],.78),
-        ombra=_mix(b,[0,0,0],.16), scuro=_mix(b,[0,0,0],.42);
   const g=ctx.createLinearGradient(x,y,x+lato,y+lato);
-  g.addColorStop(0,base); g.addColorStop(.30,base); g.addColorStop(.46,chiaro);
-  g.addColorStop(.58,base); g.addColorStop(1,ombra);
+  g.addColorStop(0,   _mix(b,[0,0,0],.46));
+  g.addColorStop(.22, _mix(b,[0,0,0],.24));
+  g.addColorStop(.44, _mix(b,b,0));
+  g.addColorStop(.70, _mix(b,[255,255,255],.34));
+  g.addColorStop(1,   _mix(b,[255,255,255],.70));
   ctx.fillStyle=g; ctx.fillRect(x,y,lato,lato);
-  ctx.strokeStyle=scuro; ctx.lineWidth=1; ctx.strokeRect(x+.5,y+.5,lato-1,lato-1);
+}
+
+/* blu dell'abilità speciale: scuro sui fondi chiari, chiaro su quelli scuri */
+/* Le abilità speciali stanno nel campo `ab`, una per riga. Questa funzione le
+   restituisce ripulite: via le righe vuote e via gli asterischi (o i puntini
+   elenco) battuti a mano, che il disegno rimette da solo. */
+function abilitaDi(c){
+  return (c.ab||'').split(/\r?\n/)
+    .map(r => r.replace(/^[\s*\u2022\u00b7\u2013\u2014-]+/,'').trim())
+    .filter(Boolean);
+}
+
+function bluAbilita(inchiostro){
+  let c = [36,33,31];
+  try{ if(String(inchiostro).startsWith('#')) c = _rgb(inchiostro); }catch(e){}
+  const lum = .299*c[0] + .587*c[1] + .114*c[2];
+  return lum > 140 ? '#8FC0FF' : '#14307E';
 }
 
 function temaDi(c){
+  const sp = specieDi(c);
+  if(sp.sfondo){                       // tipi accessori: geometria standard, sfondo proprio
+    if(!TEMI['_'+c.tipo]) TEMI['_'+c.tipo] = Object.assign({}, TEMI.standard, {sfondo:sp.sfondo});
+    return TEMI['_'+c.tipo];
+  }
   if(c.rarita==='Introvabile') return TEMI.introvabile;
   if(c.rarita==='Fottutamente raro') return TEMI.fottutamente;
   return TEMI.standard;
 }
+
+/* celle della griglia: tre colonne larghe 285 che partono dalle x dei quadretti */
+const CELLA = {xs:[144,552,960], larg:285, alt:45};
+
+function pastiglia(ctx, x, y, w, h, riemp, bordo, testo, inchiostro){
+  const r = h/2;
+  const tondo = (a,b,ww,hh,rr)=>{ ctx.beginPath(); ctx.moveTo(a+rr,b);
+    ctx.arcTo(a+ww,b,a+ww,b+hh,rr); ctx.arcTo(a+ww,b+hh,a,b+hh,rr);
+    ctx.arcTo(a,b+hh,a,b,rr); ctx.arcTo(a,b,a+ww,b,rr); ctx.closePath(); };
+  ctx.fillStyle = bordo; tondo(x,y,w,h,r); ctx.fill();
+  ctx.fillStyle = riemp; tondo(x+8,y+8,w-16,h-16,r-8); ctx.fill();
+  ctx.fillStyle = inchiostro;
+  let cp = 58;
+  for(; cp>14; cp--){ ctx.font = `${cp}px ${FAMIGLIE}`;
+    const m = inkMetrics(ctx,testo); if(m.larg<=w-56 && m.alt<=h-30) break; }
+  ctx.font = `${cp}px ${FAMIGLIE}`;
+  const m = inkMetrics(ctx,testo);
+  scriviInk(ctx, testo, x + w/2 - m.larg/2, y + h/2 - m.alt/2);
+}
+
+function cellaMod(ctx, i, testo, colore, T){
+  const cx = CELLA.xs[i%3] + CELLA.larg/2;
+  const cy = T.pip.ys[i<3?0:1] + CELLA.alt/2;
+  ctx.fillStyle = colore;
+  let cp = 66;
+  for(; cp>14; cp--){ ctx.font = `${cp}px ${FAMIGLIE}`;
+    const m = inkMetrics(ctx,testo); if(m.larg<=CELLA.larg-24 && m.alt<=70) break; }
+  ctx.font = `${cp}px ${FAMIGLIE}`;
+  const m = inkMetrics(ctx,testo);
+  scriviInk(ctx, testo, cx - m.larg/2, cy - m.alt/2);
+}
+function etichettaMod(v){
+  if(v === 'MAX' || v === 'MIN') return v;
+  const n = parseInt(v,10);
+  if(!n) return '=';
+  return n>0 ? '+'+n : String(n);
+}
+/* Dicitura di edizione, automatica dal numero — nessun dato salvato, si ricalcola
+   ad ogni disegno. Prima edizione (2015): soggettoni 1-201, luoghi A1-A9, abilità
+   B1-B5, valori D1-D12 (aumentazione e impedimento, non i bonus ignoranza D13-D16).
+   Tutto il resto — soggettoni 202+, ogni altro accessorio — è seconda edizione. */
+function edizioneDi(c){
+  const m = String(c.num||'').match(/^([A-Za-z]*)(\d+)$/);
+  if(!m) return null;
+  const lettera = m[1].toUpperCase(), n = parseInt(m[2],10);
+  let prima;
+  if(!lettera) prima = (n>=1 && n<=201);
+  else if(lettera==='A') prima = (n>=1 && n<=9);
+  else if(lettera==='B') prima = (n>=1 && n<=5);
+  else if(lettera==='D') prima = (n>=1 && n<=12);
+  else prima = false;
+  return `${c.num}-${prima?'1':'2'}ª ed.`;
+}
+function normalizza(s){
+  s = (s||'').trim();
+  if(!s) return s;
+  s = s.charAt(0).toUpperCase() + s.slice(1);
+  if(!/[.!?…]$/.test(s)) s += '.';
+  return s;
+}
+function boxTestoUnico(ctx, box, testo, cp0, inkT){
+  ctx.fillStyle = inkT;
+  const x=147, max=1140;
+  let cp = cp0, righe, passo;
+  const alt = box.bottom-box.top-70;
+  for(; cp>9; cp--){
+    ctx.font = `${cp}px ${FAMIGLIE}`;
+    righe = spezza(ctx, testo, max);
+    passo = Math.floor(cp*1.22);
+    if((righe.length-1)*passo + cp <= alt) break;
+  }
+  ctx.font = `${cp}px ${FAMIGLIE}`;
+  const altMaiusc = inkMetrics(ctx,'HX').alt;
+  const cy = (box.top+box.bottom)/2;
+  const cima = Math.round(cy - ((righe.length-1)*passo + altMaiusc)/2);
+  righe.forEach((r,i)=> scriviInk(ctx, r, x, cima + i*passo));
+}
+function boxTestoCentrato(ctx, box, testo, cp0, inkT){
+  ctx.fillStyle = inkT;
+  const x=147, max=1140;
+  let cp = cp0, righe, passo;
+  const alt = box.bottom-box.top-70;
+  for(; cp>9; cp--){
+    ctx.font = `${cp}px ${FAMIGLIE}`;
+    righe = spezza(ctx, testo, max);
+    passo = Math.floor(cp*1.22);
+    if((righe.length-1)*passo + cp <= alt) break;
+  }
+  ctx.font = `${cp}px ${FAMIGLIE}`;
+  const altMaiusc = inkMetrics(ctx,'HX').alt;
+  const cy = (box.top+box.bottom)/2;
+  const cima = Math.round(cy - ((righe.length-1)*passo + altMaiusc)/2);
+  righe.forEach((r,i)=>{ const m=inkMetrics(ctx,r); scriviInk(ctx, r, x + (max-m.larg)/2, cima + i*passo); });
+}
+function rrPath(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
 function testoDi(c){
-  return [ (c.ab||'').trim(), (c.desc||'').trim() ].filter(Boolean).join('\n');
+  return [ normalizza(c.ab), normalizza(c.desc) ].filter(Boolean).join('\n');
 }
 
 function ritaglioFoto(img, c, T){
@@ -271,7 +574,8 @@ function ritaglioFoto(img, c, T){
 function disegnaCarta(ctx, c, foto){
   const T = temaDi(c);
   ctx.clearRect(0,0,1396,2156);
-  ctx.drawImage(R.sfondi[T.sfondo], 0, 0);
+  if(R.sfondi[T.sfondo]) ctx.drawImage(R.sfondi[T.sfondo], 0, 0);
+  else { ctx.fillStyle='#f5872e'; ctx.fillRect(0,0,1396,2156); }
 
   // foto
   if(foto){
@@ -283,25 +587,46 @@ function disegnaCarta(ctx, c, foto){
     ctx.restore();
   }
 
-  ctx.fillStyle = T.inchiostro;
   ctx.textBaseline = 'alphabetic';
 
-  // ignoranza
-  const sIgn = `IGNORANZA — ${c.ign}/100`;
-  let corpo = T.ign.corpo;
-  while(corpo > 10){
+  // testata
+  const sp = specieDi(c);
+  const ink  = sp.ink || T.inchiostro;            // testata, etichette, nome
+  const inkN = sp.inkNome || ink;                 // nome
+  const inkT = sp.inkTesto || ink;                // riquadro del testo
+  ctx.fillStyle = ink;
+  let corpo;
+  if(sp.testata === 'piena'){
+    const et = sp.et.toUpperCase();
+    corpo = 62;
+    for(; corpo>14; corpo--){ ctx.font = `${corpo}px ${FAMIGLIE}`;
+      const m = inkMetrics(ctx,et); if(m.larg<=1170 && m.alt<=64) break; }
     ctx.font = `${corpo}px ${FAMIGLIE}`;
-    if(inkMetrics(ctx,sIgn).larg <= T.ign.max) break;
-    corpo--;
-  }
-  ctx.font = `${corpo}px ${FAMIGLIE}`;
-  scriviInk(ctx, sIgn, T.ign.x, T.ign.y);
+    const m = inkMetrics(ctx,et);
+    scriviInk(ctx, et, 698 - m.larg/2, 109 - m.alt/2);
+  }else{
+    const sIgn = sp.testata==='ignpiu' ? `IGNORANZA  + ${c.ign|0}` : `IGNORANZA — ${c.ign}/100`;
+    corpo = T.ign.corpo;
+    while(corpo > 10){
+      ctx.font = `${corpo}px ${FAMIGLIE}`;
+      if(inkMetrics(ctx,sIgn).larg <= T.ign.max) break;
+      corpo--;
+    }
+    ctx.font = `${corpo}px ${FAMIGLIE}`;
+    scriviInk(ctx, sIgn, T.ign.x, T.ign.y);
 
-  // badge rarità
-  if(T.badge && R.badge[c.rarita]) ctx.drawImage(R.badge[c.rarita], T.badge.x, T.badge.y);
+    if(sp.badge === 'sotto'){
+      pastiglia(ctx, T.badge.x, T.badge.y, 549, 95, sp.badgeFill||'#ffffff', sp.acc, c.sotto || 'Locale', sp.badgeInk||'#242119');
+    }else if(sp.sfondo){       // creature: rarità disegnata, non lo sprite arancione
+      pastiglia(ctx, T.badge.x, T.badge.y, 549, 95, sp.badgeFill||'#ffffff', sp.acc, c.rarita || 'Comune', sp.badgeInk||'#242119');
+    }else if(T.badge && R.badge[c.rarita]){
+      ctx.drawImage(R.badge[c.rarita], T.badge.x, T.badge.y);
+    }
+  }
 
   // nome
   const nome = (c.nome||'').toUpperCase();
+  ctx.fillStyle = ink;
   corpo = T.nome.corpo;
   while(corpo > 10){
     ctx.font = `${corpo}px ${FAMIGLIE}`;
@@ -310,38 +635,130 @@ function disegnaCarta(ctx, c, foto){
     corpo--;
   }
   ctx.font = `${corpo}px ${FAMIGLIE}`;
+  ctx.fillStyle = inkN;
   const mn = inkMetrics(ctx,nome);
   scriviInk(ctx, nome, T.nome.cx - mn.larg/2, T.nome.y);
 
-  // quadretti
-  for(let i=0;i<6;i++){
-    const v = Math.max(0, Math.min(7, c.val[i]|0));
-    for(let p=0;p<5;p++){
-      const x = T.pip.xs[(i%3)*5+p], y = T.pip.ys[i<3?0:1];
-      if(v===7){ pipLaminato(ctx, x, y, T.pip.lato, T.pip.arco[p]); continue; }
-      if(v===6 && R.oro && T.oroPip){ ctx.drawImage(R.oro, x, y); continue; }
-      ctx.fillStyle = v===6 ? '#ffd42a' : (p < v ? T.pip.rosso : T.pip.grigio);
-      ctx.fillRect(x, y, T.pip.lato, T.pip.lato);
+  // griglia: quadretti per soggettoni e creature, modificatori per gli accessori
+  if(sp.griglia === 'pip'){
+    for(let i=0;i<6;i++){
+      const v = Math.max(0, Math.min(7, (c.val||[])[i]|0));
+      for(let p=0;p<5;p++){
+        const x = T.pip.xs[(i%3)*5+p], y = T.pip.ys[i<3?0:1];
+        if(v===7){ pipMetallizzato(ctx, x, y, T.pip.lato, T.pip.arco[p]); continue; }
+        if(v===6 && R.oro && T.oroPip){ ctx.drawImage(R.oro, x, y); continue; }
+        ctx.fillStyle = v===6 ? '#ffd42a' : (p < v ? T.pip.rosso : T.pip.grigio);
+        ctx.fillRect(x, y, T.pip.lato, T.pip.lato);
+      }
+    }
+  }else if(sp.griglia === 'none'){
+    /* niente griglia: le vecchie carte valori (aumentazione/impedimento/bonus) non la avevano */
+  }else if(c.vecchia && c.tipo === 'abilita'){
+    /* vecchie abilità: solo le celle interessate (di norma 2), larghe, come l'originale 2014.
+       Il fondo condiviso porta ancora la griglia a 6 celle delle abilità nuove: la
+       ridisegniamo sopra, prima con lo sfondo pieno poi col nuovo riquadro. */
+    const boxL=76, boxT=1294, boxR=1311, boxB=1673;
+    ctx.fillStyle = sp.bg || '#f5872e';
+    ctx.fillRect(boxL-20, boxT-30, (boxR-boxL)+40, (boxB-boxT)+70);
+    const rr=(x,y,w,h,r)=>{ ctx.beginPath(); ctx.moveTo(x+r,y);
+      ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+      ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); };
+    ctx.lineWidth = 6; ctx.strokeStyle = sp.acc;
+    rr(boxL, boxT, boxR-boxL, boxB-boxT, 26); ctx.stroke();
+
+    const mods = c.mod || [0,0,0,0,0,0];
+    const idx = [];
+    for(let i=0;i<6;i++) if(etichettaMod(mods[i]) !== '=') idx.push(i);
+    while(idx.length < 2 && idx.length < 6){
+      for(let i=0;i<6;i++){ if(!idx.includes(i)){ idx.push(i); break; } }
+    }
+    const n = idx.length;
+    const cellW = (boxR-boxL)/n;
+    if(n>1) for(let k=1;k<n;k++){
+      ctx.beginPath(); ctx.moveTo(boxL+cellW*k, boxT+14); ctx.lineTo(boxL+cellW*k, boxB-14);
+      ctx.lineWidth=4; ctx.strokeStyle=sp.acc; ctx.stroke();
+    }
+    idx.forEach((stat,k)=>{
+      const cx = boxL + cellW*k + cellW/2;
+      ctx.fillStyle = ink;
+      let cp = 46; const nome2 = NOMISTAT[stat].toUpperCase();
+      for(; cp>14; cp--){ ctx.font = `${cp}px ${FAMIGLIE}`; const m=inkMetrics(ctx,nome2); if(m.larg<=cellW-40) break; }
+      ctx.font = `${cp}px ${FAMIGLIE}`;
+      let m = inkMetrics(ctx,nome2);
+      scriviInk(ctx, nome2, cx-m.larg/2, boxT+100-m.alt/2);
+      const et = etichettaMod(mods[stat]);
+      const col = et==='=' ? (sp.ug||ink) : /^-/.test(et) ? (sp.meno||'#c81414') : (sp.piu||ink);
+      ctx.fillStyle = col;
+      cp = 140;
+      for(; cp>20; cp--){ ctx.font = `${cp}px ${FAMIGLIE}`; m=inkMetrics(ctx,et); if(m.larg<=cellW-50) break; }
+      ctx.font = `${cp}px ${FAMIGLIE}`;
+      m = inkMetrics(ctx,et);
+      scriviInk(ctx, et, cx-m.larg/2, boxT+(boxB-boxT)*0.64-m.alt/2);
+    });
+  }else{
+    const mods = c.mod || [0,0,0,0,0,0];
+    for(let i=0;i<6;i++){
+      const et = etichettaMod(mods[i]);
+      const col = et === '=' ? (sp.ug   || ink)
+                : /^-/.test(et) ? (sp.meno || '#c81414')
+                : (sp.piu || ink);
+      cellaMod(ctx, i, et, col, T);
     }
   }
 
-  // testo del riquadro: abilità speciale e/o descrizione, centrato in verticale
-  const testo = testoDi(c);
-  if(testo){
-    ctx.fillStyle = T.inchiostro;
-    let cp = T.testo.corpo, righe, passo;
+  // testo del riquadro: abilità speciale e/o descrizione, centrato in verticale.
+  // Nelle vecchie carte valori la spiegazione e l'avviso "si badi bene" sono due
+  // blocchi separati: la spiegazione sopra, l'avviso sotto in maiuscolo, più
+  // grande e staccato con un distacco netto, come nell'originale 2014.
+  if(sp.griglia === 'none' && sp.box1 && sp.box2 && (c.ab||'').trim() && (c.desc||'').trim()){
+    boxTestoUnico(ctx, sp.box1, normalizza(c.desc), 68, inkT);
+    boxTestoCentrato(ctx, sp.box2, normalizza(c.ab).toUpperCase(), 76, inkT);
+  }else{
+  /* Nel riquadro va prima la descrizione, nell'inchiostro della carta. Sotto
+     vanno le vere abilità speciali, una per riga, ognuna aperta da un asterisco
+     e scritta in blu: così si distinguono a colpo d'occhio dal racconto del
+     personaggio, e chi legge il campo (noi o il videogioco) sa che ogni riga
+     asteriscata è una meccanica a sé. Gli asterischi battuti a mano vengono
+     tolti, per non ritrovarsene due. */
+  const blocchi = [];
+  const descrizione = normalizza(c.desc);
+  if(descrizione) blocchi.push({t: descrizione, col: inkT});
+  for(const riga of abilitaDi(c))
+    blocchi.push({t: '* ' + normalizza(riga), col: bluAbilita(inkT)});
+  if(blocchi.length){
+    const TT = (sp.griglia === 'none' && sp.testoAlt) ? sp.testoAlt : T.testo;
+    let cp = TT.corpo, righe, passo;
     for(; cp>9; cp--){
       ctx.font = `${cp}px ${FAMIGLIE}`;
-      righe = spezza(ctx, testo, T.testo.max);
-      passo = Math.floor(cp*T.testo.interlinea);
-      if((righe.length-1)*passo + cp <= T.testo.alt) break;
+      righe = [];
+      for(const b of blocchi){
+        const dx = RTL.test(b.t);
+        for(const r of spezza(ctx, b.t, TT.max)) righe.push({r, col:b.col, dx});
+      }
+      passo = Math.floor(cp*TT.interlinea);
+      if((righe.length-1)*passo + cp <= TT.alt) break;
     }
     ctx.font = `${cp}px ${FAMIGLIE}`;
     const altMaiusc = inkMetrics(ctx,'HX').alt;
-    const cima = Math.round(T.testo.cy - ((righe.length-1)*passo + altMaiusc)/2);
-    const dx = RTL.test(testo);
-    righe.forEach((r,i)=> dx ? scriviInkDx(ctx, r, T.testo.x + T.testo.max, cima + i*passo)
-                             : scriviInk(ctx, r, T.testo.x, cima + i*passo));
+    const cima = Math.round(TT.cy - ((righe.length-1)*passo + altMaiusc)/2);
+    righe.forEach((x,i)=>{
+      ctx.fillStyle = x.col;
+      x.dx ? scriviInkDx(ctx, x.r, TT.x + TT.max, cima + i*passo)
+           : scriviInk(ctx, x.r, TT.x, cima + i*passo);
+    });
+  }
+  }
+
+  // dicitura di edizione: automatica in base al numero, per ogni carta nuova o vecchia.
+  // Sulle creature va bianca, perché il loro sfondo non fa risaltare l'inchiostro scuro.
+  const dicituraEd = edizioneDi(c);
+  if(dicituraEd){
+    ctx.font = `32px ${FAMIGLIE}`;
+    ctx.fillStyle = (c.tipo === 'creatura') ? '#FFFFFF' : ink;
+    ctx.globalAlpha = 0.75;
+    const m = inkMetrics(ctx, dicituraEd);
+    scriviInk(ctx, dicituraEd, 1287 - m.larg, 2110);
+    ctx.globalAlpha = 1;
   }
 }
 
@@ -374,12 +791,12 @@ async function xmlDaDocx(buf){
    (Drive API abilitata, chiave limitata al dominio di pubblicazione) e il file
    condiviso come "chiunque abbia il link". Si può anche mettere in
    _dashboard/drive.json come {"chiave":"...","file":"..."} */
-const DRIVE = { chiave: 'AIzaSyBlNVo9EMRe5ThmFf1TrM1tkaTKNubVBHk', file: '1h4lAFjq4BTLufjJLnPiM5_mLEcqDNVT5' };
+const DOCDRIVE = { chiave: 'AIzaSyBlNVo9EMRe5ThmFf1TrM1tkaTKNubVBHk', file: '1h4lAFjq4BTLufjJLnPiM5_mLEcqDNVT5' };
 
 async function scaricaDaDrive(){
-  if(!DRIVE.chiave || !DRIVE.file) return null;
-  const url = `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(DRIVE.file)}`
-            + `?alt=media&key=${encodeURIComponent(DRIVE.chiave)}`;
+  if(!DOCDRIVE.chiave || !DOCDRIVE.file) return null;
+  const url = `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(DOCDRIVE.file)}`
+            + `?alt=media&key=${encodeURIComponent(DOCDRIVE.chiave)}`;
   const r = await fetch(url, {cache:'no-store'});
   if(!r.ok) throw new Error('Drive ha risposto ' + r.status);
   return await r.arrayBuffer();
@@ -389,6 +806,19 @@ const RARITA_DOC = {'comune':'Comune','discretamente raro':'Discretamente raro',
   'decisamente raro':'Decisamente raro','fottutamente raro':'Fottutamente raro',
   'introvabili':'Introvabile','introvabile':'Introvabile'};
 
+/* Word a volte incapsula una tabella in un blocco di contenuto (w:sdt):
+   la tabella delle CREATURE stava lì e non veniva vista. */
+function elementiPiatti(el){
+  const out = [];
+  for(const c of Array.from(el.children)){
+    if(c.tagName === 'w:sdt'){
+      const dentro = c.getElementsByTagName('w:sdtContent')[0];
+      if(dentro) out.push(...elementiPiatti(dentro));
+    } else out.push(c);
+  }
+  return out;
+}
+
 function righeDelDocumento(xml){
   const doc = new DOMParser().parseFromString(xml,'application/xml');
   const body = doc.getElementsByTagName('w:body')[0];
@@ -396,10 +826,11 @@ function righeDelDocumento(xml){
   const testoDi = el => Array.from(el.getElementsByTagName('w:t')).map(t=>t.textContent).join('');
   const celle = tr => Array.from(tr.children).filter(c=>c.tagName==='w:tc').map(c=>testoDi(c).trim());
   const out = []; let rarita = null;
-  for(const el of Array.from(body.children)){
+  for(const el of elementiPiatti(body)){
     if(el.tagName==='w:p'){
       const t = testoDi(el).trim().toLowerCase().replace(/[^a-zà-ù ]/g,'').trim();
       if(RARITA_DOC[t]) rarita = RARITA_DOC[t];
+      else if(SEZIONI_ACC[t]) rarita = null;   // da qui in poi sono accessori
     } else if(el.tagName==='w:tbl'){
       const righe = Array.from(el.getElementsByTagName('w:tr'));
       if(righe.length<2 || !rarita) continue;
@@ -409,9 +840,9 @@ function righeDelDocumento(xml){
         const c = celle(tr);
         const nome = (c[1]||'').replace(/\s*[-–]?\s*FOTO\s*$/i,'').replace(/^\s*FOTO\s*[-–]?\s*/i,'').trim();
         if(!nome) continue;
-        const ign = (c[2]||'').trim();
+        const ign = (c[2]||'').trim().replace(',','.');
         const val = c.slice(3,9).map(v=>{ const m=/(\d)/.exec(v||''); return m?+m[1]:null; });
-        if(!/^\d+$/.test(ign) || val.some(v=>v===null)) continue;   // statistiche incomplete
+        if(!/^\d+(\.\d+)?$/.test(ign) || val.some(v=>v===null)) continue;   // statistiche incomplete
         out.push({num:(c[0]||'').trim(), nome, rarita, ign:+ign, val,
                   ab:(c[9]||'').trim(), desc:(c[10]||'').trim(),
                   fotoNelDoc:/FOTO/i.test(c[1]||'')});
@@ -421,19 +852,270 @@ function righeDelDocumento(xml){
   return out;
 }
 
+const STAT = [[0,/^forz/],[1,/^agilit/],[2,/^intellig/],[3,/^incazz/],[4,/^arrap/],[5,/^ub+riac/]];
+function indiceStat(p){ for(const [i,rx] of STAT) if(rx.test(p)) return i; return -1; }
+
+/* Traduce la colonna "Effetto" del documento nei sei modificatori.
+   Accoppia ogni numero con la statistica che gli sta accanto; i numeri che
+   restano si applicano alle statistiche elencate prima senza numero
+   ("forza, agilità e incazzamento meno 3"). Se non riconosce niente torna null
+   e il testo resta come descrizione della carta. */
+function modDaEffetto(txt){
+  const t = (txt||'').toLowerCase().replace(/[«»"“”()]/g,' ');
+  const grezzo = t.split(/[^a-zà-ÿ0-9+-]+/).filter(Boolean);
+  const tok = [];
+  for(let i=0;i<grezzo.length;i++){
+    const p = grezzo[i], k = indiceStat(p);
+    if(k>=0){ tok.push({t:'s', k}); continue; }
+    const m = /^([+-]?)(\d{1,2})$/.exec(p);
+    if(m){
+      let seg = m[1], dietro = false;
+      const prec = grezzo[i-1]||'';
+      if(!seg){
+        if(/^(pi[uù]|aumenta|sale|sal[ei])$/.test(prec)) { seg='+'; dietro = true; }
+        else if(/^(meno|diminuisce|cala|scende)$/.test(prec)) { seg='-'; dietro = true; }
+        else if(/^(fino|al|a|di|del)$/.test(prec)) continue;
+        else seg='+';
+      }
+      tok.push({t:'n', v:(seg==='-'?-1:1)*(+m[2]), dietro});
+      continue;
+    }
+    if(/^massim/.test(p)) tok.push({t:'max'});
+    else if(/^minim/.test(p)) tok.push({t:'min'});
+    else tok.push({t:'w'});
+  }
+  const mod=[0,0,0,0,0,0]; let trovato=false;
+  const usata = new Array(tok.length).fill(false);
+  const vicino = (i,j) => { // nessun'altra stat o numero fra i e j
+    for(let x=Math.min(i,j)+1; x<Math.max(i,j); x++)
+      if(tok[x].t==='s'||tok[x].t==='n') return false;
+    return Math.abs(i-j) <= 3;
+  };
+  // 1. numero accanto a una statistica
+  for(let i=0;i<tok.length;i++){
+    if(tok[i].t!=='n' || usata[i]) continue;
+    const ordine = tok[i].dietro ? [i-1,i-2,i-3,i+1,i+2,i+3] : [i+1,i-1,i+2,i-2,i+3,i-3];
+    for(const j of ordine){
+      if(j<0||j>=tok.length||tok[j].t!=='s'||usata[j]||!vicino(i,j)) continue;
+      mod[tok[j].k] = Math.max(-6, Math.min(6, tok[i].v));
+      usata[i]=usata[j]=true; tok[i].con=j; trovato=true; break;
+    }
+  }
+  // 2. massimo/minimo accanto a una statistica
+  for(let i=0;i<tok.length;i++){
+    if((tok[i].t!=='max'&&tok[i].t!=='min')||usata[i]) continue;
+    for(let j=i+1;j<Math.min(tok.length,i+6);j++){
+      if(tok[j].t==='s' && !usata[j]){ mod[tok[j].k] = tok[i].t==='max'?'MAX':'MIN';
+        usata[i]=usata[j]=true; trovato=true; break; }
+    }
+  }
+  // 2bis. elenchi: "forza, agilità e incazzamento meno 3" — il numero vale
+  //       anche per le statistiche contigue che lo precedono
+  for(let i=0;i<tok.length;i++){
+    if(tok[i].t!=='n' || tok[i].con===undefined || !tok[i].dietro) continue;
+    for(let j=tok[i].con-1;j>=0;j--){
+      if(tok[j].t==='w') continue;
+      if(tok[j].t!=='s' || usata[j]) break;
+      mod[tok[j].k] = Math.max(-6, Math.min(6, tok[i].v)); usata[j]=true;
+    }
+  }
+  // 3. numeri rimasti: valgono per le statistiche elencate prima senza numero
+  for(let i=0;i<tok.length;i++){
+    if(tok[i].t!=='n' || usata[i]) continue;
+    const gruppo=[];
+    for(let j=i-1;j>=0;j--){
+      if(tok[j].t==='n') break;
+      if(tok[j].t==='s' && !usata[j]) gruppo.push(j);
+    }
+    if(gruppo.length){
+      for(const j of gruppo){ mod[tok[j].k] = Math.max(-6, Math.min(6, tok[i].v)); usata[j]=true; }
+      usata[i]=true; trovato=true;
+    }
+  }
+  return trovato ? mod : null;
+}
+
+/* Tabelle accessorie del documento: ogni sezione ha la sua intestazione. */
+const SEZIONI_ACC = {
+  'creature':'creatura',
+  'nuove carte luogoevento':'luogo',
+  'carte nutrizione':'nutrizione',
+  'abilità decisamente speciali':'abilita',
+  'evidente inutilità':'inutilita'
+};
+const ripulisciNome = n => (n||'').replace(/\s*[-–]?\s*FOTO\s*$/i,'')
+                                  .replace(/^\s*FOTO\s*[-–]?\s*/i,'')
+                                  .replace(/\s*[-–]\s*(CERCARE|CHIEDERE)[^]*$/i,'').trim();
+
+function righeAccessori(xml){
+  const doc = new DOMParser().parseFromString(xml,'application/xml');
+  const body = doc.getElementsByTagName('w:body')[0];
+  if(!body) return [];
+  const testoDi = el => Array.from(el.getElementsByTagName('w:t')).map(t=>t.textContent).join('');
+  const celle = tr => Array.from(tr.children).filter(c=>c.tagName==='w:tc').map(c=>testoDi(c).trim());
+  const out = []; let sezione = null;
+  for(const el of elementiPiatti(body)){
+    if(el.tagName==='w:p'){
+      const t = testoDi(el).trim().toLowerCase().replace(/[^a-zà-ù ]/g,'').trim();
+      if(SEZIONI_ACC[t]) sezione = SEZIONI_ACC[t];
+      else if(RARITA_DOC[t]) sezione = null;            // si torna ai soggettoni
+    } else if(el.tagName==='w:tbl' && sezione){
+      const righe = Array.from(el.getElementsByTagName('w:tr'));
+      if(righe.length<2) continue;
+      const h = celle(righe[0]).map(x=>x.toLowerCase());
+      const conTipo = h[0]==='#' && h[1]==='nome' && h[2]==='tipo';
+      const conEffetto = h[0]==='nome' && h[1]==='effetto';
+      const conIgn = h[0]==='#' && h[1]==='nome' && h[2]==='ign';
+      for(const tr of righe.slice(1)){
+        const c = celle(tr);
+        const nome = ripulisciNome(conEffetto ? c[0] : c[1]);
+        if(!nome) continue;
+        if(conTipo){
+          const mod = c.slice(4,10).map(v=>{
+            const t=(v||'').trim(); if(!t||t==='=') return 0;
+            if(/^max/i.test(t)) return 'MAX'; if(/^min/i.test(t)) return 'MIN';
+            return parseInt(t,10)||0; });
+          out.push({tipo:sezione, nome, sotto:(c[2]||'Locale').trim(),
+                    ign: parseInt(c[3],10)||0, mod, ab:(c[10]||'').trim(), desc:''});
+        }else if(conIgn){                                 // creature: come i soggettoni
+          const val = c.slice(3,9).map(v=>{ const m=/(\d)/.exec(v||''); return m?+m[1]:0; });
+          out.push({tipo:sezione, nome, rarita:'Comune', ign:parseInt(c[2],10)||0, val,
+                    ab:(c[9]||'').trim(), desc:(c[10]||'').trim()});
+        }else if(conEffetto){
+          const eff = (c[1]||'').trim();
+          const mod = modDaEffetto(eff);
+          out.push({tipo:sezione, nome, mod: mod || [0,0,0,0,0,0],
+                    ab:(c[2]||'').trim(), desc: mod ? '' : eff});
+        }
+      }
+    }
+  }
+  return out;
+}
+
+/* quali righe accessorie non sono ancora una carta */
+function accessoriMancanti(righe){
+  const presenti = new Set(dati.carte.filter(c=>famigliaDi(c)==='accessorio')
+                                     .map(c=>(c.tipo||'')+'|'+chiave(c.docNome||c.nome)));
+  const visti = new Set();
+  return (righe||[]).filter(r=>{
+    const k = r.tipo+'|'+chiave(r.nome);
+    if(presenti.has(k) || visti.has(k) || scartata(r.tipo, r.nome)) return false;
+    visti.add(k); return true;
+  });
+}
+
+/* ordinamento: prima i soggettoni per numero, poi gli accessori per lettera */
+function ordinaCarte(){
+  const peso = c => {
+    const m = /^([A-Z]*)(\d+)$/.exec(String(c.num||''));
+    if(!m) return [99,'',0];
+    return m[1] ? [1, m[1], +m[2]] : [0, '', +m[2]];
+  };
+  dati.carte.sort((a,b)=>{
+    const x=peso(a), y=peso(b);
+    return x[0]-y[0] || x[1].localeCompare(y[1]) || x[2]-y[2];
+  });
+}
+
+
+/* ── righe che hanno solo il nome ────────────────────────────────────────
+   Due sorgenti: le righe delle tabelle personaggio con il nome ma senza
+   statistiche, e l'elenco "Da assegnare" in cima al documento. Nessuna delle
+   due arrivava fin qui, perché il lettore dei soggettoni scarta le righe
+   incomplete e la lista non è una tabella.                              */
+function righeSoloNome(xml){
+  const doc = new DOMParser().parseFromString(xml,'application/xml');
+  const body = doc.getElementsByTagName('w:body')[0];
+  if(!body) return [];
+  const testoDi = el => Array.from(el.getElementsByTagName('w:t')).map(t=>t.textContent).join('');
+  const celle = tr => Array.from(tr.children).filter(c=>c.tagName==='w:tc').map(c=>testoDi(c).trim());
+  const out = [];
+  let rarita = null, inLista = false;
+  for(const el of elementiPiatti(body)){
+    if(el.tagName==='w:p'){
+      const grezzo = testoDi(el).trim();
+      const t = grezzo.toLowerCase().replace(/[^a-zà-ù ]/g,'').trim();
+      if(/^da assegnare/.test(t)){ inLista = true; continue; }
+      if(/^tot/.test(t) || RARITA_DOC[t] || SEZIONI_ACC[t]) inLista = false;
+      if(RARITA_DOC[t]) rarita = RARITA_DOC[t];
+      else if(SEZIONI_ACC[t]) rarita = null;
+      if(inLista && grezzo){
+        const nome = ripulisciNome(grezzo);
+        if(nome && nome.length<=70) out.push({nome, rarita:null, fonte:'elenco «Da assegnare»'});
+      }
+    } else if(el.tagName==='w:tbl' && rarita){
+      const righe = Array.from(el.getElementsByTagName('w:tr'));
+      if(righe.length<2) continue;
+      const h = celle(righe[0]).map(x=>x.toLowerCase());
+      if(h[0]!=='#' || h[1]!=='nome' || h[2]!=='ign') continue;
+      for(const tr of righe.slice(1)){
+        const c = celle(tr);
+        const nome = ripulisciNome(c[1]);
+        if(!nome) continue;
+        const ign = (c[2]||'').trim().replace(',','.');
+        const val = c.slice(3,9).map(v=>/(\d)/.test(v||''));
+        if(/^\d+(\.\d+)?$/.test(ign) && val.every(Boolean)) continue;   // è completa: la prende l'altro lettore
+        out.push({nome, rarita, fonte:'tabella '+rarita.toLowerCase()});
+      }
+    }
+  }
+  return out;
+}
+
+/* quali di questi nomi non sono ancora né una carta né una riga completa */
+function soloNomeMancanti(righe){
+  const presi = new Set();
+  for(const c of dati.carte){ presi.add(chiave(c.docNome||c.nome)); presi.add(chiave(c.nome)); }
+  for(const r of (righeDoc||[])) presi.add(chiave(r.nome));
+  for(const r of (righeAcc||[])) presi.add(chiave(r.nome));
+  const visti = new Set();
+  const fotoPer = new Map();
+  for(const f of fotoDisponibili) fotoPer.set(chiave(f.replace(/\.[a-z0-9]+$/i,'')), f);
+  return (righe||[]).filter(r=>{
+    const k = chiave(r.nome);
+    if(!k || presi.has(k) || visti.has(k) || scartata('', r.nome)) return false;
+    visti.add(k); r.foto = fotoPer.get(k) || ''; return true;
+  });
+}
+
+
+/* ── righe scartate ──────────────────────────────────────────────────────
+   Eliminare una carta non basta: la riga resta nel documento e all'apertura
+   successiva verrebbe riproposta. Quando si elimina, il nome finisce qui, e
+   l'import lo salta finché non lo si ripristina.                        */
+function chiaviCarta(c){
+  const t = c.tipo || '';
+  return [...new Set([ t+'|'+chiave(c.docNome||c.nome), t+'|'+chiave(c.nome) ])];
+}
+function scartata(tipo, nome){
+  const k = (tipo||'') + '|' + chiave(nome);
+  return (dati.scartate||[]).some(s => s.k === k);
+}
+function scarta(c){
+  if(!dati.scartate) dati.scartate = [];
+  for(const k of chiaviCarta(c))
+    if(!dati.scartate.some(s => s.k === k))
+      dati.scartate.push({k, nome:c.nome, tipo:c.tipo||'', quando:oggi()});
+}
+function ripristina(k){
+  dati.scartate = (dati.scartate||[]).filter(s => s.k !== k);
+}
+
 /* confronto documento ↔ dashboard */
 const chiave = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
                     .replace(/[^a-z0-9؀-ۿ]+/g,'');
 
 function confronta(righe){
+  const soggettoni = dati.carte.filter(c => famigliaDi(c) === 'soggettone');
   const perChiave = new Map();
-  for(const c of dati.carte){
+  for(const c of soggettoni){
     perChiave.set(chiave(c.docNome || c.nome), c);
     if(c.docNome) perChiave.set(chiave(c.nome), c);
   }
   const fotoPerChiave = new Map();
   for(const f of fotoDisponibili) fotoPerChiave.set(chiave(f.replace(/\.[a-z0-9]+$/i,'')), f);
-  const perNum = new Map(dati.carte.map(c=>[String(c.num), c]));
+  const perNum = new Map(soggettoni.map(c=>[String(c.num), c]));
   const nuove = [], modifiche = []; let agganciate = 0;
   // abbinamento uno-a-uno: prima i nomi identici, poi il numero, infine i nomi contenuti
   const presa = new Set(), abbinate = new Map();
@@ -445,7 +1127,7 @@ function confronta(righe){
     if(!c && r.num){ const d = perNum.get(String(r.num)); if(d && !presa.has(d)) c = d; }
     if(c){ presa.add(c); abbinate.set(r, c); } else daFare.push(r);
   }
-  const avanzate = dati.carte.filter(c=>!presa.has(c));
+  const avanzate = soggettoni.filter(c=>!presa.has(c));
   for(const r of daFare){
     const k = chiave(r.nome);
     const vicine = avanzate.filter(c=>{
@@ -466,14 +1148,14 @@ function confronta(righe){
     const c = abbinate.get(r);
     if(!c){
       const foto = fotoPerChiave.get(k);
-      if(foto) nuove.push({riga:r, foto});
+      if(foto && !scartata('', r.nome)) nuove.push({riga:r, foto});
       continue;
     }
     if(c.docNome !== r.nome){ c.docNome = r.nome; agganciate++; }
     const diff = [];
     if(c.nome !== r.nome && chiave(c.nome)!==k) diff.push(['nome', c.nome, r.nome]);
     if(String(c.ign) !== String(r.ign)) diff.push(['ignoranza', c.ign, r.ign]);
-    if(c.val.join(',') !== r.val.join(',')) diff.push(['valori', c.val.join(' '), r.val.join(' ')]);
+    if((c.val||[]).join(',') !== r.val.join(',')) diff.push(['valori', (c.val||[]).join(' '), r.val.join(' ')]);
     if(c.rarita !== r.rarita) diff.push(['rarità', c.rarita, r.rarita]);
     const testoVecchio = [(c.ab||'').trim(),(c.desc||'').trim()].filter(Boolean).join(' / ');
     const testoNuovo   = [(r.ab||'').trim(),(r.desc||'').trim()].filter(Boolean).join(' / ');
@@ -521,7 +1203,7 @@ async function apriCartella(handle){
   cart.versioni    = await sotto(cart.carteNuove, '_versioni precedenti', true);
 
   // font
-  const fbuf = await (await leggiFile(cart.dashboard,'LiberationSans-BoldItalic.ttf')).arrayBuffer();
+  const fbuf = await (await leggiFile(cart.dashboard,'LiberationSans-Bold.ttf')).arrayBuffer();
   const ff = new FontFace(FONT, fbuf);
   await ff.load(); document.fonts.add(ff); R.fontPronto = true;
   try{
@@ -531,8 +1213,12 @@ async function apriCartella(handle){
   }catch(e){ console.warn('font arabo non trovato', e); }
 
   // immagini
-  for(const t of Object.values(TEMI))
-    R.sfondi[t.sfondo] = await immagineDa(await leggiFile(cart.dashboard, t.sfondo));
+  const daCaricare = new Set(Object.values(TEMI).map(t=>t.sfondo));
+  for(const sp of Object.values(SPECIE)) if(sp.sfondo) daCaricare.add(sp.sfondo);
+  for(const f of daCaricare){
+    try{ R.sfondi[f] = await immagineDa(await leggiFile(cart.dashboard, f)); }
+    catch(e){ console.warn('sfondo mancante:', f); }
+  }
   R.oro = await immagineDa(await leggiFile(cart.dashboard,'oro.png'));
   for(const [rar,f] of Object.entries(BADGEFILE))
     R.badge[rar] = await immagineDa(await leggiFile(cart.dashboard, f));
@@ -544,14 +1230,21 @@ async function apriCartella(handle){
   dati = JSON.parse(await (await leggiFile(cart.dashboard,'dati.json')).text());
   dati.carte.forEach(c=>{ c.zoom = c.zoom||1; c.panX = c.panX ?? .5; c.panY = c.panY ?? .38;
                           c.file = c.file || nomeFile(c); });
+  ordinaCarte();   // il file può arrivare in qualsiasi ordine: l'elenco va sempre per numero
 
   await salvaHandle(handle);
   $('#benvenuto').style.display='none';
   $('#app').style.display='grid';
   disegnaLista();
   scegliCarta(dati.carte[0]);
+  avviaStoria();
   segnala('Cartella collegata','ok');
-  controllaDocumento();
+  if(DRIVE.attiva){ document.body.classList.add('condivisa'); await avviaSemaforo(); }
+  /* Il documento Word non viene più letto da solo (v24). È servito per portare
+     dentro le carte del 2015 e quelle in lavorazione; adesso la fonte buona è la
+     dashboard, e il confronto automatico proponeva di rimettere il testo vecchio
+     sopra le correzioni fatte a mano. Per rifare un confronto, una volta, basta
+     trascinare un .docx sulla pagina. */
 }
 async function immagineDa(file){
   const b = await createImageBitmap(file);
@@ -578,54 +1271,278 @@ async function handleSalvato(){ try{
 
 /* ─────────────────────────  interfaccia  ───────────────────────── */
 
+/* ── creare una carta nuova ──────────────────────────────────────────────
+   Il tasto apre un menù coi nove tipi, divisi per famiglia e con la
+   pastiglia del colore, così si vede subito che carta verrà fuori.      */
+const COLORE_TIPO = {
+  soggettone:'#F5872E', creatura:'#F4862D', luogo:'#3DE83D', abilita:'#A03CB5',
+  nutrizione:'#E8DCC8', aumentazione:'#F5C316', impedimento:'#089EDF',
+  bonus:'#E42229', inutilita:'#B1AEAB'
+};
+
+function apriMenuTipi(ancora){
+  const m = $('#menutipi');
+  const voce = k => {
+    const sp = SPECIE[k];
+    return `<button type="button" data-tipo="${k}">
+      <i class="pallina" style="background:${COLORE_TIPO[k]||'#888'}"></i>
+      ${escapeHtml(sp.et)}</button>`;
+  };
+  m.innerHTML = '<div class="capo">Soggettoni</div>'
+    + Object.keys(SPECIE).filter(k=>SPECIE[k].fam==='soggettone').map(voce).join('')
+    + '<div class="capo">Accessori</div>'
+    + Object.keys(SPECIE).filter(k=>SPECIE[k].fam==='accessorio').map(voce).join('');
+  const r = ancora.getBoundingClientRect();
+  m.style.display = 'block';
+  m.style.left = Math.min(r.left, innerWidth - m.offsetWidth - 12) + 'px';
+  m.style.top  = Math.min(r.bottom + 6, innerHeight - m.offsetHeight - 12) + 'px';
+}
+function chiudiMenuTipi(){ $('#menutipi').style.display = 'none'; }
+
+async function nuovaCarta(tipo){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const sp = SPECIE[tipo] || SPECIE.soggettone;
+  const c = {
+    num: prossimoNumero(tipo), tipo, nome: 'Nuova carta',
+    rarita: 'Comune', ign: 0,
+    val: [0,0,0,0,0,0], mod: [0,0,0,0,0,0],
+    ab: '', desc: '', foto: '', zoom: 1, panX: .5, panY: .38
+  };
+  if(sp.badge === 'sotto') c.sotto = 'Locale';
+  if(tipo === 'soggettone') delete c.tipo;      // i soggettoni restano senza campo
+  c.file = nomeFile(c);
+  dati.carte.push(c);
+  ordinaCarte();
+  famigliaVista = sp.fam;
+  vistaCompleta = true;                          // appena nata è per forza da completare
+  scegliCarta(c);
+  segnala('Carta ' + c.num + ' creata','ok');
+  const campo = $('#f-nome');
+  if(campo){ campo.focus(); campo.select(); }
+  segnaStoria('carta ' + c.num + ' creata');
+  await salvaCarta(c);
+}
+
+
+/* ── che cosa manca a una carta ───────────────────────────────────────────
+   Una carta può mancare di più cose e quindi comparire in più gruppi; appena
+   il campo viene riempito sparisce da quel gruppo e basta.                */
+const GRUPPI = [
+  {k:'foto',   n:'Senza foto'},
+  {k:'valori', n:'Senza valori'},
+  {k:'testo',  n:'Senza descrizione/abilità'}
+];
+function mancanze(c){
+  const m = [], sp = specieDi(c);
+  const notaInCartella = !fotoDisponibili.length || fotoDisponibili.includes(c.foto);
+  if(!c.foto)               m.push({g:'foto'});
+  else if(!notaInCartella)  m.push({g:'foto', t:'file non nella cartella'});
+
+  if(sp.griglia === 'pip'){
+    if(!(c.val||[]).some(v=>v>0)) m.push({g:'valori'});
+    else if(!c.ign)               m.push({g:'valori', t:'ignoranza a zero'});
+  }else if(c.tipo === 'bonus'){
+    if(!c.ign) m.push({g:'valori', t:'nessun bonus'});
+  }else if(c.tipo === 'luogo'){
+    const nulli = !(c.mod||[]).some(v=>v==='MAX'||v==='MIN'||parseInt(v,10));
+    if(nulli && !c.ign) m.push({g:'valori'});
+    else if(nulli)      m.push({g:'valori', t:'nessun modificatore'});
+    else if(!c.ign)     m.push({g:'valori', t:'ignoranza a zero'});
+  }else if(c.tipo !== 'inutilita'){
+    if(!(c.mod||[]).some(v=>v==='MAX'||v==='MIN'||parseInt(v,10))) m.push({g:'valori', t:'nessun modificatore'});
+  }
+
+  if(!(c.ab||'').trim() && !(c.desc||'').trim()) m.push({g:'testo'});
+  return m;
+}
+let vistaCompleta = false;
+let famigliaVista = 'soggettone';
+
+function voce(c, nota){
+  const d = document.createElement('div');
+  d.className = 'voce' + (sel===c ? ' sel':'');
+  d.innerHTML = `<span class="n">${c.num}</span><span class="nm">${escapeHtml(c.nome)}</span>`
+              + '<span class="spazio"></span>'
+              + (nota ? `<span class="manca">${escapeHtml(nota)}</span>` : '')
+              + (c._mod ? '<span class="mod">•</span>' : '');
+  d._carta = c;
+  d.onclick = ()=> scegliCarta(c);
+  return d;
+}
+
+function intestazione(testo, quante){
+  const h = document.createElement('div');
+  h.className = 'gruppo';
+  h.innerHTML = `<span>${escapeHtml(testo)}</span><span class="q">${quante}</span>`;
+  return h;
+}
+
 function disegnaLista(){
   const q = $('#cerca').value.trim().toLowerCase();
+  const cerca = c => !q || c.nome.toLowerCase().includes(q) || String(c.num).toLowerCase().includes(q);
   const l = $('#lista'); l.innerHTML='';
-  for(const c of dati.carte){
-    if(q && !(c.nome.toLowerCase().includes(q) || c.num.includes(q))) continue;
-    const d = document.createElement('div');
-    d.className = 'voce' + (sel===c ? ' sel':'');
-    d.innerHTML = `<span class="n">${c.num}</span><span>${escapeHtml(c.nome)}</span>` +
-                  (c._mod ? '<span class="mod">•</span>' : '');
-    d.onclick = ()=> scegliCarta(c);
-    l.appendChild(d);
+
+  $('#famiglia').style.display = 'flex';
+  document.querySelectorAll('#famiglia button').forEach(b=>
+      b.classList.toggle('on', b.dataset.f === famigliaVista));
+
+  const dellaFamiglia = dati.carte.filter(c => famigliaDi(c) === famigliaVista);
+  const buchi = new Map();
+  for(const c of dellaFamiglia){ const m = mancanze(c); if(m.length) buchi.set(c, m); }
+
+  const b = $('#btncompleta');
+  b.style.display = 'flex';
+  b.classList.toggle('on', vistaCompleta);
+  b.innerHTML = 'Da completare' + (buchi.size ? ` <span class="badge">${buchi.size}</span>` : '');
+
+  if(!vistaCompleta){
+    const fatte = dellaFamiglia.filter(c => !buchi.has(c) && cerca(c));
+    if(famigliaVista === 'accessorio'){
+      for(const [k,sp] of Object.entries(SPECIE)){
+        if(sp.fam !== 'accessorio') continue;
+        const dentro = fatte.filter(c => (c.tipo||'soggettone') === k);
+        if(!dentro.length) continue;
+        l.appendChild(intestazione(sp.et, dentro.length));
+        for(const c of dentro) l.appendChild(voce(c));
+      }
+    }else{
+      for(const c of fatte) l.appendChild(voce(c));
+    }
+    if(!fatte.length) l.innerHTML = q
+      ? '<div id="vuotolista">Nessuna carta completa con questo nome.</div>'
+      : (dellaFamiglia.length
+          ? '<div id="vuotolista">Nessuna carta completa: sono tutte nell\'elenco «Da completare».</div>'
+          : '<div id="vuotolista">Ancora nessuna carta di questa famiglia.</div>');
+    mostraSelezionata();
+    return;
   }
+
+  let tot = 0;
+  for(const g of GRUPPI){
+    const dentro = [...buchi].filter(([c,m]) => m.some(x=>x.g===g.k) && cerca(c));
+    if(!dentro.length) continue;
+    tot += dentro.length;
+    l.appendChild(intestazione(g.n, dentro.length));
+    for(const [c,m] of dentro) l.appendChild(voce(c, m.find(x=>x.g===g.k).t));  // nota solo se aggiunge qualcosa
+  }
+  if(!tot) l.innerHTML = q
+    ? '<div id="vuotolista">Niente da completare con questo nome.</div>'
+    : '<div id="vuotolista">Non manca più niente: tutte le carte sono complete.</div>';
+  mostraSelezionata();
+}
+
+/* Rifare l'elenco azzera lo scorrimento: senza questo, la carta scelta —
+   una appena creata, per esempio — resta a migliaia di pixel più in basso e
+   sembra che non ci sia. */
+function mostraSelezionata(){
+  const v = $('#lista').querySelector('.voce.sel');
+  if(v) v.scrollIntoView({block:'center'});
+  aggiornaNav();
+}
+
+/* I tasti «Indietro» e «Avanti» seguono esattamente l'elenco di sinistra: stessa
+   famiglia, stessa vista, stesso filtro di ricerca. Leggo l'ordine dal DOM invece
+   di ricalcolarlo, così non può discostarsi da quello che si vede. Nella vista
+   «da completare» una carta può comparire in due o tre gruppi: la conto una volta. */
+function carteInElenco(){
+  const fuori = [];
+  for(const el of $('#lista').querySelectorAll('.voce'))
+    if(el._carta && !fuori.includes(el._carta)) fuori.push(el._carta);
+  return fuori;
+}
+
+function scorri(passo){
+  const v = carteInElenco();
+  if(!v.length) return;
+  const i = v.indexOf(sel);
+  const j = i < 0 ? (passo > 0 ? 0 : v.length-1) : i + passo;
+  if(j < 0 || j >= v.length) return;
+  scegliCarta(v[j]);
+}
+
+function aggiornaNav(){
+  const barra = $('#navcarte');
+  if(!barra) return;
+  const v = carteInElenco(), i = v.indexOf(sel);
+  barra.style.display = v.length ? 'flex' : 'none';
+  /* Se la carta scelta non è nell'elenco che si sta guardando (i = -1) i due tasti
+     restano vivi: «Avanti» porta alla prima, «Indietro» all'ultima. */
+  $('#prec').disabled = !v.length || i === 0;
+  $('#succ').disabled = !v.length || i === v.length-1;
+  $('#posizione').textContent = i >= 0 ? `${i+1} di ${v.length}`
+                                       : (v.length===1 ? '1 carta' : `${v.length} carte`);
 }
 function escapeHtml(s){ return s.replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch])); }
 
 function scegliCarta(c){
-  sel = c; disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  sel = c;
+  if(famigliaDi(c) !== famigliaVista) famigliaVista = famigliaDi(c);
+  disegnaLista(); costruisciForm(); aggiornaAnteprima();
 }
 
+const OPZ_MOD = ['MIN','-6','-5','-4','-3','-2','-1','=','+1','+2','+3','+4','+5','+6','MAX'];
+const valMod = v => (v==='MAX'||v==='MIN') ? v : (parseInt(v,10) ? (v>0?'+':'')+parseInt(v,10) : '=');
+const daMod = t => (t==='MAX'||t==='MIN') ? t : (parseInt(t,10)||0);
+
 function costruisciForm(){
-  const c = sel;
-  const opz = RARITA.map(r=>`<option${r===c.rarita?' selected':''}>${r}</option>`).join('');
+  const c = sel, sp = specieDi(c);
+  const opzTipo = Object.entries(SPECIE).map(([k,v])=>
+      `<option value="${k}"${(c.tipo||'soggettone')===k?' selected':''}>${escapeHtml(v.et)}</option>`).join('');
+  const opzRar = RARITA.map(r=>`<option${r===c.rarita?' selected':''}>${r}</option>`).join('');
+  const opzSotto = SOTTOTIPI_LUOGO.map(r=>`<option${r===(c.sotto||'Locale')?' selected':''}>${r}</option>`).join('');
+
+  let testata = '';
+  if(sp.testata !== 'piena'){
+    const etIgn = sp.testata==='ignpiu' ? 'Ignoranza (bonus)' : 'Ignoranza';
+    const dx = sp.badge==='sotto'
+      ? `<div><label for="f-sotto">Tipo di luogo</label><select id="f-sotto">${opzSotto}</select></div>`
+      : `<div><label for="f-rar">Rarità</label><select id="f-rar">${opzRar}</select></div>`;
+    testata = `<div class="riga">
+        <div><label for="f-ign">${etIgn}</label><input id="f-ign" type="number" step="any" value="${c.ign ?? 0}"></div>
+        ${dx}
+      </div>`;
+  }
+
+  const griglia = sp.griglia==='pip'
+    ? `<h2>Valori di scontro</h2>
+       ${NOMISTAT.map((n,i)=>`
+        <div class="stat">
+          <span>${n}</span>
+          <input type="range" min="0" max="7" step="1" value="${(c.val||[0,0,0,0,0,0])[i]}" data-i="${i}" class="f-val">
+          <b id="v-${i}">${etichettaVal((c.val||[0,0,0,0,0,0])[i])}</b>
+        </div>`).join('')}
+       <div class="nota">6 = quadretti oro · 7 = arcobaleno</div>`
+    : `<h2>Modificatori</h2>
+       ${NOMISTAT.map((n,i)=>{
+          const v = valMod((c.mod||[0,0,0,0,0,0])[i]);
+          return `<div class="stat">
+            <span>${n}</span>
+            <select class="f-mod" data-i="${i}">${OPZ_MOD.map(o=>`<option${o===v?' selected':''}>${o}</option>`).join('')}</select>
+            <b></b>
+          </div>`; }).join('')}
+       <div class="nota">= nessun effetto · MAX porta al massimo · MIN azzera</div>`;
+
   $('#campi').innerHTML = `
-    <h2>Carta ${c.num}</h2>
+    <h2>Carta ${escapeHtml(c.num)}</h2>
+    <label for="f-tipo">Tipo</label>
+    <select id="f-tipo">${opzTipo}</select>
+    <div style="height:12px"></div>
     <label for="f-nome">Nome</label>
     <input id="f-nome" type="text" value="${escapeHtml(c.nome)}" spellcheck="false">
     <div class="nota" style="margin-bottom:16px">file: ${escapeHtml(c.file||'—')}</div>
 
-    <div class="riga">
-      <div><label for="f-ign">Ignoranza</label><input id="f-ign" type="number" value="${c.ign}"></div>
-      <div><label for="f-rar">Rarità</label><select id="f-rar">${opz}</select></div>
-    </div>
-
-    <h2>Valori di scontro</h2>
-    ${NOMISTAT.map((n,i)=>`
-      <div class="stat">
-        <span>${n}</span>
-        <input type="range" min="0" max="7" step="1" value="${c.val[i]}" data-i="${i}" class="f-val">
-        <b id="v-${i}">${etichettaVal(c.val[i])}</b>
-      </div>`).join('')}
-    <div class="nota">6 = quadretti oro · 7 = arcobaleno</div>
+    ${testata}
+    ${griglia}
 
     <h2>Testo del riquadro</h2>
-    <label for="f-ab">Abilità speciale</label>
-    <textarea id="f-ab">${escapeHtml(c.ab||'')}</textarea>
-    <label for="f-desc" style="margin-top:10px">Descrizione</label>
+    <label for="f-desc">Descrizione</label>
     <textarea id="f-desc">${escapeHtml(c.desc||'')}</textarea>
-    <div class="nota">Se compili tutt'e due vanno una sotto l'altra, senza etichette.</div>
+    <label for="f-ab" style="margin-top:10px">Abilità speciale</label>
+    <textarea id="f-ab">${escapeHtml(c.ab||'')}</textarea>
+    <div class="nota">Sulla carta escono in quest'ordine: prima la descrizione,
+      poi le abilità speciali in blu, ognuna col suo asterisco. <b>Una abilità per
+      riga</b>: se la carta ne ha due, vanno su due righe. L'asterisco lo mette la
+      carta, non serve batterlo.</div>
 
     <h2>Foto</h2>
     <select id="f-foto">
@@ -636,23 +1553,54 @@ function costruisciForm(){
     <div style="height:10px"></div>
     <div id="barrafoto">
       <span style="font-size:12px;color:var(--testo2)">zoom</span>
-      <input id="f-zoom" type="range" min="100" max="300" step="1" value="${Math.round((c.zoom||1)*100)}">
-      <button class="minibtn" id="f-reset">azzera</button>
+      <input id="f-zoom" type="range" min="100" max="300" step="5" value="${Math.round((c.zoom||1)*100)}">
+      <button id="f-reset" class="minibtn">azzera</button>
     </div>
     <div class="nota">Trascina la foto direttamente sull'anteprima.</div>
+
+    <div id="zonaelimina"><button id="elimina" type="button" class="pericolo">Elimina questa carta</button></div>
   `;
+
+  if(DRIVE.attiva && !possoScrivere()){
+    const s2 = S.stato || {};
+    const chiHa = s2.penna && Date.now() <= s2.penna.fino ? s2.penna.chi : null;
+    $('#campi').classList.add('spento');
+    // spenti davvero, non solo sbiaditi: un campo disabilitato non può cambiare
+    // la carta nemmeno per sbaglio, e il dato locale non si scosta da quello di Drive
+    $('#campi').querySelectorAll('input,textarea,select,button').forEach(e => e.disabled = true);
+    $('#campi').insertAdjacentHTML('afterbegin',
+      `<div id="sololettura">Stai guardando${chiHa ? ' mentre lavora <b>'+escapeHtml(chiHa)+'</b>' : ''}.
+       Per modificare, prendi la penna dalla barra in alto.</div>`);
+  }else{
+    $('#campi').classList.remove('spento');
+  }
+
+  $('#f-tipo').onchange = e => {
+    c.tipo = e.target.value;
+    if(specieDi(c).griglia==='mod' && !c.mod) c.mod = [0,0,0,0,0,0];
+    if(specieDi(c).griglia==='pip' && !c.val) c.val = [0,0,0,0,0,0];
+    if(specieDi(c).badge==='sotto' && !c.sotto) c.sotto = 'Locale';
+    c.num = numeroPerTipo(c);
+    costruisciForm(); cambiata(); disegnaLista(); aggiornaAnteprima();
+  };
   $('#f-nome').oninput = e => {
     c.nome = e.target.value.replace(/[\\\/:*?"<>|]/g,'').trim() || c.nome;
     cambiata(); disegnaLista();
   };
-  $('#f-ign').oninput = e => { const v=parseInt(e.target.value,10); c.ign = isNaN(v)?0:v; cambiata(); };
-  $('#f-rar').onchange = e => { c.rarita = e.target.value; cambiata(); };
+  if($('#f-ign')) $('#f-ign').oninput = e => { const v=parseFloat(e.target.value); c.ign = isNaN(v)?0:v; cambiata(); };
+  if($('#f-rar')) $('#f-rar').onchange = e => { c.rarita = e.target.value; cambiata(); };
+  if($('#f-sotto')) $('#f-sotto').onchange = e => { c.sotto = e.target.value; cambiata(); };
   document.querySelectorAll('.f-val').forEach(el=>{
     el.oninput = e => { const i=+e.target.dataset.i; c.val[i] = +e.target.value;
       const b=$('#v-'+i); b.textContent = etichettaVal(c.val[i]);
       b.className = c.val[i]===7?'arc':(c.val[i]===6?'oro':''); cambiata(); };
     const i=+el.dataset.i, b=$('#v-'+i);
     b.className = c.val[i]===7?'arc':(c.val[i]===6?'oro':'');
+  });
+  document.querySelectorAll('.f-mod').forEach(el=>{
+    el.onchange = e => { const i=+e.target.dataset.i;
+      if(!c.mod) c.mod=[0,0,0,0,0,0];
+      c.mod[i] = daMod(e.target.value); cambiata(); disegnaLista(); };
   });
   $('#f-ab').oninput = e => { c.ab = e.target.value; cambiata(); };
   $('#f-desc').oninput = e => { c.desc = e.target.value; cambiata(); };
@@ -662,14 +1610,112 @@ function costruisciForm(){
   };
   $('#f-zoom').oninput = e => { c.zoom = (+e.target.value)/100; cambiata(); };
   $('#f-reset').onclick = () => { c.zoom=1; c.panX=.5; c.panY=.38; $('#f-zoom').value=100; cambiata(); };
+  $('#elimina').onclick = () => chiediConferma(c);
 }
-function etichettaVal(v){ return v===7?'arc':(v===6?'oro':String(v)); }
+
+/* La conferma sta dentro la pagina, non in una finestra del browser: due tasti,
+   e finché non premi quello rosso non succede niente. */
+function chiediConferma(c){
+  const z = $('#zonaelimina');
+  z.innerHTML = `<div id="confermaelimina">
+      <div class="dett">Elimino la carta <b>${escapeHtml(c.num)} — ${escapeHtml(c.nome)}</b>?
+        Il PNG viene messo da parte in <i>_versioni precedenti</i>, non buttato.</div>
+      <button id="el-si" type="button">Sì, elimina</button>
+      <button id="el-no" type="button" class="minibtn">Annulla</button>
+    </div>`;
+  $('#el-no').onclick = () => costruisciForm();
+  $('#el-si').onclick = () => eliminaCarta(c);
+  z.scrollIntoView({block:'end'});
+}
+
+/* Toglie dal disco il PNG di una carta e la sua riga nell'elenco. La usano sia
+   «Elimina questa carta» sia l'annullamento di una carta appena creata; solo la
+   prima mette da parte una copia, perché annullare una creazione non distrugge
+   niente che valesse la pena conservare. */
+async function staccaIFile(c, conCopia){
+  const nome = c.file || nomeFile(c);
+  if(conCopia){
+    try{
+      const vecchio = await leggiFile(cart.alta, nome);
+      await scriviFile(cart.versioni, nome.replace(/\.png$/i,'') + ` — eliminata ${oggi()}.png`, vecchio);
+    }catch(e){ /* la carta non era ancora stata disegnata */ }
+  }
+  try{ await cart.alta.removeEntry(nome); }catch(e){ console.warn('PNG non rimosso', e); }
+  try{
+    const txt = await (await leggiFile(cart.carteNuove,'_elenco.txt')).text();
+    const righe = txt.split('\n').filter(r => !r.startsWith(c.num+'  '));
+    await scriviFile(cart.carteNuove,'_elenco.txt', righe.join('\n'));
+  }catch(e){}
+}
+
+async function eliminaCarta(c){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  try{
+    // fermo un eventuale salvataggio in coda per questa carta, altrimenti
+    // il PNG verrebbe riscritto un secondo dopo averlo tolto
+    clearTimeout(tRender); clearTimeout(tSalva);
+    if(riprova === c) riprova = null;
+    segnala('Elimino…','lavoro');
+    await staccaIFile(c, true);
+
+    // 3. dati: tolgo la carta e segno il nome fra le righe scartate
+    const i = dati.carte.indexOf(c);
+    if(i >= 0) dati.carte.splice(i, 1);
+    scarta(c);
+    segnaStoria('carta ' + c.num + ' ' + (c.nome||'') + ' eliminata');
+    await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+
+    // 4. scelgo la carta accanto
+    fotoCache.delete(c.foto);
+    if(righeAcc) accNuovi = accessoriMancanti(righeAcc);
+    if(righeNomi) nomiNuovi = soloNomeMancanti(righeNomi);
+    if(righeDoc) ultimoConfronto = confronta(righeDoc);
+    annunciaCarta({num:c.num, nome:c.nome, _eliminata:true}, c.num);
+    const resta = dati.carte[Math.min(i, dati.carte.length-1)];
+    if(resta) scegliCarta(resta);
+    else { sel = null; $('#campi').innerHTML = '<div class="nota">Non è rimasta nessuna carta.</div>'; disegnaLista(); }
+    segnala('Carta ' + c.num + ' eliminata','ok');
+  }catch(e){
+    console.error(e);
+    segnala('Non sono riuscito a eliminarla: '+e.message,'err');
+    costruisciForm();
+  }
+}
+
+/* numerazione: i soggettoni restano numerici, gli accessori hanno una lettera
+   ereditata dalle vecchie cartelle (A luoghi, B abilità, D valori) più le nuove */
+const PREFISSO = {soggettone:'', creatura:'C', luogo:'A', abilita:'B', nutrizione:'N',
+                  aumentazione:'D', impedimento:'D', bonus:'D', inutilita:'I'};
+function numeroPerTipo(c){
+  const p = PREFISSO[c.tipo||'soggettone'];
+  if(String(c.num||'').startsWith(p) && (p ? /^[A-Z]\d+$/.test(c.num) : /^\d+$/.test(c.num))) return c.num;
+  return prossimoNumero(c.tipo||'soggettone', c);
+}
+function prossimoNumero(tipo, esclusa){
+  const p = PREFISSO[tipo];
+  let max = 0;
+  for(const x of dati.carte){
+    if(x === esclusa) continue;
+    const m = p ? new RegExp('^'+p+'(\\d+)$').exec(String(x.num))
+                : /^(\d+)$/.exec(String(x.num));
+    if(m) max = Math.max(max, +m[1]);
+  }
+  return p + (max+1);
+}function etichettaVal(v){ return v===7?'arc':(v===6?'oro':String(v)); }
 
 let tRender=null, tSalva=null;
 function cambiata(){
+  if(!possoScrivere()){ costruisciForm(); return; }   // non hai la penna
   sel._mod = true;
+  disegnaLista();
   clearTimeout(tRender); tRender = setTimeout(aggiornaAnteprima, 60);
-  clearTimeout(tSalva);  tSalva  = setTimeout(()=>salvaCarta(sel), 1100);
+  clearTimeout(tSalva);
+  tSalva = setTimeout(()=>{
+    tSalva = null;
+    const c = sel;
+    segnaStoria('modifica a ' + etichettaCarta(c));   // prima di salvare: lo stato di prima è ancora quello buono
+    salvaCarta(c);
+  }, 1100);
   segnala('Modifiche in corso…','lavoro');
 }
 
@@ -749,9 +1795,13 @@ function oggi(){ const d=new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 
 function rigaElenco(c){
-  const st = c.val.map((v,i)=> SIGLE[i]+v+(v===7?' (arcobaleno)':'')).join(' ');
-  return String(c.num).padEnd(3)+'  '+c.nome.padEnd(36)+c.rarita.padEnd(21)+
-         ('Ign '+c.ign).padEnd(14)+st+'   [foto: '+(c.foto||'')+']';
+  const sp = specieDi(c);
+  const st = sp.griglia==='pip'
+    ? (c.val||[]).map((v,i)=> SIGLE[i]+v+(v===7?' (arcobaleno)':'')).join(' ')
+    : (c.mod||[]).map((v,i)=> SIGLE[i]+etichettaMod(v)).join(' ');
+  const et = sp.fam==='accessorio' ? sp.et : (c.rarita||'');
+  return String(c.num).padEnd(3)+'  '+(c.nome||'').padEnd(36)+et.padEnd(21)+
+         ('Ign '+(c.ign|0)).padEnd(14)+st+'   [foto: '+(c.foto||'')+']';
 }
 async function aggiornaElenco(c){
   let txt;
@@ -799,6 +1849,7 @@ async function salvaCarta(c){
     await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
 
     c._mod = false; disegnaLista();
+    annunciaCarta(c);                      // gli altri la vedono entro pochi secondi
     const o=new Date();
     segnala('Salvata alle '+String(o.getHours()).padStart(2,'0')+':'+String(o.getMinutes()).padStart(2,'0'),'ok');
   }catch(e){
@@ -810,16 +1861,600 @@ async function salvaCarta(c){
   }
 }
 
+/* ─────────────────  annulla e rifai (storia della sessione)  ─────────────────
+
+   Ogni modifica portata a termine lascia dietro di sé una copia dello stato dei
+   dati com'era prima. «Annulla» rimette quella copia e riallinea i file sul disco;
+   «Rifai» torna avanti. La storia vive finché la pagina resta aperta: per andare
+   più indietro di così ci sono le copie giornaliere in «_versioni precedenti».
+
+   Lo stato è tenuto come stringa JSON: occupa poco, si confronta in un colpo solo
+   (così una modifica che non cambia niente non sporca la storia) e non può essere
+   alterato per sbaglio da chi lo ha generato.                                  */
+
+const STORIA_MAX = 60;
+let storia = { passato: [], futuro: [], attuale: null, occupata: false };
+
+function istantanea(){
+  return JSON.stringify({ carte: dati.carte, scartate: dati.scartate || [] },
+                        (k,v) => k === '_mod' ? undefined : v);
+}
+function etichettaCarta(c){ return c ? c.num + ' ' + (c.nome || '') : 'una carta'; }
+
+function avviaStoria(){
+  storia = { passato: [], futuro: [], occupata: false,
+             attuale: { stato: istantanea(), etichetta: 'apertura della cartella' } };
+  aggiornaStoria();
+}
+
+/* Da chiamare quando una modifica è completata, con la descrizione di cosa è
+   appena successo: lo stato precedente finisce nel passato e diventa quello che
+   «Annulla» riporta indietro. */
+function segnaStoria(etichetta){
+  if(!dati || storia.occupata || !storia.attuale) return;
+  const ora = istantanea();
+  if(ora === storia.attuale.stato) return;            // non è cambiato niente davvero
+  storia.passato.push(storia.attuale);
+  if(storia.passato.length > STORIA_MAX) storia.passato.shift();
+  storia.futuro.length = 0;                            // si riparte da qui
+  storia.attuale = { stato: ora, etichetta };
+  aggiornaStoria();
+}
+
+function aggiornaStoria(){
+  const barra = $('#storia');
+  if(!barra) return;
+  barra.style.display = dati ? 'flex' : 'none';
+  const a = $('#annulla'), r = $('#rifai');
+  const indietro = storia.passato.length > 0, avanti = storia.futuro.length > 0;
+  a.disabled = !indietro || storia.occupata;
+  r.disabled = !avanti  || storia.occupata;
+  a.title = indietro ? 'Annulla: ' + storia.attuale.etichetta + '  (Ctrl+Z)'
+                     : 'Non c\'è niente da annullare';
+  r.title = avanti ? 'Rifai: ' + storia.futuro[storia.futuro.length-1].etichetta + '  (Ctrl+Y)'
+                   : 'Non c\'è niente da rifare';
+}
+
+/* Una modifica in attesa del salvataggio va chiusa prima di muoversi nella
+   storia, altrimenti il timer scriverebbe il PNG un secondo dopo l'annullamento. */
+async function chiudiInSospeso(){
+  if(!tSalva) return;
+  clearTimeout(tSalva); tSalva = null;
+  clearTimeout(tRender); tRender = null;
+  if(sel){ segnaStoria('modifica a ' + etichettaCarta(sel)); await salvaCarta(sel); }
+}
+
+async function annulla(){ await muoviStoria(-1); }
+async function rifai(){ await muoviStoria(+1); }
+
+async function muoviStoria(verso){
+  if(storia.occupata) return;
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  await chiudiInSospeso();
+  const pila = verso < 0 ? storia.passato : storia.futuro;
+  if(!pila.length) return;
+  const destinazione = pila.pop();
+  const detto = verso < 0 ? storia.attuale.etichetta : destinazione.etichetta;
+  (verso < 0 ? storia.futuro : storia.passato).push(storia.attuale);
+  storia.attuale = destinazione;
+  await applicaStato(destinazione.stato,
+                     (verso < 0 ? 'Annullato: ' : 'Rifatto: ') + detto);
+}
+
+/* Rimette in piedi uno stato salvato e riallinea il disco: le carte cambiate o
+   ricomparse vengono ridisegnate, quelle che in quello stato non c'erano vengono
+   tolte. Il confronto è per numero, che è l'unica cosa che non si modifica dal
+   pannello ed è unica su tutto il mazzo. */
+async function applicaStato(stato, messaggio){
+  storia.occupata = true;
+  aggiornaStoria();
+  try{
+    segnala('Torno indietro…','lavoro');
+    const st = JSON.parse(stato);
+    const prima = new Map(dati.carte.map(c => [String(c.num), c]));
+    const dopo  = new Map(st.carte.map(c => [String(c.num), c]));
+    const impronta = c => JSON.stringify(c, (k,v) => k === '_mod' ? undefined : v);
+
+    const daRidisegnare = [], daTogliere = [];
+    for(const [k, c] of dopo){
+      const vecchia = prima.get(k);
+      if(!vecchia){ daRidisegnare.push(c); continue; }
+      if(impronta(vecchia) !== impronta(c)){
+        // il PNG sul disco ha il nome attuale: lo passo alla carta ripristinata
+        // così salvaCarta, se il nome cambia, toglie anche il file vecchio
+        if(vecchia.file) c.file = vecchia.file;
+        daRidisegnare.push(c);
+      }
+    }
+    for(const [k, c] of prima) if(!dopo.has(k)) daTogliere.push(c);
+
+    const numeroSel = sel ? String(sel.num) : null;
+    dati.carte = st.carte;
+    dati.scartate = st.scartate;
+    ordinaCarte();
+    fotoCache.clear();
+
+    for(const c of daTogliere) await staccaIFile(c, false);
+    let fatte = 0;
+    for(const c of daRidisegnare){
+      await salvaCarta(c);
+      if(daRidisegnare.length > 3) segnala(`Torno indietro… ${++fatte}/${daRidisegnare.length}`,'lavoro');
+    }
+    await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+
+    sel = dati.carte.find(c => String(c.num) === numeroSel)
+       || daRidisegnare[0] || dati.carte[0] || null;
+    if(sel){ scegliCarta(sel); }
+    else { $('#campi').innerHTML = '<div class="nota">Non è rimasta nessuna carta.</div>'; disegnaLista(); }
+    segnala(messaggio,'ok');
+  }catch(e){
+    console.error(e);
+    segnala('Non sono riuscito a tornare indietro: '+e.message,'err');
+  }finally{
+    storia.occupata = false;
+    aggiornaStoria();
+  }
+}
+
+/* ═══════════════  Google Drive  ═══════════════════════════════════════════════
+
+   Tutta la dashboard legge e scrive attraverso quattro funzioni sole — sotto(),
+   leggiFile(), scriviFile() — più entries() e removeEntry() sulle cartelle. Qui
+   dentro c'è un oggetto che si comporta esattamente come una cartella del disco
+   ma sta su Drive: così il resto del programma non sa nemmeno da dove arrivano i
+   file, e la modalità locale continua a funzionare identica.
+
+   L'ambito è `drive`, che Google considera ristretto: il progetto resta quindi in
+   Testing con i collaboratori come utenti di prova. L'ambito non ristretto
+   `drive.file` non servirebbe, perché dà accesso solo ai file che l'applicazione
+   ha creato o che l'utente ha scelto uno per uno, e scegliere una cartella non
+   estende l'accesso a quello che contiene.                                      */
+
+const DRIVE = {
+  clientId: '', cartella: '',
+  token: null, scadenza: 0, cliente: null,
+  chi: '', attiva: false
+};
+const AMBITO = 'https://www.googleapis.com/auth/drive';
+const CARTELLA_MIME = 'application/vnd.google-apps.folder';
+
+function configDrive(){
+  try{ return JSON.parse(localStorage.getItem('soggettoni.drive') || '{}'); }
+  catch(e){ return {}; }
+}
+function salvaConfigDrive(c){
+  try{ localStorage.setItem('soggettoni.drive', JSON.stringify(c)); }catch(e){}
+}
+
+/* Dall'indirizzo di una cartella di Drive si ricava l'id; se gli si dà già un id
+   lo lascia stare, così incollare l'uno o l'altro funziona uguale. */
+function idCartellaDa(testo){
+  const s = (testo||'').trim();
+  const m = s.match(/\/folders\/([A-Za-z0-9_-]+)/) || s.match(/[?&]id=([A-Za-z0-9_-]+)/);
+  return m ? m[1] : s;
+}
+
+function caricaScript(src){
+  return new Promise((ok, no)=>{
+    if(window.google && google.accounts && google.accounts.oauth2) return ok();
+    if(document.querySelector(`script[src="${src}"]`)) return ok();
+    const s = document.createElement('script');
+    s.src = src; s.async = true; s.onload = ()=>ok(); s.onerror = ()=>no(new Error('non riesco a caricare '+src));
+    document.head.appendChild(s);
+  });
+}
+
+/* Il token vale un'ora e sta solo in memoria: non finisce né su disco né in
+   localStorage. Alla scadenza se ne chiede un altro; finché la sessione Google
+   del browser è viva la cosa è silenziosa, dopo sette giorni ricompare la
+   schermata del consenso perché il progetto è in Testing. */
+async function tokenDrive(forza){
+  if(!forza && DRIVE.token && Date.now() < DRIVE.scadenza - 60000) return DRIVE.token;
+  await caricaScript('https://accounts.google.com/gsi/client');
+  return new Promise((ok, no)=>{
+    if(!DRIVE.cliente){
+      DRIVE.cliente = google.accounts.oauth2.initTokenClient({
+        client_id: DRIVE.clientId, scope: AMBITO,
+        callback: r =>{
+          if(r.error) return no(new Error(r.error_description || r.error));
+          DRIVE.token = r.access_token;
+          DRIVE.scadenza = Date.now() + (r.expires_in||3600)*1000;
+          ok(DRIVE.token);
+        },
+        error_callback: e => no(new Error(e.message || 'accesso annullato'))
+      });
+    }else{
+      DRIVE.cliente.callback = r =>{
+        if(r.error) return no(new Error(r.error_description || r.error));
+        DRIVE.token = r.access_token;
+        DRIVE.scadenza = Date.now() + (r.expires_in||3600)*1000;
+        ok(DRIVE.token);
+      };
+    }
+    DRIVE.cliente.requestAccessToken({ prompt: forza ? 'consent' : '' });
+  });
+}
+
+async function chiamaDrive(url, opz = {}, secondoGiro = false){
+  const t = await tokenDrive(false);
+  const intestazioni = Object.assign({}, opz.headers || {}, { Authorization: 'Bearer ' + t });
+  const r = await fetch(url, Object.assign({}, opz, { headers: intestazioni }));
+  if(r.status === 401 && !secondoGiro){ DRIVE.token = null; return chiamaDrive(url, opz, true); }
+  if(!r.ok){
+    let dettaglio = '';
+    try{ dettaglio = (await r.json()).error.message; }catch(e){ dettaglio = r.statusText; }
+    throw new Error(`Drive ${r.status}: ${dettaglio}`);
+  }
+  return r;
+}
+
+const API = 'https://www.googleapis.com/drive/v3';
+const CARICA = 'https://www.googleapis.com/upload/drive/v3';
+
+async function figliDi(idPadre){
+  const q = encodeURIComponent(`'${idPadre}' in parents and trashed = false`);
+  const campi = encodeURIComponent('nextPageToken, files(id,name,mimeType,modifiedTime,size)');
+  let elenco = [], pagina = '';
+  do{
+    const r = await chiamaDrive(`${API}/files?q=${q}&fields=${campi}&pageSize=1000&spaces=drive`
+                                + (pagina ? '&pageToken='+pagina : ''));
+    const d = await r.json();
+    elenco = elenco.concat(d.files || []);
+    pagina = d.nextPageToken || '';
+  }while(pagina);
+  return elenco;
+}
+
+/* Una cartella di Drive vestita da cartella del disco. Il contenuto viene
+   elencato una volta e tenuto da parte: senza questa cache ogni lettura di file
+   costerebbe una ricerca, e all'apertura se ne fanno centinaia. */
+function cartellaDrive(id, nome){
+  let indice = null;
+
+  async function elenco(rifai){
+    if(indice && !rifai) return indice;
+    indice = new Map();
+    for(const f of await figliDi(id)) if(!indice.has(f.name)) indice.set(f.name, f);
+    return indice;
+  }
+
+  const questa = {
+    kind: 'directory', name: nome, _id: id,
+    _scorda(){ indice = null; },
+
+    async getDirectoryHandle(n, opz = {}){
+      const e = await elenco();
+      const trovata = e.get(n);
+      if(trovata && trovata.mimeType === CARTELLA_MIME) return cartellaDrive(trovata.id, n);
+      if(!opz.create) throw new Error('cartella non trovata: ' + n);
+      const r = await chiamaDrive(`${API}/files?fields=id,name,mimeType`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ name:n, mimeType:CARTELLA_MIME, parents:[id] })
+      });
+      const f = await r.json();
+      indice.set(n, f);
+      return cartellaDrive(f.id, n);
+    },
+
+    async getFileHandle(n, opz = {}){
+      const e = await elenco();
+      let f = e.get(n);
+      if(!f && !opz.create){
+        // può essere stato creato da un altro mentre eravamo aperti
+        f = (await elenco(true)).get(n);
+        if(!f) throw new Error('file non trovato: ' + n);
+      }
+      return {
+        kind: 'file', name: n,
+        async getFile(){
+          const info = (await elenco()).get(n);
+          if(!info) throw new Error('file non trovato: ' + n);
+          const r = await chiamaDrive(`${API}/files/${info.id}?alt=media`);
+          const b = await r.blob();
+          b.name = n;
+          b.lastModified = Date.parse(info.modifiedTime || '') || Date.now();
+          return b;
+        },
+        async createWritable(){
+          const pezzi = [];
+          return {
+            async write(x){ pezzi.push(x); },
+            async close(){
+              const corpo = new Blob(pezzi);
+              const esistente = (await elenco()).get(n);
+              let r;
+              if(esistente){
+                r = await chiamaDrive(`${CARICA}/files/${esistente.id}?uploadType=media&fields=id,name,mimeType,modifiedTime,size`,
+                                      { method:'PATCH', body: corpo });
+              }else{
+                const meta = new Blob([JSON.stringify({ name:n, parents:[id] })], {type:'application/json'});
+                const conf = new FormData();       // multipart: prima i metadati, poi il contenuto
+                conf.append('metadata', meta);
+                conf.append('file', corpo);
+                r = await chiamaDrive(`${CARICA}/files?uploadType=multipart&fields=id,name,mimeType,modifiedTime,size`,
+                                      { method:'POST', body: conf });
+              }
+              const f2 = await r.json();
+              (await elenco()).set(n, f2);
+            }
+          };
+        }
+      };
+    },
+
+    async removeEntry(n){
+      const e = await elenco();
+      const f = e.get(n);
+      if(!f) throw new Error('file non trovato: ' + n);
+      // nel cestino, non cancellato: se si sbaglia si recupera dal cestino di Drive
+      await chiamaDrive(`${API}/files/${f.id}`, {
+        method:'PATCH', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ trashed:true })
+      });
+      e.delete(n);
+    },
+
+    async *entries(){
+      for(const [n, f] of await elenco())
+        yield [n, { kind: f.mimeType === CARTELLA_MIME ? 'directory' : 'file' }];
+    },
+
+    async queryPermission(){ return 'granted'; },
+    async requestPermission(){ return 'granted'; }
+  };
+  return questa;
+}
+
+/* Chi sono, per il semaforo: il nome che Google conosce, così gli altri leggono
+   «Marco sta lavorando» e non un indirizzo di posta. */
+async function chiSonoSuDrive(){
+  try{
+    const r = await chiamaDrive(`${API}/about?fields=user(displayName,emailAddress)`);
+    const u = (await r.json()).user || {};
+    return u.displayName || u.emailAddress || 'qualcuno';
+  }catch(e){ return 'qualcuno'; }
+}
+
+async function apriDaDrive(clientId, cartellaId){
+  DRIVE.clientId = clientId;
+  DRIVE.cartella = cartellaId;
+  segnala('Accesso a Google…','lavoro');
+  await tokenDrive(false);
+  DRIVE.chi = await chiSonoSuDrive();
+  DRIVE.attiva = true;
+  salvaConfigDrive({ clientId, cartella: cartellaId });
+  const radice = cartellaDrive(cartellaId, 'Soggettoni');
+  await apriCartella(radice);
+}
+
+/* ═══════════════  Semaforo: chi c'è, chi ha la penna  ════════════════════════
+
+   Regola del gruppo: uno alla volta lavora, gli altri guardano. Chi ha la penna
+   modifica; gli altri hanno i campi spenti e vedono la carta cambiare sotto gli
+   occhi, con tre o quattro secondi di ritardo — il tempo di un giro di lettura.
+
+   Tutto passa da un solo file piccolo su Drive, `_dashboard/stato.json`, riletto
+   ogni tre secondi. È una convenzione cortese, non una serratura: fra due clic
+   contemporanei passano secondi. La protezione vera sta sotto, nel controllo
+   della revisione prima di ogni scrittura, che è quello che impedisce davvero di
+   sovrascrivere il lavoro di un altro.                                          */
+
+const PENNA_DURATA = 60000;    // la penna scade da sola dopo un minuto di silenzio
+const BATTITO = 20000;         // ogni quanto lascio il mio segno di vita
+const SBIRCIATA = 3000;        // ogni quanto guardo cosa fanno gli altri
+
+const S = {
+  io: 'x' + Math.random().toString(36).slice(2, 10),
+  chi: '', stato: null, mia: false, seguo: true,
+  tBattito: null, tSbircia: null, ultimaVista: -1, inScrittura: false
+};
+
+function statoVuoto(){ return { revisione: 0, penna: null, presenti: [], ultima: null, richiesta: null }; }
+
+async function leggiStato(){
+  try{
+    const f = await leggiFile(cart.dashboard, 'stato.json');
+    const s = JSON.parse(await f.text());
+    return Object.assign(statoVuoto(), s);
+  }catch(e){ return statoVuoto(); }
+}
+
+/* Lettura, modifica e riscrittura. Con due o tre persone le collisioni sono rare
+   e la peggiore conseguenza è un segno di vita perso per venti secondi. */
+async function cambiaStato(modifica){
+  if(S.inScrittura) return S.stato;
+  S.inScrittura = true;
+  try{
+    const s = await leggiStato();
+    modifica(s);
+    s.presenti = (s.presenti || []).filter(p => Date.now() - (p.visto||0) < PENNA_DURATA);
+    if(s.penna && Date.now() > s.penna.fino) s.penna = null;
+    await scriviFile(cart.dashboard, 'stato.json', JSON.stringify(s));
+    S.stato = s;
+    return s;
+  }finally{ S.inScrittura = false; }
+}
+
+function pennaLibera(s){ return !s.penna || Date.now() > s.penna.fino || s.penna.io === S.io; }
+function pennaMia(s){ return !!(s && s.penna && s.penna.io === S.io && Date.now() <= s.penna.fino); }
+function possoScrivere(){ return !DRIVE.attiva || S.mia; }
+
+function miSegno(s, conPenna){
+  const altri = (s.presenti || []).filter(p => p.io !== S.io);
+  altri.push({ io: S.io, chi: S.chi, visto: Date.now(), carta: sel ? String(sel.num) : null });
+  s.presenti = altri;
+  if(conPenna) s.penna = { io: S.io, chi: S.chi, fino: Date.now() + PENNA_DURATA,
+                           carta: sel ? String(sel.num) : null };
+}
+
+async function battito(){
+  try{
+    const s = await cambiaStato(st => miSegno(st, S.mia));
+    S.mia = pennaMia(s);
+    disegnaSemaforo();
+  }catch(e){ segnala('Drive non risponde: '+e.message, 'err'); }
+}
+
+/* Il giro di lettura: guardo chi c'è, se la penna è ancora mia, e se nel
+   frattempo qualcuno ha cambiato una carta me la prendo. */
+async function sbircia(){
+  if(S.inScrittura) return;
+  let s;
+  try{ s = await leggiStato(); }
+  catch(e){ return; }
+  S.stato = s;
+  const eraMia = S.mia;
+  S.mia = pennaMia(s);
+  if(eraMia && !S.mia) segnala('Hai perso la penna', 'err');
+
+  if(s.ultima && s.ultima.rev !== S.ultimaVista && s.ultima.io !== S.io){
+    S.ultimaVista = s.ultima.rev;
+    applicaDaRemoto(s.ultima);
+  }
+  if(!S.mia && S.seguo && s.penna && s.penna.carta){
+    const c = dati.carte.find(x => String(x.num) === String(s.penna.carta));
+    if(c && c !== sel) scegliCarta(c);
+  }
+  disegnaSemaforo();
+}
+
+/* Una carta modificata da un altro. Arriva intera dentro stato.json, quindi non
+   serve riscaricare dati.json: si sostituisce al volo e si ridisegna. */
+function applicaDaRemoto(ultima){
+  if(!ultima.carta || !dati) return;
+  const i = dati.carte.findIndex(x => String(x.num) === String(ultima.carta.num));
+  if(i >= 0) dati.carte[i] = ultima.carta;
+  else { dati.carte.push(ultima.carta); ordinaCarte(); }
+  if(ultima.tolta){
+    const j = dati.carte.findIndex(x => String(x.num) === String(ultima.tolta));
+    if(j >= 0) dati.carte.splice(j, 1);
+  }
+  fotoCache.clear();
+  const rimpiazzata = dati.carte.find(x => String(x.num) === String(ultima.carta.num));
+  if(sel && String(sel.num) === String(ultima.carta.num) && rimpiazzata){
+    sel = rimpiazzata; costruisciForm(); aggiornaAnteprima();
+  }
+  disegnaLista();
+}
+
+/* Chi ha la penna, dopo aver salvato una carta, la mette qui perché gli altri la
+   vedano subito. Il numero di revisione cresce a ogni modifica: serve a capire se
+   si è persa qualche puntata. */
+async function annunciaCarta(c, tolta){
+  if(!DRIVE.attiva || !S.mia) return;
+  try{
+    await cambiaStato(s =>{
+      s.revisione = (s.revisione || 0) + 1;
+      s.ultima = { rev: s.revisione, io: S.io, chi: S.chi, quando: Date.now(),
+                   carta: JSON.parse(JSON.stringify(c, (k,v)=> k==='_mod' ? undefined : v)),
+                   tolta: tolta || null };
+      miSegno(s, true);
+    });
+    S.ultimaVista = S.stato.revisione;
+  }catch(e){ console.warn('non sono riuscito ad annunciare la carta', e); }
+}
+
+async function prendiPenna(){
+  const s = await leggiStato();
+  if(!pennaLibera(s)){ segnala('La penna ce l\'ha ' + s.penna.chi, 'err'); disegnaSemaforo(); return; }
+  await cambiaStato(st =>{ if(pennaLibera(st)){ miSegno(st, true); st.richiesta = null; } });
+  // stretta di mano: se in quei due secondi l'ha presa anche un altro, vince l'ultimo
+  await new Promise(r => setTimeout(r, 2000));
+  const dopo = await leggiStato();
+  S.stato = dopo; S.mia = pennaMia(dopo);
+  segnala(S.mia ? 'Hai la penna: puoi modificare' : 'L\'ha presa ' + (dopo.penna ? dopo.penna.chi : 'un altro'),
+          S.mia ? 'ok' : 'err');
+  disegnaSemaforo(); costruisciForm();
+}
+
+async function lasciaPenna(){
+  await chiudiInSospeso();
+  await cambiaStato(st =>{ if(pennaMia(st)) st.penna = null; miSegno(st, false); });
+  S.mia = false;
+  segnala('Penna lasciata', 'ok');
+  disegnaSemaforo(); costruisciForm();
+}
+
+async function chiediPenna(){
+  await cambiaStato(st =>{ st.richiesta = { chi: S.chi, io: S.io, quando: Date.now() }; miSegno(st, false); });
+  segnala('Richiesta inviata', 'ok');
+}
+
+function disegnaSemaforo(){
+  const b = $('#semaforo');
+  if(!b) return;
+  if(!DRIVE.attiva){ b.style.display = 'none'; return; }
+  b.style.display = 'flex';
+  const s = S.stato || statoVuoto();
+  const altri = (s.presenti || []).filter(p => p.io !== S.io && Date.now() - (p.visto||0) < PENNA_DURATA);
+  const chiHa = s.penna && Date.now() <= s.penna.fino ? s.penna.chi : null;
+
+  let testo, classe;
+  if(S.mia){ testo = `Hai la penna — puoi modificare`; classe = 'mia'; }
+  else if(chiHa){ testo = `Sta lavorando <b>${escapeHtml(chiHa)}</b>` +
+      (s.penna.carta ? ` sulla carta ${escapeHtml(String(s.penna.carta))}` : '') + ' — tu guardi'; classe = 'altrui'; }
+  else { testo = 'Nessuno sta lavorando'; classe = 'libera'; }
+
+  // per nome, non per sessione: la stessa persona con due schede aperte è una sola
+  const nomi = [...new Set(altri.map(p => p.chi))];
+  const chiC = nomi.length
+      ? `<span class="chi">con te: ${nomi.map(escapeHtml).join(', ')}</span>`
+      : '<span class="chi">sei solo</span>';
+
+  let tasti = '';
+  if(S.mia){
+    tasti = '<button id="sem-lascia" type="button">Lascia la penna</button>';
+    if(s.richiesta && s.richiesta.io !== S.io && Date.now() - s.richiesta.quando < 120000)
+      tasti = `<span class="richiesta">${escapeHtml(s.richiesta.chi)} chiede la penna</span>` + tasti;
+  }else if(chiHa){
+    tasti = `<label class="segui"><input type="checkbox" id="sem-segui"${S.seguo?' checked':''}> segui</label>`
+          + '<button id="sem-chiedi" type="button">Chiedi la penna</button>';
+  }else{
+    tasti = '<button id="sem-prendi" type="button" class="vivo">Prendi la penna</button>';
+  }
+
+  b.className = classe;
+  b.innerHTML = `<span class="pallina"></span><span class="frase">${testo}</span>${chiC}
+                 <span class="spinta"></span>${tasti}`;
+  const p = $('#sem-prendi'); if(p) p.onclick = prendiPenna;
+  const l = $('#sem-lascia'); if(l) l.onclick = lasciaPenna;
+  const q = $('#sem-chiedi'); if(q) q.onclick = chiediPenna;
+  const g = $('#sem-segui'); if(g) g.onchange = e => { S.seguo = e.target.checked; };
+}
+
+async function avviaSemaforo(){
+  S.chi = DRIVE.chi || 'qualcuno';
+  const s = await leggiStato();
+  S.stato = s;
+  if(pennaLibera(s)){ await cambiaStato(st =>{ if(pennaLibera(st)) miSegno(st, true); }); S.mia = pennaMia(S.stato); }
+  else { await cambiaStato(st => miSegno(st, false)); S.mia = false; }
+  S.ultimaVista = (S.stato.ultima && S.stato.ultima.rev) || -1;
+  clearInterval(S.tBattito); clearInterval(S.tSbircia);
+  S.tBattito = setInterval(battito, BATTITO);
+  S.tSbircia = setInterval(sbircia, SBIRCIATA);
+  window.addEventListener('beforeunload', ()=>{
+    // saluto senza aspettare la risposta: se non parte, la penna scade da sola
+    try{
+      const s2 = S.stato || statoVuoto();
+      if(pennaMia(s2)) s2.penna = null;
+      s2.presenti = (s2.presenti||[]).filter(p => p.io !== S.io);
+      navigator.sendBeacon && navigator.sendBeacon('about:blank');
+    }catch(e){}
+  });
+  disegnaSemaforo();
+  costruisciForm();
+}
+
 /* ─────────────  pannello differenze col documento  ───────────── */
 
-let righeDoc = null, ultimoConfronto = null, origineDoc = '';
+let righeDoc = null, righeAcc = null, righeNomi = null, accNuovi = [], nomiNuovi = [], ultimoConfronto = null, origineDoc = '';
 
 async function controllaDocumento(){
   // eventuale configurazione nella cartella
   try{
     const cfg = JSON.parse(await (await leggiFile(cart.dashboard,'drive.json')).text());
-    if(cfg.chiave) DRIVE.chiave = cfg.chiave;
-    if(cfg.file) DRIVE.file = cfg.file;
+    if(cfg.chiave) DOCDRIVE.chiave = cfg.chiave;
+    if(cfg.file) DOCDRIVE.file = cfg.file;
   }catch(e){}
   // 1. il documento vivo su Drive (solo se la pagina è pubblicata: da file:// il referer è vuoto)
   if(DRIVE.chiave && location.protocol.startsWith('http')){
@@ -847,12 +2482,18 @@ async function controllaDocumento(){
 async function usaDocumento(buf, salvaCopia, provenienza){
   origineDoc = provenienza || 'copia locale';
   try{
-    righeDoc = righeDelDocumento(await xmlDaDocx(buf));
+    const xml = await xmlDaDocx(buf);
+    righeDoc = righeDelDocumento(xml);
+    righeAcc = righeAccessori(xml);
+    righeNomi = righeSoloNome(xml);
   }catch(e){ segnala('Documento illeggibile: '+e.message,'err'); return; }
   if(salvaCopia){
     try{ await scriviFile(cart.dashboard,'documento.docx', new Blob([buf])); }catch(e){}
   }
   ultimoConfronto = confronta(righeDoc);
+  accNuovi = accessoriMancanti(righeAcc);
+  nomiNuovi = soloNomeMancanti(righeNomi);
+  window.__acc = righeAcc; window.__nomi = righeNomi; window.__doc = righeDoc;
   if(ultimoConfronto.agganciate){
     try{ await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1)); }catch(e){}
   }
@@ -862,50 +2503,162 @@ async function usaDocumento(buf, salvaCopia, provenienza){
 function mostraPannello(){
   const p = $('#pannellodoc'), {nuove, modifiche} = ultimoConfronto;
   p.className = 'on';
-  if(!nuove.length && !modifiche.length){
+  const quanteScartate = (dati.scartate||[]).length;
+  const tastoScartate = quanteScartate
+      ? `<button class="minibtn" id="doc-scartate">Scartate (${quanteScartate})</button>` : '';
+  if(!nuove.length && !modifiche.length && !accNuovi.length && !nomiNuovi.length){
     p.innerHTML = `<h3>Documento (${escapeHtml(origineDoc)})</h3><div class="dett">Tutto allineato —
-      ${righeDoc.length} righe con statistiche complete, nessuna differenza.</div>`;
+      ${righeDoc.length} righe con statistiche complete, nessuna differenza.</div>`
+      + (tastoScartate ? `<div class="azioni">${tastoScartate}</div>` : '');
+    if(quanteScartate) $('#doc-scartate').onclick = mostraScartate;
     return;
   }
   const voci = [];
+  accNuovi.forEach((r,i)=>{
+    const sp = SPECIE[r.tipo] || SPECIE.soggettone;
+    const eff = sp.griglia === 'pip'
+      ? ((r.val||[]).some(v=>v>0) ? 'Ign '+(r.ign|0)+' · '+(r.val||[]).join(' ') : 'ancora senza valori')
+      : ((r.mod||[]).map((v,k)=> v ? NOMISTAT[k]+' '+etichettaMod(v) : null).filter(Boolean).join(', ')
+         || r.desc || 'ancora senza effetto');
+    voci.push(`<li><input type="checkbox" data-t="a" data-i="${i}" checked>
+      <div><b>${escapeHtml(r.nome)}</b> — ${escapeHtml(sp.et.toLowerCase())}
+      <div class="dett">${escapeHtml(eff)}</div></div></li>`);
+  });
   nuove.forEach((n,i)=> voci.push(`<li><input type="checkbox" data-t="n" data-i="${i}" checked>
      <div><b>${escapeHtml(n.riga.nome)}</b> — carta nuova, ${n.riga.rarita.toLowerCase()}
      <div class="dett">foto: ${escapeHtml(n.foto)} · Ign ${n.riga.ign} · ${n.riga.val.join(' ')}</div></div></li>`));
   modifiche.forEach((m,i)=> voci.push(`<li><input type="checkbox" data-t="m" data-i="${i}">
      <div><b>${escapeHtml(m.carta.nome)}</b> (carta ${m.carta.num})
      <div class="dett">${m.diff.map(d=>`${d[0]}: ${escapeHtml(String(d[1]).slice(0,60))} → <b>${escapeHtml(String(d[2]).slice(0,60))}</b>`).join('<br>')}</div></div></li>`));
-  p.innerHTML = `<h3>Dal documento (${escapeHtml(origineDoc)}): ${nuove.length} carte nuove, ${modifiche.length} differenze</h3>
+  nomiNuovi.forEach((r,i)=>{
+    voci.push(`<li><input type="checkbox" data-t="s" data-i="${i}">
+      <div><b>${escapeHtml(r.nome)}</b> — solo il nome${r.rarita ? ', '+escapeHtml(r.rarita.toLowerCase()) : ''}
+      <div class="dett">${escapeHtml(r.fonte)}${r.foto ? ' · foto: '+escapeHtml(r.foto) : ' · nessuna foto'}</div></div></li>`);
+  });
+  const capo = [
+    nuove.length ? nuove.length+' soggettoni nuovi' : '',
+    accNuovi.length ? accNuovi.length+' accessori nuovi' : '',
+    nomiNuovi.length ? nomiNuovi.length+' con il solo nome' : '',
+    modifiche.length ? modifiche.length+' differenze' : ''
+  ].filter(Boolean).join(', ');
+  p.innerHTML = `<h3>Dal documento (${escapeHtml(origineDoc)}): ${capo}</h3>
     <ul>${voci.join('')}</ul>
     <div class="azioni"><button class="vai" id="doc-applica">Applica le selezionate</button>
       <button class="minibtn" id="doc-tutte">Seleziona tutto</button>
+      ${tastoScartate}
       <button class="minibtn" id="doc-chiudi">Chiudi</button>
       <span class="dett" id="doc-stato"></span></div>`;
+  if(quanteScartate) $('#doc-scartate').onclick = mostraScartate;
   $('#doc-tutte').onclick = ()=> p.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=true);
   $('#doc-chiudi').onclick = ()=> p.className = '';
   $('#doc-applica').onclick = applicaDalDocumento;
 }
 
+let applicando = false;
+
+/* Esiste già una carta identica a questa riga?
+   L'omonimia da sola non basta: «Il Conte» del 2015 e «Il Conte» delle nuove leve
+   sono due carte diverse, con numeri e valori diversi, e devono restare entrambe.
+   Si blocca solo il clone vero e proprio — stesso nome e stessa sostanza — che è
+   quello che nasceva dal doppio clic su «Applica». */
+function stessaSostanza(c, r){
+  const num = x => String(x ?? 0);
+  if(num(c.ign) !== num(r.ign)) return false;
+  const lista = x => JSON.stringify((x || [0,0,0,0,0,0]).map(v => v === '' || v == null ? 0 : v));
+  return lista(c.val) === lista(r.val) && lista(c.mod) === lista(r.mod);
+}
+function esisteGia(tipo, nome, r){
+  const k = (tipo||'') + '|' + chiave(nome);
+  return dati.carte.some(c => {
+    const t = c.tipo || '';
+    if((t+'|'+chiave(c.docNome||c.nome)) !== k && (t+'|'+chiave(c.nome)) !== k) return false;
+    return !r || stessaSostanza(c, r);
+  });
+}
+
+/* l'elenco dei nomi messi da parte, con il tasto per rimetterli in gioco */
+function mostraScartate(){
+  const p = $('#pannellodoc'); p.className = 'on';
+  const el = dati.scartate || [];
+  p.innerHTML = `<h3>Righe scartate dal documento: ${el.length}</h3>
+    <div class="dett" style="margin-bottom:9px">Nomi di carte che hai eliminato. Restano nel
+      documento ma la dashboard non te li ripropone più. «Rimetti» li fa tornare fra le
+      righe da aggiungere.</div>
+    <ul>${el.map(x=>`<li><div><b>${escapeHtml(x.nome)}</b>${
+        x.tipo ? ' — ' + escapeHtml((SPECIE[x.tipo]||{}).et || x.tipo) : ''}
+        <div class="dett">scartata il ${escapeHtml(x.quando||'—')}</div></div>
+        <button class="minibtn" data-k="${escapeHtml(x.k)}" style="margin-left:auto">Rimetti</button></li>`).join('')}</ul>
+    <div class="azioni"><button class="minibtn" id="sc-indietro">Torna al documento</button></div>`;
+  $('#sc-indietro').onclick = mostraPannello;
+  p.querySelectorAll('button[data-k]').forEach(b => b.onclick = async () => {
+    ripristina(b.dataset.k);
+    segnaStoria('scarto annullato');
+    try{ await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1)); }catch(e){}
+    if(righeAcc) accNuovi = accessoriMancanti(righeAcc);
+    if(righeNomi) nomiNuovi = soloNomeMancanti(righeNomi);
+    if(righeDoc) ultimoConfronto = confronta(righeDoc);
+    mostraScartate();
+    segnala('Rimessa fra le righe da aggiungere','ok');
+  });
+}
+
 async function applicaDalDocumento(){
   const p = $('#pannellodoc');
+  if(applicando) return;                       // un secondo clic mentre lavora creava doppioni
   const scelte = [...p.querySelectorAll('input[type=checkbox]:checked')];
   if(!scelte.length) return;
-  const numeri = dati.carte.map(c=>parseInt(c.num,10)).filter(n=>!isNaN(n));
-  let prossimo = Math.max(...numeri) + 1;
+  applicando = true;
+  // fotografo le liste: se finiscono per essere riassegnate a metà strada,
+  // il ciclo continuerebbe a leggere indici che non esistono più
+  const listaAcc = accNuovi, listaNomi = nomiNuovi, confronto = ultimoConfronto;
+  const bott = $('#doc-applica');
+  if(bott){ bott.disabled = true; bott.textContent = 'Applico…'; }
+  p.querySelectorAll('input[type=checkbox]').forEach(i=> i.disabled = true);
+  try{
+  const numeri = dati.carte.map(c=>/^\d+$/.test(String(c.num)) ? +c.num : NaN).filter(n=>!isNaN(n));
+  let prossimo = (numeri.length ? Math.max(...numeri) : 200) + 1;
   let fatte = 0;
   for(const ch of scelte){
     const i = +ch.dataset.i;
-    if(ch.dataset.t === 'n'){
-      const {riga, foto} = ultimoConfronto.nuove[i];
+    if(ch.dataset.t === 's'){
+      const r = listaNomi[i];
+      if(!r || esisteGia(undefined, r.nome, r)) continue;
+      const c = {num: String(prossimo++), nome: nomeValido(r.nome), rarita: r.rarita || 'Comune',
+                 ign: 0, val: [0,0,0,0,0,0], ab: '', desc: '',
+                 foto: r.foto || '', zoom:1, panX:.5, panY:.38, docNome: r.nome};
+      c.file = nomeFile(c);
+      dati.carte.push(c);
+      ordinaCarte();
+      await salvaCarta(c);
+    } else if(ch.dataset.t === 'a'){
+      const r = listaAcc[i];
+      if(!r || esisteGia(r.tipo, r.nome, r)) continue;
+      const c = {num: prossimoNumero(r.tipo), tipo: r.tipo, nome: nomeValido(r.nome),
+                 ign: r.ign|0, rarita: r.rarita || 'Comune', sotto: r.sotto,
+                 val: (r.val||[0,0,0,0,0,0]).slice(), mod: (r.mod||[0,0,0,0,0,0]).slice(),
+                 ab: r.ab||'', desc: r.desc||'', foto:'', zoom:1, panX:.5, panY:.38,
+                 docNome: r.nome};
+      c.file = nomeFile(c);
+      dati.carte.push(c);
+      ordinaCarte();
+      await salvaCarta(c);
+    } else if(ch.dataset.t === 'n'){
+      const v = confronto.nuove[i];
+      if(!v) continue;
+      const {riga, foto} = v;
+      if(esisteGia(undefined, riga.nome, riga)) continue;
       const libero = riga.num && !dati.carte.some(c=>c.num===riga.num);
       const c = {num: libero ? riga.num : String(prossimo++), nome: nomeValido(riga.nome), rarita: riga.rarita,
                  ign: riga.ign, val: riga.val.slice(), ab: riga.ab, desc: riga.desc,
                  foto, zoom:1, panX:.5, panY:.38, docNome: riga.nome};
       c.file = nomeFile(c);
       dati.carte.push(c);
-      dati.carte.sort((a,b)=> (parseInt(a.num,10)||0) - (parseInt(b.num,10)||0));
+      ordinaCarte();
       await salvaCarta(c);
     } else {
-      const {carta, riga, diff} = ultimoConfronto.modifiche[i];
+      const m = confronto.modifiche[i];
+      if(!m) continue;
+      const {carta, riga, diff} = m;
       for(const [campo,,nuovo] of diff){
         if(campo==='nome') carta.nome = nomeValido(nuovo);
         else if(campo==='ignoranza') carta.ign = riga.ign;
@@ -918,13 +2671,20 @@ async function applicaDalDocumento(){
       await salvaCarta(carta);
     }
     fatte++;
-    $('#doc-stato').textContent = `${fatte}/${scelte.length}`;
+    const st = $('#doc-stato');
+    if(st) st.textContent = `${fatte}/${scelte.length}`;
   }
   fotoCache.clear();
   disegnaLista();
-  ultimoConfronto = confronta(righeDoc);
-  mostraPannello();
+  segnaStoria(`${fatte} righe applicate dal documento`);
   segnala(`Applicate ${fatte} modifiche dal documento`,'ok');
+  }finally{
+    applicando = false;
+    ultimoConfronto = confronta(righeDoc);
+    accNuovi = accessoriMancanti(righeAcc);
+    nomiNuovi = soloNomeMancanti(righeNomi);
+    mostraPannello();
+  }
 }
 
 /* trascinamento del .docx sulla pagina */
@@ -948,6 +2708,80 @@ async function applicaDalDocumento(){
 /* ─────────────────────────  avvio  ───────────────────────── */
 
 $('#cerca').oninput = disegnaLista;
+$('#btncompleta').onclick = ()=>{ vistaCompleta = !vistaCompleta; disegnaLista(); };
+$('#nuova').onclick = e => {
+  e.stopPropagation();
+  if($('#menutipi').style.display === 'block') chiudiMenuTipi();
+  else apriMenuTipi(e.currentTarget);
+};
+$('#menutipi').addEventListener('click', e => {
+  const b = e.target.closest('button[data-tipo]');
+  if(!b) return;
+  chiudiMenuTipi();
+  nuovaCarta(b.dataset.tipo);
+});
+document.addEventListener('click', e => { if(!e.target.closest('#menutipi,#nuova')) chiudiMenuTipi(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') chiudiMenuTipi(); });
+
+(function(){
+  /* I due valori possono arrivare dall'indirizzo, così ai collaboratori basta un
+     link: ?client=…&cartella=… . Non si apre da solo, perché la finestra di Google
+     va aperta da un clic, altrimenti il browser la blocca come finestra a comparsa. */
+  const c = configDrive();
+  const q = new URLSearchParams(location.search);
+  const daLink = { clientId: q.get('client') || '', cartella: q.get('cartella') || q.get('folder') || '' };
+  $('#d-client').value   = daLink.clientId || c.clientId || '';
+  $('#d-cartella').value = daLink.cartella || c.cartella || '';
+  if(daLink.clientId && daLink.cartella)
+    $('#d-copiato').textContent = 'Valori presi dal link: premi «Apri da Google Drive».';
+
+  $('#d-link').onclick = async ()=>{
+    const id = $('#d-client').value.trim(), ct = idCartellaDa($('#d-cartella').value);
+    if(!id || !ct){ $('#d-copiato').textContent = 'Compila prima i due campi.'; return; }
+    const url = location.origin + location.pathname
+              + '?client=' + encodeURIComponent(id) + '&cartella=' + encodeURIComponent(ct);
+    try{ await navigator.clipboard.writeText(url); $('#d-copiato').textContent = 'Link copiato.'; }
+    catch(e){ $('#d-copiato').textContent = url; }
+  };
+  $('#d-apri').onclick = async ()=>{
+    const id = $('#d-client').value.trim(), cart = idCartellaDa($('#d-cartella').value);
+    if(!id || !cart){ segnala('Servono l\'ID client e la cartella','err'); return; }
+    $('#d-apri').disabled = true;
+    try{ await apriDaDrive(id, cart); }
+    catch(e){ console.error(e); segnala('Non sono riuscito ad aprire da Drive: '+e.message,'err'); }
+    finally{ $('#d-apri').disabled = false; }
+  };
+})();
+
+$('#prec').onclick = ()=> scorri(-1);
+$('#succ').onclick = ()=> scorri(+1);
+$('#annulla').onclick = annulla;
+$('#rifai').onclick  = rifai;
+/* Ctrl+Z e Ctrl+Y muovono la storia delle carte, ma non mentre si sta scrivendo
+   in un campo: lì restano l'annulla e il rifai del testo, che è quello che serve
+   mentre si batte una frase. */
+document.addEventListener('keydown', e => {
+  if(!(e.ctrlKey || e.metaKey) || e.altKey) return;
+  const dentroUnCampo = /^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName || '');
+  if(dentroUnCampo) return;
+  const k = e.key.toLowerCase();
+  if(k === 'z' && !e.shiftKey){ e.preventDefault(); annulla(); }
+  else if(k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); rifai(); }
+});
+/* Alt + frecce su/giù: Alt+sinistra e Alt+destra su Windows sono le frecce di
+   navigazione del browser, e le frecce da sole servono dentro i campi di testo. */
+document.addEventListener('keydown', e => {
+  if(!e.altKey || e.ctrlKey || e.metaKey) return;
+  if(e.key === 'ArrowUp'){ e.preventDefault(); scorri(-1); }
+  else if(e.key === 'ArrowDown'){ e.preventDefault(); scorri(+1); }
+});
+$('#famiglia').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  famigliaVista = b.dataset.f;
+  disegnaLista();
+  const prima = dati.carte.find(c => famigliaDi(c) === famigliaVista);
+  if(prima && famigliaDi(sel) !== famigliaVista) scegliCarta(prima);
+});
 $('#scegli').onclick = async ()=>{
   try{
     const h = await window.showDirectoryPicker({mode:'readwrite', id:'soggettoni'});
@@ -980,7 +2814,8 @@ window.addEventListener('resize', ()=>{ if(sel) aggiornaAnteprima(); });
   }
 })();
 
-window.__soggettoni = { disegnaCarta, R, TEMI, immagineDa, FONT, xmlDaDocx, righeDelDocumento, chiave, stato:()=>dati };
+window.__soggettoni = { disegnaCarta, R, TEMI, SPECIE, immagineDa, FONT, xmlDaDocx, righeDelDocumento, chiave,
+                        abilitaDi, controllaDocumento, stato:()=>dati };
 </script>
 </body>
 </html>
