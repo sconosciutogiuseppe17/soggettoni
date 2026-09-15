@@ -196,7 +196,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v27 · link per i collaboratori</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v28 · diagnosi apertura Drive</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -2093,10 +2093,11 @@ const CARICA = 'https://www.googleapis.com/upload/drive/v3';
 
 async function figliDi(idPadre){
   const q = encodeURIComponent(`'${idPadre}' in parents and trashed = false`);
-  const campi = encodeURIComponent('nextPageToken, files(id,name,mimeType,modifiedTime,size)');
+  const campi = encodeURIComponent('nextPageToken,files(id,name,mimeType,modifiedTime,size)');
   let elenco = [], pagina = '';
   do{
-    const r = await chiamaDrive(`${API}/files?q=${q}&fields=${campi}&pageSize=1000&spaces=drive`
+    const r = await chiamaDrive(`${API}/files?q=${q}&fields=${campi}&pageSize=1000`
+                                + '&supportsAllDrives=true&includeItemsFromAllDrives=true'
                                 + (pagina ? '&pageToken='+pagina : ''));
     const d = await r.json();
     elenco = elenco.concat(d.files || []);
@@ -2108,6 +2109,20 @@ async function figliDi(idPadre){
 /* Una cartella di Drive vestita da cartella del disco. Il contenuto viene
    elencato una volta e tenuto da parte: senza questa cache ogni lettura di file
    costerebbe una ricerca, e all'apertura se ne fanno centinaia. */
+/* Quando manca qualcosa, dire anche cosa c'era al suo posto: un elenco vuoto
+   significa quasi sempre che il token è di un account che su quella cartella non
+   ha accesso, o che l'ID incollato è di un'altra cartella. Nomi diversi da quelli
+   attesi significano invece che si è puntato al livello sbagliato dell'albero. */
+function cosaCeraDentro(cercato, dove, indice){
+  const nomi = [...indice.keys()];
+  const chi = DRIVE.chi ? ` (sei collegato come ${DRIVE.chi})` : '';
+  if(!nomi.length)
+    return `«${cercato}» non c'è: la cartella ${dove} risulta vuota${chi}. `
+         + `O l'indirizzo incollato è di un'altra cartella, o quell'account non ci ha accesso.`;
+  return `«${cercato}» non c'è dentro ${dove}${chi}. Lì dentro trovo: `
+       + nomi.slice(0, 10).join(' · ') + (nomi.length > 10 ? ` … e altri ${nomi.length-10}` : '');
+}
+
 function cartellaDrive(id, nome){
   let indice = null;
 
@@ -2126,7 +2141,7 @@ function cartellaDrive(id, nome){
       const e = await elenco();
       const trovata = e.get(n);
       if(trovata && trovata.mimeType === CARTELLA_MIME) return cartellaDrive(trovata.id, n);
-      if(!opz.create) throw new Error('cartella non trovata: ' + n);
+      if(!opz.create) throw new Error(cosaCeraDentro(n, nome, e));
       const r = await chiamaDrive(`${API}/files?fields=id,name,mimeType`, {
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ name:n, mimeType:CARTELLA_MIME, parents:[id] })
@@ -2141,8 +2156,9 @@ function cartellaDrive(id, nome){
       let f = e.get(n);
       if(!f && !opz.create){
         // può essere stato creato da un altro mentre eravamo aperti
-        f = (await elenco(true)).get(n);
-        if(!f) throw new Error('file non trovato: ' + n);
+        const e2 = await elenco(true);
+        f = e2.get(n);
+        if(!f) throw new Error(cosaCeraDentro(n, nome, e2));
       }
       return {
         kind: 'file', name: n,
@@ -2221,6 +2237,7 @@ async function apriDaDrive(clientId, cartellaId){
   segnala('Accesso a Google…','lavoro');
   await tokenDrive(false);
   DRIVE.chi = await chiSonoSuDrive();
+  segnala('Collegato a Drive come ' + DRIVE.chi + '…', 'lavoro');
   DRIVE.attiva = true;
   salvaConfigDrive({ clientId, cartella: cartellaId });
   const radice = cartellaDrive(cartellaId, 'Soggettoni');
