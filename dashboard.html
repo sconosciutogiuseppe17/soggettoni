@@ -24,7 +24,10 @@
   #famiglia button{background:none;border:0;color:var(--testo2);padding:5px 15px;font-size:12.5px}
   #famiglia button:hover{color:var(--testo)}
   #famiglia button.on{background:var(--arancio);color:#241a10;font-weight:700}
-  #btncompleta{margin-left:auto;background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+  #btnfoto{margin-left:auto;background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+     border-radius:20px;padding:5px 13px;font-size:12.5px;display:none}
+  #btnfoto:hover{border-color:var(--arancio);color:var(--arancio)}
+  #btncompleta{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
      border-radius:20px;padding:5px 13px;font-size:12.5px;display:none;align-items:center;gap:7px}
   #btncompleta:hover{border-color:var(--arancio)}
   #btncompleta.on{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
@@ -196,7 +199,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v28 · diagnosi apertura Drive</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v29 · abbina le foto dal nome</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -205,6 +208,7 @@
     <button id="annulla" type="button">↶ Annulla</button>
     <button id="rifai" type="button">Rifai ↷</button>
   </div>
+  <button id="btnfoto" type="button" title="Cerca nella cartella Foto i file che hanno lo stesso nome delle carte senza foto">Abbina foto</button>
   <button id="btncompleta" type="button">Da completare</button>
   <div id="stato"><i id="pallino"></i><span id="statotxt">Nessuna cartella collegata</span></div>
 </header>
@@ -1392,6 +1396,7 @@ function disegnaLista(){
 
   const b = $('#btncompleta');
   b.style.display = 'flex';
+  $('#btnfoto').style.display = 'inline-block';
   b.classList.toggle('on', vistaCompleta);
   b.innerHTML = 'Da completare' + (buchi.size ? ` <span class="badge">${buchi.size}</span>` : '');
 
@@ -1815,7 +1820,10 @@ async function aggiornaElenco(c){
 }
 
 let inCorso = false, riprova = null;
-async function salvaCarta(c){
+/* `soloPNG` serve ai lavori in blocco (l'abbinamento delle foto): rigenera il
+   disegno e la riga dell'elenco, ma lascia a chi chiama il compito di scrivere
+   dati.json una volta sola alla fine, invece di riscriverlo per ogni carta. */
+async function salvaCarta(c, soloPNG){
   if(inCorso){ riprova = c; return; }
   inCorso = true;
   try{
@@ -1846,10 +1854,10 @@ async function salvaCarta(c){
 
     // 3. elenco + dati
     await aggiornaElenco(c);
-    await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+    if(!soloPNG) await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
 
     c._mod = false; disegnaLista();
-    annunciaCarta(c);                      // gli altri la vedono entro pochi secondi
+    if(!soloPNG) annunciaCarta(c);         // gli altri la vedono entro pochi secondi
     const o=new Date();
     segnala('Salvata alle '+String(o.getHours()).padStart(2,'0')+':'+String(o.getMinutes()).padStart(2,'0'),'ok');
   }catch(e){
@@ -2263,10 +2271,12 @@ const SBIRCIATA = 3000;        // ogni quanto guardo cosa fanno gli altri
 const S = {
   io: 'x' + Math.random().toString(36).slice(2, 10),
   chi: '', stato: null, mia: false, seguo: true,
-  tBattito: null, tSbircia: null, ultimaVista: -1, inScrittura: false
+  tBattito: null, tSbircia: null, ultimaVista: -1, ricaricaVista: -1, inScrittura: false
 };
 
-function statoVuoto(){ return { revisione: 0, penna: null, presenti: [], ultima: null, richiesta: null }; }
+function statoVuoto(){
+  return { revisione: 0, penna: null, presenti: [], ultima: null, richiesta: null, ricarica: 0 };
+}
 
 async function leggiStato(){
   try{
@@ -2328,6 +2338,10 @@ async function sbircia(){
     S.ultimaVista = s.ultima.rev;
     applicaDaRemoto(s.ultima);
   }
+  if(s.ricarica && s.ricarica !== S.ricaricaVista){
+    S.ricaricaVista = s.ricarica;
+    if(!S.mia) await ricaricaDati();
+  }
   if(!S.mia && S.seguo && s.penna && s.penna.carta){
     const c = dati.carte.find(x => String(x.num) === String(s.penna.carta));
     if(c && c !== sel) scegliCarta(c);
@@ -2369,6 +2383,33 @@ async function annunciaCarta(c, tolta){
     });
     S.ultimaVista = S.stato.revisione;
   }catch(e){ console.warn('non sono riuscito ad annunciare la carta', e); }
+}
+
+/* Dopo un lavoro in blocco — l'abbinamento delle foto, per esempio — annunciare
+   una carta per volta sarebbe uno spreco: si alza un contatore e chi guarda
+   rilegge dati.json da capo, una volta sola. */
+async function avvisaRicarica(){
+  if(!DRIVE.attiva || !S.mia) return;
+  try{
+    await cambiaStato(st =>{ st.ricarica = (st.ricarica||0) + 1; miSegno(st, true); });
+    S.ricaricaVista = S.stato.ricarica;
+  }catch(e){ console.warn('non sono riuscito ad avvisare gli altri', e); }
+}
+
+async function ricaricaDati(){
+  try{
+    const numeroSel = sel ? String(sel.num) : null;
+    const d = JSON.parse(await (await leggiFile(cart.dashboard,'dati.json')).text());
+    dati.carte = d.carte;
+    dati.scartate = d.scartate || [];
+    dati.carte.forEach(c=>{ c.zoom = c.zoom||1; c.panX = c.panX ?? .5; c.panY = c.panY ?? .38;
+                            c.file = c.file || nomeFile(c); });
+    ordinaCarte(); fotoCache.clear();
+    sel = dati.carte.find(c => String(c.num) === numeroSel) || dati.carte[0] || null;
+    disegnaLista();
+    if(sel){ costruisciForm(); aggiornaAnteprima(); }
+    segnala('Dati riletti da Drive','ok');
+  }catch(e){ console.warn('rilettura fallita', e); }
 }
 
 async function prendiPenna(){
@@ -2446,6 +2487,7 @@ async function avviaSemaforo(){
   if(pennaLibera(s)){ await cambiaStato(st =>{ if(pennaLibera(st)) miSegno(st, true); }); S.mia = pennaMia(S.stato); }
   else { await cambiaStato(st => miSegno(st, false)); S.mia = false; }
   S.ultimaVista = (S.stato.ultima && S.stato.ultima.rev) || -1;
+  S.ricaricaVista = S.stato.ricarica || 0;
   clearInterval(S.tBattito); clearInterval(S.tSbircia);
   S.tBattito = setInterval(battito, BATTITO);
   S.tSbircia = setInterval(sbircia, SBIRCIATA);
@@ -2460,6 +2502,145 @@ async function avviaSemaforo(){
   });
   disegnaSemaforo();
   costruisciForm();
+}
+
+/* ═══════════════  Abbinamento automatico foto → carte  ══════════════════════
+
+   La cartella Foto è già letta per intero all'apertura, quindi non serve nessun
+   collegamento in più: basta confrontare i nomi. Il confronto è fatto su una
+   forma ridotta — senza accenti, senza estensione, senza maiuscole né
+   punteggiatura — così «Peppe Giammarino.png» e «peppe giammarino» combaciano.
+
+   Le combacianti esatte si spuntano da sole; le somiglianti no, perché
+   «Il Conte» e «Il Conte (2015)» sono due carte diverse e l'ultima parola
+   spetta a chi guarda.                                                        */
+
+const CODE = /\s*(\(.*\)|- ?(luogo|creatura|nutrizione|evidente inutilit[àa]|ab\.? ?decisamente speciale)|variant|2015|vecchio|nuovo)\s*$/i;
+
+function chiaveNome(s){
+  return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/\.(jpe?g|png|webp|gif|bmp)$/i,'')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,' ')
+    .trim();
+}
+
+/* Distanza di Levenshtein, per acchiappare i refusi: «Ahi madonn» contro
+   «Ahi Madonna» è uno scarto di uno. */
+function scarto(a, b){
+  if(Math.abs(a.length-b.length) > 3) return 99;
+  const m = a.length, n = b.length;
+  let riga = Array.from({length:n+1}, (_,j)=>j);
+  for(let i=1;i<=m;i++){
+    let prec = riga[0]; riga[0] = i;
+    for(let j=1;j<=n;j++){
+      const t = riga[j];
+      riga[j] = Math.min(riga[j]+1, riga[j-1]+1, prec + (a[i-1]===b[j-1] ? 0 : 1));
+      prec = t;
+    }
+  }
+  return riga[n];
+}
+
+function cercaAbbinamenti(){
+  const perChiave = new Map();                    // chiave → [nomi di file]
+  for(const f of fotoDisponibili){
+    const k = chiaveNome(f);
+    if(!perChiave.has(k)) perChiave.set(k, []);
+    perChiave.get(k).push(f);
+  }
+  const chiavi = [...perChiave.keys()];
+  const esatti = [], somiglianti = [];
+
+  for(const c of dati.carte){
+    // salto chi ha già una foto che esiste davvero
+    if(c.foto && fotoDisponibili.includes(c.foto)) continue;
+    const k = chiaveNome(c.nome);
+    if(!k) continue;
+
+    if(perChiave.has(k)){
+      const file = perChiave.get(k);
+      esatti.push({ c, file: file[0], altri: file.slice(1) });
+      continue;
+    }
+    // somiglianti: il file ha una coda decorativa, oppure è un refuso
+    let meglio = null;
+    for(const k2 of chiavi){
+      let motivo = null;
+      if(k2.startsWith(k) && chiaveNome(perChiave.get(k2)[0].replace(CODE,'')) === k) motivo = 'con una coda nel nome';
+      else if(k2.startsWith(k) && k2.length - k.length <= 12) motivo = 'nome del file più lungo';
+      else if(k.startsWith(k2) && k.length - k2.length <= 12) motivo = 'nome della carta più lungo';
+      else if(k.length > 6){ const d = scarto(k, k2); if(d > 0 && d <= 2) motivo = d===1 ? 'una lettera di differenza' : 'due lettere di differenza'; }
+      if(motivo){
+        const cand = { c, file: perChiave.get(k2)[0], motivo, quanto: Math.abs(k2.length - k.length) };
+        if(!meglio || cand.quanto < meglio.quanto) meglio = cand;
+      }
+    }
+    if(meglio) somiglianti.push(meglio);
+  }
+  return { esatti, somiglianti };
+}
+
+let abbinamenti = null;
+
+function mostraAbbinamenti(){
+  abbinamenti = cercaAbbinamenti();
+  const { esatti, somiglianti } = abbinamenti;
+  const p = $('#pannellodoc');
+  p.className = 'on';
+  if(!esatti.length && !somiglianti.length){
+    p.innerHTML = `<h3>Foto da abbinare</h3><div class="dett">Nessuna carta senza foto
+      ha un nome che corrisponde a un file della cartella <i>Foto</i>.</div>
+      <div class="azioni"><button class="minibtn" id="ab-chiudi">Chiudi</button></div>`;
+    $('#ab-chiudi').onclick = ()=> p.className = '';
+    return;
+  }
+  const voci = [];
+  esatti.forEach((x,i)=> voci.push(`<li><input type="checkbox" data-t="e" data-i="${i}" checked>
+     <div><b>${escapeHtml(x.c.nome)}</b> (carta ${escapeHtml(String(x.c.num))})
+     <div class="dett">${escapeHtml(x.file)}${x.altri.length ? ' — attenzione: ci sono anche '+escapeHtml(x.altri.join(', ')) : ''}</div></div></li>`));
+  somiglianti.forEach((x,i)=> voci.push(`<li><input type="checkbox" data-t="s" data-i="${i}">
+     <div><b>${escapeHtml(x.c.nome)}</b> (carta ${escapeHtml(String(x.c.num))})
+     <div class="dett">→ ${escapeHtml(x.file)} · ${escapeHtml(x.motivo)}</div></div></li>`));
+
+  const capo = [ esatti.length ? esatti.length+' combaciano esattamente' : '',
+                 somiglianti.length ? somiglianti.length+' si somigliano' : '' ].filter(Boolean).join(', ');
+  p.innerHTML = `<h3>Foto da abbinare: ${capo}</h3>
+    <div class="dett" style="margin-bottom:8px">Le esatte sono già spuntate. Le somiglianti
+      no: controllale una per una, perché «Il Conte» e «Il Conte (2015)» sono due carte diverse.</div>
+    <ul>${voci.join('')}</ul>
+    <div class="azioni"><button class="vai" id="ab-applica">Applica le selezionate</button>
+      <button class="minibtn" id="ab-tutte">Seleziona tutto</button>
+      <button class="minibtn" id="ab-chiudi">Chiudi</button>
+      <span class="dett" id="ab-stato"></span></div>`;
+  $('#ab-tutte').onclick = ()=> p.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=true);
+  $('#ab-chiudi').onclick = ()=> p.className = '';
+  $('#ab-applica').onclick = applicaAbbinamenti;
+}
+
+async function applicaAbbinamenti(){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const p = $('#pannellodoc');
+  const scelte = [...p.querySelectorAll('input[type=checkbox]:checked')];
+  if(!scelte.length) return;
+  const daFare = scelte.map(i =>
+      i.dataset.t === 'e' ? abbinamenti.esatti[+i.dataset.i] : abbinamenti.somiglianti[+i.dataset.i]);
+
+  $('#ab-applica').disabled = true;
+  let fatte = 0;
+  for(const x of daFare){
+    x.c.foto = x.file; x.c.zoom = 1; x.c.panX = .5; x.c.panY = .38;
+    // il salvataggio dei dati lo faccio una volta sola in fondo: qui solo il PNG
+    await salvaCarta(x.c, true);
+    $('#ab-stato').textContent = `${++fatte}/${daFare.length}`;
+  }
+  fotoCache.clear();
+  await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  segnaStoria(`${fatte} foto abbinate`);
+  await avvisaRicarica();
+  p.className = '';
+  disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  segnala(`${fatte} foto abbinate`,'ok');
 }
 
 /* ─────────────  pannello differenze col documento  ───────────── */
@@ -2726,6 +2907,7 @@ async function applicaDalDocumento(){
 
 $('#cerca').oninput = disegnaLista;
 $('#btncompleta').onclick = ()=>{ vistaCompleta = !vistaCompleta; disegnaLista(); };
+$('#btnfoto').onclick = mostraAbbinamenti;
 $('#nuova').onclick = e => {
   e.stopPropagation();
   if($('#menutipi').style.display === 'block') chiudiMenuTipi();
