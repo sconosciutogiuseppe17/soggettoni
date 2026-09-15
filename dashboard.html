@@ -199,7 +199,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v29 · abbina le foto dal nome</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v30 · rilettura della cartella Foto</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -1555,6 +1555,8 @@ function costruisciForm(){
       ${fotoDisponibili.map(f=>`<option${f===c.foto?' selected':''}>${escapeHtml(f)}</option>`).join('')}
       ${c.foto && !fotoDisponibili.includes(c.foto) ? `<option selected>${escapeHtml(c.foto)}</option>` : ''}
     </select>
+    <div style="margin-top:6px"><button id="f-rileggi" class="minibtn" type="button"
+        title="Cerca nella cartella Foto i file caricati dopo l'apertura">Rileggi la cartella Foto</button></div>
     <div style="height:10px"></div>
     <div id="barrafoto">
       <span style="font-size:12px;color:var(--testo2)">zoom</span>
@@ -1579,6 +1581,15 @@ function costruisciForm(){
   }else{
     $('#campi').classList.remove('spento');
   }
+
+  const rileggi = $('#f-rileggi');
+  if(rileggi) rileggi.onclick = async ()=>{
+    rileggi.disabled = true;
+    segnala('Rileggo la cartella Foto…','lavoro');
+    const nuove = await rileggiFoto();
+    costruisciForm();                       // il menù si ricostruisce con l'elenco fresco
+    segnala(nuove > 0 ? `${nuove} foto nuove: ora sono nel menù` : 'Nessuna foto nuova', 'ok');
+  };
 
   $('#f-tipo').onchange = e => {
     c.tipo = e.target.value;
@@ -2504,6 +2515,22 @@ async function avviaSemaforo(){
   costruisciForm();
 }
 
+/* L'elenco della cartella Foto viene letto all'apertura. Se nel frattempo
+   qualcuno ci carica un file — cosa normalissima, su Drive lo si fa da un'altra
+   scheda — la dashboard non lo vedrebbe fino al ricaricamento. Questa lo rilegge
+   sul momento, buttando via la copia in memoria della cartella. */
+async function rileggiFoto(){
+  try{
+    if(cart.foto && cart.foto._scorda) cart.foto._scorda();
+    const trovate = [];
+    for await (const [n, h] of cart.foto.entries()) if(h.kind === 'file') trovate.push(n);
+    trovate.sort((a,b)=> a.localeCompare(b,'it'));
+    const prima = fotoDisponibili.length;
+    fotoDisponibili = trovate;
+    return trovate.length - prima;
+  }catch(e){ console.warn('non sono riuscito a rileggere la cartella Foto', e); return 0; }
+}
+
 /* ═══════════════  Abbinamento automatico foto → carte  ══════════════════════
 
    La cartella Foto è già letta per intero all'apertura, quindi non serve nessun
@@ -2583,7 +2610,10 @@ function cercaAbbinamenti(){
 
 let abbinamenti = null;
 
-function mostraAbbinamenti(){
+async function mostraAbbinamenti(){
+  segnala('Rileggo la cartella Foto…','lavoro');
+  const nuove = await rileggiFoto();
+  segnala(nuove > 0 ? `${nuove} foto nuove nella cartella` : 'Cartella Foto riletta', 'ok');
   abbinamenti = cercaAbbinamenti();
   const { esatti, somiglianti } = abbinamenti;
   const p = $('#pannellodoc');
