@@ -24,7 +24,10 @@
   #famiglia button{background:none;border:0;color:var(--testo2);padding:5px 15px;font-size:12.5px}
   #famiglia button:hover{color:var(--testo)}
   #famiglia button.on{background:var(--arancio);color:#241a10;font-weight:700}
-  #btnfoto{margin-left:auto;background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+  #btnnumeri{margin-left:auto;background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo2);
+     border-radius:20px;padding:5px 13px;font-size:12.5px;display:none}
+  #btnnumeri:hover{border-color:var(--arancio);color:var(--arancio)}
+  #btnfoto{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
      border-radius:20px;padding:5px 13px;font-size:12.5px;display:none}
   #btnfoto:hover{border-color:var(--arancio);color:var(--arancio)}
   #btncompleta{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
@@ -184,6 +187,10 @@
   #semaforo button:hover{border-color:var(--arancio);color:var(--arancio)}
   #semaforo button.vivo{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
   #semaforo .segui{color:var(--testo2);display:flex;align-items:center;gap:5px}
+  #zonaok{font-size:12px;border-radius:7px;padding:7px 9px;margin:8px 0 16px;
+     display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+  #zonaok.incompleta{background:var(--pannello2);color:var(--testo2)}
+  #zonaok.perscelta{background:#22331f;color:var(--verde)}
   #sololettura{background:#3a2f1c;border:1px solid var(--oro);border-radius:8px;padding:9px 11px;
      margin-bottom:14px;font-size:12.5px;color:var(--oro)}
   #campi.spento input,#campi.spento textarea,#campi.spento select,#campi.spento button{
@@ -199,7 +206,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v30 · rilettura della cartella Foto</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v31 · va bene così, numeri compatti</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -208,6 +215,7 @@
     <button id="annulla" type="button">↶ Annulla</button>
     <button id="rifai" type="button">Rifai ↷</button>
   </div>
+  <button id="btnnumeri" type="button" title="Fa scalare le carte di seconda edizione per coprire i numeri rimasti vuoti">Compatta i numeri</button>
   <button id="btnfoto" type="button" title="Cerca nella cartella Foto i file che hanno lo stesso nome delle carte senza foto">Abbina foto</button>
   <button id="btncompleta" type="button">Da completare</button>
   <div id="stato"><i id="pallino"></i><span id="statotxt">Nessuna cartella collegata</span></div>
@@ -1357,8 +1365,15 @@ function mancanze(c){
   }
 
   if(!(c.ab||'').trim() && !(c.desc||'').trim()) m.push({g:'testo'});
-  return m;
+
+  /* «Va bene così»: certe carte sono finite anche se un campo resta vuoto —
+     Nicola della Gatta ha il solo valore che le serve, e a qualche accessorio
+     la descrizione non serve proprio. Quello che è stato dichiarato a posto
+     smette di contare come mancanza, ma solo per gli aspetti dichiarati: se
+     domani sparisce la foto, quella torna a mancare. */
+  return (c.ok && c.ok.length) ? m.filter(x => !c.ok.includes(x.g)) : m;
 }
+const NOMEMANCANZA = { foto:'la foto', valori:'i valori', testo:'la descrizione' };
 let vistaCompleta = false;
 let famigliaVista = 'soggettone';
 
@@ -1397,6 +1412,10 @@ function disegnaLista(){
   const b = $('#btncompleta');
   b.style.display = 'flex';
   $('#btnfoto').style.display = 'inline-block';
+  const buchiNum = pianoCompattazione().length;
+  const bn = $('#btnnumeri');
+  bn.style.display = buchiNum ? 'inline-block' : 'none';
+  bn.textContent = `Compatta i numeri (${buchiNum})`;
   b.classList.toggle('on', vistaCompleta);
   b.innerHTML = 'Da completare' + (buchi.size ? ` <span class="badge">${buchi.size}</span>` : '');
 
@@ -1489,6 +1508,20 @@ const OPZ_MOD = ['MIN','-6','-5','-4','-3','-2','-1','=','+1','+2','+3','+4','+5
 const valMod = v => (v==='MAX'||v==='MIN') ? v : (parseInt(v,10) ? (v>0?'+':'')+parseInt(v,10) : '=');
 const daMod = t => (t==='MAX'||t==='MIN') ? t : (parseInt(t,10)||0);
 
+function rigaCompletezza(c){
+  const buchi = mancanze(c), scelte = c.ok || [];
+  if(buchi.length){
+    const che = buchi.map(x => NOMEMANCANZA[x.g]);
+    return `<div id="zonaok" class="incompleta">${che.length > 1 ? 'Mancano' : 'Manca'}
+      ${che.join(' e ')}. <button id="ok-si" type="button" class="minibtn">Va bene così</button></div>`;
+  }
+  if(scelte.length)
+    return `<div id="zonaok" class="perscelta">Completa per tua scelta: senza
+      ${scelte.map(g=>NOMEMANCANZA[g]).join(' e ')}.
+      <button id="ok-no" type="button" class="minibtn">Rimettila fra le incomplete</button></div>`;
+  return '<div style="height:16px"></div>';
+}
+
 function costruisciForm(){
   const c = sel, sp = specieDi(c);
   const opzTipo = Object.entries(SPECIE).map(([k,v])=>
@@ -1534,7 +1567,8 @@ function costruisciForm(){
     <div style="height:12px"></div>
     <label for="f-nome">Nome</label>
     <input id="f-nome" type="text" value="${escapeHtml(c.nome)}" spellcheck="false">
-    <div class="nota" style="margin-bottom:16px">file: ${escapeHtml(c.file||'—')}</div>
+    <div class="nota">file: ${escapeHtml(c.file||'—')}</div>
+    ${rigaCompletezza(c)}
 
     ${testata}
     ${griglia}
@@ -1581,6 +1615,15 @@ function costruisciForm(){
   }else{
     $('#campi').classList.remove('spento');
   }
+
+  const okSi = $('#ok-si');
+  if(okSi) okSi.onclick = ()=>{
+    const g = mancanze(c).map(x => x.g);            // vanno presi prima di scrivere c.ok
+    c.ok = [...new Set([...(c.ok||[]), ...g])];
+    cambiata(); costruisciForm();
+  };
+  const okNo = $('#ok-no');
+  if(okNo) okNo.onclick = ()=>{ delete c.ok; cambiata(); costruisciForm(); };
 
   const rileggi = $('#f-rileggi');
   if(rileggi) rileggi.onclick = async ()=>{
@@ -1707,16 +1750,22 @@ function numeroPerTipo(c){
   if(String(c.num||'').startsWith(p) && (p ? /^[A-Z]\d+$/.test(c.num) : /^\d+$/.test(c.num))) return c.num;
   return prossimoNumero(c.tipo||'soggettone', c);
 }
+/* Il primo numero libero, non il successivo all'ultimo: così i buchi lasciati
+   dalle carte eliminate si richiudono da soli invece di restare lì per sempre.
+   La ricerca parte dal primo numero di seconda edizione, perché quelli di prima
+   sono stampati sulle carte del 2015 e non vanno riusati. */
 function prossimoNumero(tipo, esclusa){
   const p = PREFISSO[tipo];
-  let max = 0;
+  const presi = new Set();
   for(const x of dati.carte){
     if(x === esclusa) continue;
     const m = p ? new RegExp('^'+p+'(\\d+)$').exec(String(x.num))
                 : /^(\d+)$/.exec(String(x.num));
-    if(m) max = Math.max(max, +m[1]);
+    if(m) presi.add(+m[1]);
   }
-  return p + (max+1);
+  let n = primoDiSeconda(p);
+  while(presi.has(n)) n++;
+  return p + n;
 }function etichettaVal(v){ return v===7?'arc':(v===6?'oro':String(v)); }
 
 let tRender=null, tSalva=null;
@@ -1834,7 +1883,7 @@ let inCorso = false, riprova = null;
 /* `soloPNG` serve ai lavori in blocco (l'abbinamento delle foto): rigenera il
    disegno e la riga dell'elenco, ma lascia a chi chiama il compito di scrivere
    dati.json una volta sola alla fine, invece di riscriverlo per ogni carta. */
-async function salvaCarta(c, soloPNG){
+async function salvaCarta(c, soloPNG, senzaCopia){
   if(inCorso){ riprova = c; return; }
   inCorso = true;
   try{
@@ -1844,7 +1893,7 @@ async function salvaCarta(c, soloPNG){
 
     // 1. copia di sicurezza della versione precedente (una al giorno)
     const nomeBk = vecchioFile.replace(/\.png$/i,'') + ` — ${oggi()}.png`;
-    let esiste = true;
+    let esiste = senzaCopia;       // se non serve la copia, faccio finta che ci sia già
     try{ await cart.versioni.getFileHandle(nomeBk); }catch(e){ esiste = false; }
     if(!esiste){
       try{
@@ -1864,7 +1913,7 @@ async function salvaCarta(c, soloPNG){
     c.file = nome;
 
     // 3. elenco + dati
-    await aggiornaElenco(c);
+    if(!soloPNG) await aggiornaElenco(c);
     if(!soloPNG) await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
 
     c._mod = false; disegnaLista();
@@ -2531,6 +2580,115 @@ async function rileggiFoto(){
   }catch(e){ console.warn('non sono riuscito a rileggere la cartella Foto', e); return 0; }
 }
 
+/* ═══════════════  Numerazione: buchi, primo libero, compattazione  ═══════════
+
+   I numeri di prima edizione sono stampati sulle carte vere del 2015 e non si
+   toccano: soggettoni 1-201, luoghi A1-A9, abilità B1-B5, valori D1-D12. Tutto
+   il resto è seconda edizione e si può rinumerare.                            */
+
+function primoDiSeconda(prefisso){
+  return prefisso === ''  ? 202
+       : prefisso === 'A' ? 10
+       : prefisso === 'B' ? 6
+       : prefisso === 'D' ? 13 : 1;
+}
+
+function numeroDi(c){
+  const m = /^([A-Za-z]*)(\d+)$/.exec(String(c.num||''));
+  return m ? { p: m[1].toUpperCase(), n: +m[2] } : null;
+}
+
+/* Il piano: per ogni prefisso, le carte di seconda edizione in ordine prendono
+   i numeri consecutivi a partire dal primo di seconda edizione. Chi è già al
+   posto giusto non compare nel piano. */
+function pianoCompattazione(){
+  const perPrefisso = new Map();
+  for(const c of dati.carte){
+    const q = numeroDi(c);
+    if(!q) continue;
+    if(!perPrefisso.has(q.p)) perPrefisso.set(q.p, []);
+    perPrefisso.get(q.p).push({ c, n: q.n });
+  }
+  const cambi = [];
+  for(const [p, elenco] of perPrefisso){
+    const base = primoDiSeconda(p);
+    const seconda = elenco.filter(x => x.n >= base).sort((a,b)=> a.n - b.n);
+    let atteso = base;
+    for(const x of seconda){
+      if(x.n !== atteso) cambi.push({ c: x.c, da: String(x.c.num), a: p + atteso });
+      atteso++;
+    }
+  }
+  return cambi;
+}
+
+function mostraCompattazione(){
+  const cambi = pianoCompattazione();
+  const p = $('#pannellodoc');
+  p.className = 'on';
+  if(!cambi.length){
+    p.innerHTML = `<h3>Numerazione</h3><div class="dett">Non ci sono buchi: i numeri
+      sono già consecutivi.</div>
+      <div class="azioni"><button class="minibtn" id="nu-chiudi">Chiudi</button></div>`;
+    $('#nu-chiudi').onclick = ()=> p.className = '';
+    return;
+  }
+  const primi = cambi.slice(0, 12).map(x =>
+      `<li><div><b>${escapeHtml(x.c.nome)}</b><div class="dett">${escapeHtml(x.da)} → <b>${escapeHtml(x.a)}</b></div></div></li>`).join('');
+  p.innerHTML = `<h3>Compatto i numeri: ${cambi.length} carte da spostare</h3>
+    <div class="dett" style="margin-bottom:8px">Le carte di prima edizione — soggettoni
+      1-201, luoghi A1-A9, abilità B1-B5, valori D1-D12 — restano dove sono, perché quei
+      numeri sono stampati sulle carte del 2015. Tutte le altre scalano a coprire i buchi.
+      <b>Ogni carta va ridisegnata</b>, perché il numero è stampato in basso a destra:
+      metterà parecchi minuti e la pagina va lasciata aperta.</div>
+    <ul>${primi}${cambi.length>12 ? `<li><div class="dett">… e altre ${cambi.length-12}</div></li>` : ''}</ul>
+    <div class="azioni"><button class="vai" id="nu-vai">Compatta</button>
+      <button class="minibtn" id="nu-chiudi">Lascia stare</button>
+      <span class="dett" id="nu-stato"></span></div>`;
+  $('#nu-chiudi').onclick = ()=> p.className = '';
+  $('#nu-vai').onclick = ()=> applicaCompattazione(cambi);
+}
+
+async function applicaCompattazione(cambi){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const vai = $('#nu-vai'); if(vai) vai.disabled = true;
+  await chiudiInSospeso();
+
+  // prima tutti i numeri in memoria, poi i file: così l'ordine dell'elenco è
+  // già quello nuovo mentre si lavora
+  for(const x of cambi) x.c.num = x.a;
+  ordinaCarte();
+
+  let fatte = 0;
+  for(const x of cambi){
+    // niente copia di scorta: il disegno è identico a prima tranne il numerino,
+    // e 500 copie riempirebbero mezzo giga per niente
+    await salvaCarta(x.c, true, true);
+    fatte++;
+    const st = $('#nu-stato'); if(st) st.textContent = `${fatte}/${cambi.length}`;
+    segnala(`Compatto i numeri… ${fatte}/${cambi.length}`,'lavoro');
+    // un punto di ripresa ogni cinquanta: se qualcosa va storto a metà,
+    // i dati sul disco sono comunque allineati ai file già rifatti
+    if(fatte % 50 === 0)
+      await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  }
+  await riscriviElenco();
+  await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  segnaStoria(`${cambi.length} numeri compattati`);
+  await avvisaRicarica();
+  $('#pannellodoc').className = '';
+  disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  segnala(`${cambi.length} carte rinumerate`,'ok');
+}
+
+/* Rifà l'elenco per intero. Nei lavori in blocco riscrivere una riga per volta
+   vorrebbe dire leggere e riscrivere un file da 40 KB cinquecento volte. */
+async function riscriviElenco(){
+  try{
+    await scriviFile(cart.carteNuove, '_elenco.txt', dati.carte.map(rigaElenco).join('\n'));
+  }catch(e){ console.warn('elenco non riscritto', e); }
+}
+
 /* ═══════════════  Abbinamento automatico foto → carte  ══════════════════════
 
    La cartella Foto è già letta per intero all'apertura, quindi non serve nessun
@@ -2665,6 +2823,7 @@ async function applicaAbbinamenti(){
     $('#ab-stato').textContent = `${++fatte}/${daFare.length}`;
   }
   fotoCache.clear();
+  await riscriviElenco();
   await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
   segnaStoria(`${fatte} foto abbinate`);
   await avvisaRicarica();
@@ -2938,6 +3097,7 @@ async function applicaDalDocumento(){
 $('#cerca').oninput = disegnaLista;
 $('#btncompleta').onclick = ()=>{ vistaCompleta = !vistaCompleta; disegnaLista(); };
 $('#btnfoto').onclick = mostraAbbinamenti;
+$('#btnnumeri').onclick = mostraCompattazione;
 $('#nuova').onclick = e => {
   e.stopPropagation();
   if($('#menutipi').style.display === 'block') chiudiMenuTipi();
