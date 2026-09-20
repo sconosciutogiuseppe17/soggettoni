@@ -206,7 +206,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v31 · va bene così, numeri compatti</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v32 · buchi tappati dalla coda</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -2598,9 +2598,14 @@ function numeroDi(c){
   return m ? { p: m[1].toUpperCase(), n: +m[2] } : null;
 }
 
-/* Il piano: per ogni prefisso, le carte di seconda edizione in ordine prendono
-   i numeri consecutivi a partire dal primo di seconda edizione. Chi è già al
-   posto giusto non compare nel piano. */
+/* Il piano: i buchi li tappano le carte in coda, non tutta la fila che scala.
+   Se mancano A10 e A11 e l'ultima è A93, allora A93 diventa A10 e A92 diventa
+   A11: si muovono due carte invece di settanta, e il risultato è lo stesso —
+   numeri consecutivi, senza vuoti.
+
+   Il conto torna sempre: se di seconda edizione ce ne sono n a partire da
+   `base`, la serie giusta finisce a `base+n-1`; i numeri mancanti sotto quella
+   soglia sono esattamente tanti quanti quelli che avanzano sopra. */
 function pianoCompattazione(){
   const perPrefisso = new Map();
   for(const c of dati.carte){
@@ -2612,12 +2617,15 @@ function pianoCompattazione(){
   const cambi = [];
   for(const [p, elenco] of perPrefisso){
     const base = primoDiSeconda(p);
-    const seconda = elenco.filter(x => x.n >= base).sort((a,b)=> a.n - b.n);
-    let atteso = base;
-    for(const x of seconda){
-      if(x.n !== atteso) cambi.push({ c: x.c, da: String(x.c.num), a: p + atteso });
-      atteso++;
-    }
+    const seconda = elenco.filter(x => x.n >= base);
+    if(!seconda.length) continue;
+    const presi = new Set(seconda.map(x => x.n));
+    const ultimo = base + seconda.length - 1;
+    const buchi = [];
+    for(let n = base; n <= ultimo; n++) if(!presi.has(n)) buchi.push(n);
+    const avanzi = seconda.filter(x => x.n > ultimo).sort((a,b)=> b.n - a.n);  // dalla più alta
+    for(let i = 0; i < buchi.length && i < avanzi.length; i++)
+      cambi.push({ c: avanzi[i].c, da: String(avanzi[i].c.num), a: p + buchi[i] });
   }
   return cambi;
 }
@@ -2636,11 +2644,11 @@ function mostraCompattazione(){
   const primi = cambi.slice(0, 12).map(x =>
       `<li><div><b>${escapeHtml(x.c.nome)}</b><div class="dett">${escapeHtml(x.da)} → <b>${escapeHtml(x.a)}</b></div></div></li>`).join('');
   p.innerHTML = `<h3>Compatto i numeri: ${cambi.length} carte da spostare</h3>
-    <div class="dett" style="margin-bottom:8px">Le carte di prima edizione — soggettoni
-      1-201, luoghi A1-A9, abilità B1-B5, valori D1-D12 — restano dove sono, perché quei
-      numeri sono stampati sulle carte del 2015. Tutte le altre scalano a coprire i buchi.
-      <b>Ogni carta va ridisegnata</b>, perché il numero è stampato in basso a destra:
-      metterà parecchi minuti e la pagina va lasciata aperta.</div>
+    <div class="dett" style="margin-bottom:8px">I buchi vengono tappati dalle carte in
+      coda: l'ultima prende il primo numero libero, la penultima il secondo, e così via.
+      Le carte di prima edizione — soggettoni 1-201, luoghi A1-A9, abilità B1-B5, valori
+      D1-D12 — non si muovono, perché quei numeri sono stampati sulle carte del 2015.
+      Ogni carta spostata va ridisegnata, perché il numero è stampato in basso a destra.</div>
     <ul>${primi}${cambi.length>12 ? `<li><div class="dett">… e altre ${cambi.length-12}</div></li>` : ''}</ul>
     <div class="azioni"><button class="vai" id="nu-vai">Compatta</button>
       <button class="minibtn" id="nu-chiudi">Lascia stare</button>
