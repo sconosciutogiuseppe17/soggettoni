@@ -12,11 +12,12 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--fondo);color:var(--testo);
-       font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;height:100vh;overflow:hidden}
+       font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;height:100vh;overflow:hidden;
+       display:flex;flex-direction:column}
   button{font:inherit;cursor:pointer}
 
   header{display:flex;align-items:center;gap:16px;padding:10px 18px;background:var(--pannello);
-         border-bottom:1px solid var(--bordo);height:54px}
+         border-bottom:1px solid var(--bordo);height:54px;flex:none}
   header h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.02em}
   header h1 span{color:var(--arancio)}
   #stato{font-size:12.5px;color:var(--testo2);display:flex;align-items:center;gap:8px}
@@ -46,8 +47,11 @@
   #pallino{width:8px;height:8px;border-radius:50%;background:var(--testo2)}
   #pallino.ok{background:var(--verde)} #pallino.lavoro{background:var(--oro)} #pallino.err{background:var(--rosso)}
 
-  #app{display:grid;grid-template-columns:270px minmax(0,1fr) 380px;height:calc(100vh - 54px)}
-  body.condivisa #app{height:calc(100vh - 54px - 37px)}
+  /* L'altezza non si calcola più a mano: sopra l'elenco possono comparire il semaforo
+     della penna e la barra dei pack, che è alta quanto serve alle pastiglie che ci stanno.
+     Il corpo è una colonna elastica e #app si prende quello che resta. */
+  #app{display:grid;grid-template-columns:270px minmax(0,1fr) 380px;flex:1;min-height:0}
+  #benvenuto{flex:1;min-height:0;overflow-y:auto}
   @media(max-width:1200px){#app{grid-template-columns:220px minmax(0,1fr) 330px}}
 
   aside{border-right:1px solid var(--bordo);display:flex;flex-direction:column;min-height:0;background:var(--pannello)}
@@ -172,7 +176,7 @@
   #pannellodoc .dett{color:var(--testo2);font-size:12px}
   #pannellodoc .azioni{display:flex;gap:9px;align-items:center;margin-top:10px}
   #pannellodoc .vai{background:var(--arancio);color:#241a10;border:0;border-radius:7px;padding:7px 14px;font-weight:700}
-  #semaforo{display:none;align-items:center;gap:12px;padding:7px 18px;font-size:12.5px;
+  #semaforo{display:none;align-items:center;gap:12px;padding:7px 18px;font-size:12.5px;flex:none;
      border-bottom:1px solid var(--bordo);background:var(--pannello2)}
   #semaforo .pallina{width:9px;height:9px;border-radius:50%;background:var(--testo2);flex:none}
   #semaforo.mia .pallina{background:var(--verde)}
@@ -196,6 +200,34 @@
   #campi.spento input,#campi.spento textarea,#campi.spento select,#campi.spento button{
      pointer-events:none;opacity:.5}
   #campi.spento #zonalettura{pointer-events:auto;opacity:1}
+
+  /* ── Pack: la barra del filtro e le pastiglie ──────────────────────────── */
+  #barrapack{display:none;align-items:flex-start;gap:12px;padding:7px 18px;font-size:12.5px;
+     border-bottom:1px solid var(--bordo);background:var(--pannello2);flex:none}
+  #barrapack .et{color:var(--testo2);padding-top:4px;flex:none}
+  #barrapack .pkfiltri{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:6px}
+  #barrapack .pkazioni{flex:none;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+  #barrapack input{background:var(--pannello);border:1px solid var(--bordo);color:var(--testo);
+     border-radius:7px;padding:4px 9px;font:inherit;width:170px}
+  #barrapack input:focus{outline:2px solid var(--arancio);outline-offset:-1px}
+  .pk{background:var(--pannello);border:1px solid var(--bordo);color:var(--testo2);
+     border-radius:20px;padding:3px 12px;font-size:12.5px;line-height:1.4}
+  .pk:hover{border-color:var(--arancio);color:var(--arancio)}
+  .pk.on{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
+  .pk i{font-style:normal;opacity:.7;font-variant-numeric:tabular-nums;margin-left:3px}
+  .chip{background:var(--pannello2);border:1px solid var(--bordo);color:var(--testo);
+     border-radius:20px;padding:4px 13px;font-size:12.5px;line-height:1.4}
+  .chip:hover{border-color:var(--arancio)}
+  .chip.on{background:var(--arancio);border-color:var(--arancio);color:#241a10;font-weight:700}
+  #packcarta,#packblocco{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+  .pk-riga{align-items:center}
+  .pk-riga .pk-campo{flex:1;min-width:0}
+  .pk-riga input{width:100%;background:var(--pannello);border:1px solid var(--bordo);
+     color:var(--testo);border-radius:6px;padding:5px 9px;font:inherit}
+  .pk-riga input:focus{outline:2px solid var(--arancio);outline-offset:-1px}
+  .pk-riga .minibtn{flex:none}
+  .pk-riga .pk-del{border-color:#7a3b34;color:#e08b80}
+  .pk-riga .pk-del:hover{background:#3a1f1c;border-color:#a3554b;color:#ffb3a7}
   #trascina{position:fixed;inset:0;background:#000c;z-index:80;display:none;
       align-items:center;justify-content:center;text-align:center;line-height:1.6;
       font-size:18px;color:var(--testo);border:3px dashed var(--arancio)}
@@ -206,7 +238,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v32 · buchi tappati dalla coda</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v33 · pack</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -251,6 +283,7 @@
 </div>
 
 <div id="semaforo"></div>
+<div id="barrapack"></div>
 
 <div id="app" style="display:none">
   <aside>
@@ -763,13 +796,35 @@ function disegnaCarta(ctx, c, foto){
 
   // dicitura di edizione: automatica in base al numero, per ogni carta nuova o vecchia.
   // Sulle creature va bianca, perché il loro sfondo non fa risaltare l'inchiostro scuro.
+  const colorePie = (c.tipo === 'creatura') ? '#FFFFFF' : ink;
   const dicituraEd = edizioneDi(c);
+  let iniziaEd = 1396;
   if(dicituraEd){
     ctx.font = `32px ${FAMIGLIE}`;
-    ctx.fillStyle = (c.tipo === 'creatura') ? '#FFFFFF' : ink;
+    ctx.fillStyle = colorePie;
     ctx.globalAlpha = 0.75;
     const m = inkMetrics(ctx, dicituraEd);
-    scriviInk(ctx, dicituraEd, 1287 - m.larg, 2110);
+    iniziaEd = 1287 - m.larg;
+    scriviInk(ctx, dicituraEd, iniziaEd, 2110);
+    ctx.globalAlpha = 1;
+  }
+
+  // nome del pack: l'angolo opposto, specchiato sulla stessa riga dell'edizione —
+  // stesso corpo, stessa trasparenza, stessa regola di colore. L'edizione è corta e
+  // fissa, il nome del pack lo scrive una persona: se è lungo rimpicciolisce, e solo
+  // se nemmeno a corpo 20 ci sta viene troncato, invece di finire sotto l'edizione.
+  const dicituraPk = nomePack(c);
+  if(dicituraPk){
+    const largo = iniziaEd - 40 - 109;
+    let corpo = 32, testo = dicituraPk;
+    ctx.font = `${corpo}px ${FAMIGLIE}`;
+    while(inkMetrics(ctx, testo).larg > largo && corpo > 20)
+      ctx.font = `${--corpo}px ${FAMIGLIE}`;
+    while(inkMetrics(ctx, testo).larg > largo && testo.length > 1)
+      testo = testo.slice(0, -2) + '\u2026';
+    ctx.fillStyle = colorePie;
+    ctx.globalAlpha = 0.75;
+    scriviInk(ctx, testo, 109, 2110 + (32 - corpo));   // resta appoggiato alla stessa riga
     ctx.globalAlpha = 1;
   }
 }
@@ -1327,6 +1382,9 @@ async function nuovaCarta(tipo){
   ordinaCarte();
   famigliaVista = sp.fam;
   vistaCompleta = true;                          // appena nata è per forza da completare
+  // se stai guardando un pack, la carta nuova nasce dentro quel pack: altrimenti
+  // sparirebbe dall'elenco appena creata
+  if(packVista && packVista !== '—') c.pack = packVista;
   scegliCarta(c);
   segnala('Carta ' + c.num + ' creata','ok');
   const campo = $('#f-nome');
@@ -1374,6 +1432,246 @@ function mancanze(c){
   return (c.ok && c.ok.length) ? m.filter(x => !c.ok.includes(x.g)) : m;
 }
 const NOMEMANCANZA = { foto:'la foto', valori:'i valori', testo:'la descrizione' };
+
+/* ═══════════════  Pack: mazzi ed espansioni  ════════════════════════════════
+
+   Un pack è un raggruppamento che taglia trasversale rispetto all'edizione e al
+   tipo: ci possono stare soggettoni e accessori insieme. Una carta sta in un
+   pack solo — il nome va stampato in basso a sinistra, e lì c'è posto per una
+   riga — e si toglie ricliccando lo stesso pack.
+
+   La carta porta `pack` con l'identificativo, non il nome: così il nome resta
+   in un posto solo e si può correggere senza andare a caccia in 868 carte.    */
+
+let packVista = '';           // '' = tutti
+
+function elencoPack(){ return (dati && dati.pacchetti) || []; }
+function packDi(c){ return c && c.pack ? elencoPack().find(p => p.id === c.pack) || null : null; }
+function nomePack(c){ const p = packDi(c); return p ? p.nome : ''; }
+/* Un elenco vuoto per colpa del filtro dei pack sembra un elenco vuoto per
+   davvero: questa coda dice quale filtro lo sta svuotando. */
+function dovePack(){
+  if(packVista === '') return '';
+  if(packVista === '—') return ' fra le carte senza pack';
+  const p = elencoPack().find(x => x.id === packVista);
+  return p ? ' nel pack «' + p.nome + '»' : '';
+}
+function inPackVista(c){
+  return packVista === '' ? true : packVista === '—' ? !c.pack : c.pack === packVista;
+}
+
+function creaPack(nome){
+  nome = (nome||'').trim();
+  if(!nome) return null;
+  if(!dati.pacchetti) dati.pacchetti = [];
+  const esiste = dati.pacchetti.find(p => p.nome.toLowerCase() === nome.toLowerCase());
+  if(esiste) return esiste;
+  const p = { id: 'p' + Math.random().toString(36).slice(2, 9), nome };
+  dati.pacchetti.push(p);
+  return p;
+}
+
+async function salvaPacchetti(){
+  try{ await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1)); }
+  catch(e){ segnala('Non sono riuscito a salvare i pack: '+e.message,'err'); }
+}
+
+/* ── la barra in alto: filtro e gestione ───────────────────────────────── */
+
+function disegnaBarraPack(){
+  const b = $('#barrapack');
+  if(!b) return;
+  if(!dati){ b.style.display = 'none'; return; }
+  // il semaforo la ridisegna a ogni sbirciata: se stessi battendo il nome di un pack
+  // nuovo, il campo sparirebbe sotto le dita
+  if(b.querySelector('#pk-form')) return;
+  b.style.display = 'flex';
+  const pacchi = elencoPack();
+  const quanti = {};
+  for(const c of dati.carte) if(c.pack) quanti[c.pack] = (quanti[c.pack]||0) + 1;
+  const senza = dati.carte.filter(c => !c.pack).length;
+
+  b.innerHTML = `<span class="et" title="Un pack può tenere insieme soggettoni e accessori: i numeri contano tutte le carte, non solo la famiglia che stai guardando">Pack</span>
+    <div class="pkfiltri">
+      <button type="button" class="pk${packVista===''?' on':''}" data-p="">Tutti <i>${dati.carte.length}</i></button>
+      ${pacchi.map(p => `<button type="button" class="pk${packVista===p.id?' on':''}" data-p="${escapeHtml(p.id)}"
+          >${escapeHtml(p.nome)} <i>${quanti[p.id]||0}</i></button>`).join('')}
+      <button type="button" class="pk${packVista==='—'?' on':''}" data-p="—">Senza pack <i>${senza}</i></button>
+    </div>
+    <div class="pkazioni">
+      <button type="button" id="pk-nuovo" class="minibtn">+ Nuovo pack</button>
+      <button type="button" id="pk-blocco" class="minibtn">Assegna in blocco</button>
+      ${pacchi.length ? '<button type="button" id="pk-gestisci" class="minibtn">Rinomina o elimina</button>' : ''}
+    </div>`;
+
+  b.querySelectorAll('button.pk').forEach(x => x.onclick = ()=>{
+    packVista = x.dataset.p;
+    disegnaLista();                 // ridisegna anche la barra, coi conteggi freschi
+  });
+  $('#pk-nuovo').onclick = chiediNuovoPack;
+  $('#pk-blocco').onclick = mostraAssegnaInBlocco;
+  const g = $('#pk-gestisci'); if(g) g.onclick = mostraGestionePack;
+
+  // chi guarda senza penna può filtrare quanto vuole — è solo un modo di leggere
+  // l'elenco — ma i tasti che scrivono restano spenti, invece di dire di no dopo
+  if(!possoScrivere())
+    b.querySelectorAll('.pkazioni .minibtn').forEach(x => {
+      x.disabled = true;
+      x.title = 'Per creare o cambiare i pack ti serve la penna';
+    });
+}
+
+function chiediNuovoPack(){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const b = $('#barrapack').querySelector('.pkazioni');
+  b.insertAdjacentHTML('beforeend',
+    `<span id="pk-form" style="display:flex;gap:6px"><input id="pk-nome" type="text" placeholder="nome del pack" spellcheck="false">
+     <button type="button" id="pk-ok" class="minibtn">Crea</button>
+     <button type="button" id="pk-no" class="minibtn">Annulla</button></span>`);
+  const campo = $('#pk-nome'); campo.focus();
+  const chiudi = ()=> disegnaBarraPack();
+  const fatto = async ()=>{
+    const p = creaPack(campo.value);
+    if(!p){ chiudi(); return; }
+    await salvaPacchetti();
+    // la vista non si muove: il pack appena nato serve per assegnarci la carta che
+    // hai davanti, e saltare su un elenco vuoto farebbe solo perdere il segno
+    disegnaBarraPack(); costruisciForm();
+    segnala('Pack «'+p.nome+'» creato: ora compare fra le pastiglie','ok');
+  };
+  $('#pk-ok').onclick = fatto;
+  $('#pk-no').onclick = chiudi;
+  campo.onkeydown = e => { if(e.key==='Enter') fatto(); if(e.key==='Escape') chiudi(); };
+}
+
+/* ── assegnazione di una singola carta, dal pannello di destra ─────────── */
+
+function rigaPack(c){
+  const pacchi = elencoPack();
+  if(!pacchi.length)
+    return `<label>Pack</label><div class="nota" style="margin-bottom:16px">Nessun pack:
+      creane uno dalla barra in alto.</div>`;
+  return `<label>Pack</label>
+    <div id="packcarta">${pacchi.map(p => `<button type="button" class="chip${c.pack===p.id?' on':''}"
+        data-p="${escapeHtml(p.id)}">${escapeHtml(p.nome)}</button>`).join('')}</div>
+    <div class="nota" style="margin-bottom:16px">Un clic assegna, un altro sullo stesso toglie.</div>`;
+}
+
+/* ── assegnazione in blocco su quello che si sta guardando ─────────────── */
+
+function mostraAssegnaInBlocco(){
+  const pacchi = elencoPack();
+  const p = $('#pannellodoc');
+  p.className = 'on';
+  if(!pacchi.length){
+    p.innerHTML = `<h3>Assegna in blocco</h3><div class="dett">Prima crea almeno un pack.</div>
+      <div class="azioni"><button class="minibtn" id="bl-chiudi">Chiudi</button></div>`;
+    $('#bl-chiudi').onclick = ()=> p.className = '';
+    return;
+  }
+  const viste = carteInElenco();
+  p.innerHTML = `<h3>Assegna in blocco: ${viste.length} carte</h3>
+    <div class="dett" style="margin-bottom:9px">Sono le carte che hai davanti adesso nell'elenco
+      di sinistra, cioè filtrate come le stai guardando: famiglia, vista «da completare»,
+      ricerca e pack. Scegli il pack a cui mandarle. <b>Ogni carta va ridisegnata</b>, perché il
+      nome del pack si stampa in basso a sinistra: con numeri grossi ci vogliono minuti.</div>
+    <div id="packblocco">${pacchi.map(x => `<button type="button" class="chip" data-p="${escapeHtml(x.id)}"
+        >${escapeHtml(x.nome)}</button>`).join('')}
+      <button type="button" class="chip" data-p="">— toglili dal pack —</button></div>
+    <div class="azioni"><button class="minibtn" id="bl-chiudi">Chiudi</button>
+      <span class="dett" id="bl-stato"></span></div>`;
+  $('#bl-chiudi').onclick = ()=> p.className = '';
+  p.querySelectorAll('#packblocco .chip').forEach(x =>
+      x.onclick = ()=> applicaInBlocco(viste, x.dataset.p, x.textContent.trim()));
+}
+
+async function applicaInBlocco(carte, idPack, etichetta){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const daFare = carte.filter(c => (c.pack||'') !== idPack);
+  if(!daFare.length){ segnala('Erano già tutte così','ok'); $('#pannellodoc').className=''; return; }
+  await chiudiInSospeso();
+  let fatte = 0;
+  for(const c of daFare){
+    if(idPack) c.pack = idPack; else delete c.pack;
+    await salvaCarta(c, true, true);
+    const st = $('#bl-stato'); if(st) st.textContent = `${++fatte}/${daFare.length}`;
+    segnala(`Assegno al pack… ${fatte}/${daFare.length}`,'lavoro');
+    if(fatte % 50 === 0) await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  }
+  await riscriviElenco();
+  await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  segnaStoria(`${daFare.length} carte assegnate a ${etichetta}`);
+  await avvisaRicarica();
+  $('#pannellodoc').className = '';
+  disegnaBarraPack(); disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  segnala(`${daFare.length} carte assegnate`,'ok');
+}
+
+/* ── rinomina ed elimina ───────────────────────────────────────────────── */
+
+function mostraGestionePack(){
+  const p = $('#pannellodoc');
+  p.className = 'on';
+  const quanti = {};
+  for(const c of dati.carte) if(c.pack) quanti[c.pack] = (quanti[c.pack]||0) + 1;
+  p.innerHTML = `<h3>Pack</h3>
+    <div class="dett" style="margin-bottom:9px">Rinominare un pack obbliga a ridisegnare le sue
+      carte, perché il nome è stampato sopra. Eliminarlo invece le lascia dove sono, senza pack.</div>
+    <ul>${elencoPack().map(x => `<li class="pk-riga">
+      <div class="pk-campo">
+        <input type="text" class="pk-rin" data-p="${escapeHtml(x.id)}" value="${escapeHtml(x.nome)}" spellcheck="false">
+        <div class="dett">${quanti[x.id]||0} ${(quanti[x.id]||0)===1?'carta':'carte'}</div>
+      </div>
+      <button class="minibtn pk-sal" data-p="${escapeHtml(x.id)}">Rinomina</button>
+      <button class="minibtn pk-del" data-p="${escapeHtml(x.id)}">Elimina</button></li>`).join('')}</ul>
+    <div class="azioni"><button class="minibtn" id="pk-chiudi">Chiudi</button>
+      <span class="dett" id="pk-stato"></span></div>`;
+  $('#pk-chiudi').onclick = ()=> p.className = '';
+  p.querySelectorAll('.pk-sal').forEach(b => b.onclick = ()=> rinominaPack(b.dataset.p));
+  p.querySelectorAll('.pk-del').forEach(b => b.onclick = ()=> eliminaPack(b.dataset.p));
+}
+
+async function rinominaPack(id){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const pk = elencoPack().find(x => x.id === id);
+  const campo = document.querySelector(`.pk-rin[data-p="${id}"]`);
+  const nuovo = (campo ? campo.value : '').trim();
+  if(!pk || !nuovo || nuovo === pk.nome){ return; }
+  pk.nome = nuovo;
+  const sue = dati.carte.filter(c => c.pack === id);
+  let fatte = 0;
+  for(const c of sue){
+    await salvaCarta(c, true, true);
+    const st = $('#pk-stato'); if(st) st.textContent = `${++fatte}/${sue.length}`;
+  }
+  await riscriviElenco();
+  await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  segnaStoria(`pack rinominato in ${nuovo}`);
+  await avvisaRicarica();
+  disegnaBarraPack(); disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  segnala(`Pack rinominato: ${sue.length} carte ridisegnate`,'ok');
+}
+
+async function eliminaPack(id){
+  if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const sue = dati.carte.filter(c => c.pack === id);
+  let fatte = 0;
+  for(const c of sue){
+    delete c.pack;
+    await salvaCarta(c, true, true);
+    const st = $('#pk-stato'); if(st) st.textContent = `${++fatte}/${sue.length}`;
+  }
+  dati.pacchetti = elencoPack().filter(x => x.id !== id);
+  if(packVista === id) packVista = '';
+  await riscriviElenco();
+  await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
+  segnaStoria('pack eliminato');
+  await avvisaRicarica();
+  $('#pannellodoc').className = '';
+  disegnaBarraPack(); disegnaLista(); costruisciForm(); aggiornaAnteprima();
+  segnala(`Pack eliminato: ${sue.length} carte lasciate senza`,'ok');
+}
+
 let vistaCompleta = false;
 let famigliaVista = 'soggettone';
 
@@ -1405,7 +1703,8 @@ function disegnaLista(){
   document.querySelectorAll('#famiglia button').forEach(b=>
       b.classList.toggle('on', b.dataset.f === famigliaVista));
 
-  const dellaFamiglia = dati.carte.filter(c => famigliaDi(c) === famigliaVista);
+  disegnaBarraPack();
+  const dellaFamiglia = dati.carte.filter(c => famigliaDi(c) === famigliaVista && inPackVista(c));
   const buchi = new Map();
   for(const c of dellaFamiglia){ const m = mancanze(c); if(m.length) buchi.set(c, m); }
 
@@ -1433,10 +1732,12 @@ function disegnaLista(){
       for(const c of fatte) l.appendChild(voce(c));
     }
     if(!fatte.length) l.innerHTML = q
-      ? '<div id="vuotolista">Nessuna carta completa con questo nome.</div>'
+      ? '<div id="vuotolista">Nessuna carta completa con questo nome' + dovePack() + '.</div>'
       : (dellaFamiglia.length
           ? '<div id="vuotolista">Nessuna carta completa: sono tutte nell\'elenco «Da completare».</div>'
-          : '<div id="vuotolista">Ancora nessuna carta di questa famiglia.</div>');
+          : packVista
+            ? '<div id="vuotolista">Nessuna carta di questa famiglia' + dovePack() + '.</div>'
+            : '<div id="vuotolista">Ancora nessuna carta di questa famiglia.</div>');
     mostraSelezionata();
     return;
   }
@@ -1450,8 +1751,8 @@ function disegnaLista(){
     for(const [c,m] of dentro) l.appendChild(voce(c, m.find(x=>x.g===g.k).t));  // nota solo se aggiunge qualcosa
   }
   if(!tot) l.innerHTML = q
-    ? '<div id="vuotolista">Niente da completare con questo nome.</div>'
-    : '<div id="vuotolista">Non manca più niente: tutte le carte sono complete.</div>';
+    ? '<div id="vuotolista">Niente da completare con questo nome' + dovePack() + '.</div>'
+    : '<div id="vuotolista">Non manca più niente' + dovePack() + '.</div>';
   mostraSelezionata();
 }
 
@@ -1565,6 +1866,7 @@ function costruisciForm(){
     <label for="f-tipo">Tipo</label>
     <select id="f-tipo">${opzTipo}</select>
     <div style="height:12px"></div>
+    ${rigaPack(c)}
     <label for="f-nome">Nome</label>
     <input id="f-nome" type="text" value="${escapeHtml(c.nome)}" spellcheck="false">
     <div class="nota">file: ${escapeHtml(c.file||'—')}</div>
@@ -1633,6 +1935,12 @@ function costruisciForm(){
     costruisciForm();                       // il menù si ricostruisce con l'elenco fresco
     segnala(nuove > 0 ? `${nuove} foto nuove: ora sono nel menù` : 'Nessuna foto nuova', 'ok');
   };
+
+  document.querySelectorAll('#packcarta .chip').forEach(b => b.onclick = ()=>{
+    // uno solo per carta: il clic sullo stesso pack lo toglie
+    if(c.pack === b.dataset.p) delete c.pack; else c.pack = b.dataset.p;
+    cambiata(); costruisciForm();
+  });
 
   $('#f-tipo').onchange = e => {
     c.tipo = e.target.value;
@@ -1866,7 +2174,8 @@ function rigaElenco(c){
     : (c.mod||[]).map((v,i)=> SIGLE[i]+etichettaMod(v)).join(' ');
   const et = sp.fam==='accessorio' ? sp.et : (c.rarita||'');
   return String(c.num).padEnd(3)+'  '+(c.nome||'').padEnd(36)+et.padEnd(21)+
-         ('Ign '+(c.ign|0)).padEnd(14)+st+'   [foto: '+(c.foto||'')+']';
+         ('Ign '+(c.ign|0)).padEnd(14)+st+'   [foto: '+(c.foto||'')+']'+
+         (nomePack(c) ? '   [pack: '+nomePack(c)+']' : '');
 }
 async function aggiornaElenco(c){
   let txt;
@@ -2538,6 +2847,7 @@ function disegnaSemaforo(){
   const l = $('#sem-lascia'); if(l) l.onclick = lasciaPenna;
   const q = $('#sem-chiedi'); if(q) q.onclick = chiediPenna;
   const g = $('#sem-segui'); if(g) g.onchange = e => { S.seguo = e.target.checked; };
+  disegnaBarraPack();     // i tasti dei pack si accendono e si spengono con la penna
 }
 
 async function avviaSemaforo(){
