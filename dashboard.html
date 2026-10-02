@@ -238,7 +238,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v33 · pack</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v34 · più pack per carta</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -809,10 +809,11 @@ function disegnaCarta(ctx, c, foto){
     ctx.globalAlpha = 1;
   }
 
-  // nome del pack: l'angolo opposto, specchiato sulla stessa riga dell'edizione —
+  // nomi dei pack: l'angolo opposto, specchiato sulla stessa riga dell'edizione —
   // stesso corpo, stessa trasparenza, stessa regola di colore. L'edizione è corta e
-  // fissa, il nome del pack lo scrive una persona: se è lungo rimpicciolisce, e solo
-  // se nemmeno a corpo 20 ci sta viene troncato, invece di finire sotto l'edizione.
+  // fissa, i nomi dei pack li scrive una persona e possono essere più d'uno: se la
+  // riga è lunga rimpicciolisce, e solo se nemmeno a corpo 20 ci sta viene troncata,
+  // invece di finire sotto l'edizione.
   const dicituraPk = nomePack(c);
   if(dicituraPk){
     const largo = iniziaEd - 40 - 109;
@@ -1384,7 +1385,7 @@ async function nuovaCarta(tipo){
   vistaCompleta = true;                          // appena nata è per forza da completare
   // se stai guardando un pack, la carta nuova nasce dentro quel pack: altrimenti
   // sparirebbe dall'elenco appena creata
-  if(packVista && packVista !== '—') c.pack = packVista;
+  if(packVista && packVista !== '—') c.pack = [packVista];
   scegliCarta(c);
   segnala('Carta ' + c.num + ' creata','ok');
   const campo = $('#f-nome');
@@ -1436,18 +1437,42 @@ const NOMEMANCANZA = { foto:'la foto', valori:'i valori', testo:'la descrizione'
 /* ═══════════════  Pack: mazzi ed espansioni  ════════════════════════════════
 
    Un pack è un raggruppamento che taglia trasversale rispetto all'edizione e al
-   tipo: ci possono stare soggettoni e accessori insieme. Una carta sta in un
-   pack solo — il nome va stampato in basso a sinistra, e lì c'è posto per una
-   riga — e si toglie ricliccando lo stesso pack.
+   tipo: ci possono stare soggettoni e accessori insieme. Una carta può stare in
+   più pack — in basso a sinistra escono affiancati, separati da una virgola — e
+   ognuno si toglie ricliccando la sua pastiglia.
 
-   La carta porta `pack` con l'identificativo, non il nome: così il nome resta
+   La carta porta `pack` con gli identificativi, non coi nomi: così il nome resta
    in un posto solo e si può correggere senza andare a caccia in 868 carte.    */
 
 let packVista = '';           // '' = tutti
 
 function elencoPack(){ return (dati && dati.pacchetti) || []; }
-function packDi(c){ return c && c.pack ? elencoPack().find(p => p.id === c.pack) || null : null; }
-function nomePack(c){ const p = packDi(c); return p ? p.nome : ''; }
+
+/* `c.pack` è una lista di identificativi. Le prime carte assegnate l'avevano
+   scritto come un identificativo solo: `idPack(c)` legge tutt'e due le forme,
+   così un dati.json di ieri si apre senza conversioni. */
+function idPack(c){
+  if(!c || !c.pack) return [];
+  return Array.isArray(c.pack) ? c.pack.filter(Boolean) : [c.pack];
+}
+/* L'ordine in cui esce sulla carta è quello dell'elenco dei pack, non quello
+   dei clic: due carte negli stessi due pack devono stampare la stessa riga. */
+function packDi(c){
+  const suoi = idPack(c);
+  return elencoPack().filter(p => suoi.includes(p.id));
+}
+function nomePack(c){ return packDi(c).map(p => p.nome).join(', '); }
+function haPack(c, id){ return idPack(c).includes(id); }
+
+/* L'unico punto che scrive `c.pack`: tiene l'ordine dell'elenco dei pack e
+   toglie il campo quando la lista resta vuota, così una carta senza pack non
+   porta un array vuoto in giro per dati.json. */
+function metteInPack(c, id, dentro){
+  const suoi = new Set(idPack(c));
+  if(dentro) suoi.add(id); else suoi.delete(id);
+  const ordinati = elencoPack().filter(p => suoi.has(p.id)).map(p => p.id);
+  if(ordinati.length) c.pack = ordinati; else delete c.pack;
+}
 /* Un elenco vuoto per colpa del filtro dei pack sembra un elenco vuoto per
    davvero: questa coda dice quale filtro lo sta svuotando. */
 function dovePack(){
@@ -1457,7 +1482,9 @@ function dovePack(){
   return p ? ' nel pack «' + p.nome + '»' : '';
 }
 function inPackVista(c){
-  return packVista === '' ? true : packVista === '—' ? !c.pack : c.pack === packVista;
+  return packVista === '' ? true
+       : packVista === '—' ? !idPack(c).length
+       : haPack(c, packVista);
 }
 
 function creaPack(nome){
@@ -1488,8 +1515,8 @@ function disegnaBarraPack(){
   b.style.display = 'flex';
   const pacchi = elencoPack();
   const quanti = {};
-  for(const c of dati.carte) if(c.pack) quanti[c.pack] = (quanti[c.pack]||0) + 1;
-  const senza = dati.carte.filter(c => !c.pack).length;
+  for(const c of dati.carte) for(const id of idPack(c)) quanti[id] = (quanti[id]||0) + 1;
+  const senza = dati.carte.filter(c => !idPack(c).length).length;
 
   b.innerHTML = `<span class="et" title="Un pack può tenere insieme soggettoni e accessori: i numeri contano tutte le carte, non solo la famiglia che stai guardando">Pack</span>
     <div class="pkfiltri">
@@ -1551,10 +1578,13 @@ function rigaPack(c){
   if(!pacchi.length)
     return `<label>Pack</label><div class="nota" style="margin-bottom:16px">Nessun pack:
       creane uno dalla barra in alto.</div>`;
+  const suoi = idPack(c);
   return `<label>Pack</label>
-    <div id="packcarta">${pacchi.map(p => `<button type="button" class="chip${c.pack===p.id?' on':''}"
+    <div id="packcarta">${pacchi.map(p => `<button type="button" class="chip${suoi.includes(p.id)?' on':''}"
         data-p="${escapeHtml(p.id)}">${escapeHtml(p.nome)}</button>`).join('')}</div>
-    <div class="nota" style="margin-bottom:16px">Un clic assegna, un altro sullo stesso toglie.</div>`;
+    <div class="nota" style="margin-bottom:16px">Un clic assegna, un altro sullo stesso toglie.
+      Una carta può stare in più pack: in basso a sinistra escono affiancati, separati
+      da una virgola, nell'ordine della barra in alto.</div>`;
 }
 
 /* ── assegnazione in blocco su quello che si sta guardando ─────────────── */
@@ -1570,41 +1600,51 @@ function mostraAssegnaInBlocco(){
     return;
   }
   const viste = carteInElenco();
+  // due gruppi, perché con più pack per carta «mandale in X» e «toglile da X» non
+  // sono più la stessa mossa con l'interruttore girato
+  const chip = (x, dentro) => `<button type="button" class="chip" data-p="${escapeHtml(x.id)}"
+      data-d="${dentro?1:0}">${escapeHtml(x.nome)}</button>`;
   p.innerHTML = `<h3>Assegna in blocco: ${viste.length} carte</h3>
     <div class="dett" style="margin-bottom:9px">Sono le carte che hai davanti adesso nell'elenco
       di sinistra, cioè filtrate come le stai guardando: famiglia, vista «da completare»,
-      ricerca e pack. Scegli il pack a cui mandarle. <b>Ogni carta va ridisegnata</b>, perché il
-      nome del pack si stampa in basso a sinistra: con numeri grossi ci vogliono minuti.</div>
-    <div id="packblocco">${pacchi.map(x => `<button type="button" class="chip" data-p="${escapeHtml(x.id)}"
-        >${escapeHtml(x.nome)}</button>`).join('')}
-      <button type="button" class="chip" data-p="">— toglili dal pack —</button></div>
+      ricerca e pack. <b>Ogni carta va ridisegnata</b>, perché il nome del pack si stampa in
+      basso a sinistra: con numeri grossi ci vogliono minuti.</div>
+    <label style="font-size:12px;color:var(--testo2)">Aggiungile a</label>
+    <div id="packblocco">${pacchi.map(x => chip(x, true)).join('')}</div>
+    <label style="font-size:12px;color:var(--testo2);display:block;margin-top:9px">Toglile da</label>
+    <div id="packblocco2">${pacchi.map(x => chip(x, false)).join('')}
+      <button type="button" class="chip" data-p="" data-d="0">— ogni pack —</button></div>
     <div class="azioni"><button class="minibtn" id="bl-chiudi">Chiudi</button>
       <span class="dett" id="bl-stato"></span></div>`;
   $('#bl-chiudi').onclick = ()=> p.className = '';
-  p.querySelectorAll('#packblocco .chip').forEach(x =>
-      x.onclick = ()=> applicaInBlocco(viste, x.dataset.p, x.textContent.trim()));
+  p.querySelectorAll('#packblocco .chip, #packblocco2 .chip').forEach(x =>
+      x.onclick = ()=> applicaInBlocco(viste, x.dataset.p, x.dataset.d === '1',
+                                       x.textContent.trim()));
 }
 
-async function applicaInBlocco(carte, idPack, etichetta){
+/* `id` vuoto con `dentro` falso vuol dire «toglile da ogni pack». */
+async function applicaInBlocco(carte, id, dentro, etichetta){
   if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
-  const daFare = carte.filter(c => (c.pack||'') !== idPack);
+  const tocca = c => id ? haPack(c, id) !== dentro : idPack(c).length > 0;
+  const daFare = carte.filter(tocca);
   if(!daFare.length){ segnala('Erano già tutte così','ok'); $('#pannellodoc').className=''; return; }
   await chiudiInSospeso();
+  const verbo = dentro ? 'Aggiungo al pack' : 'Tolgo dal pack';
   let fatte = 0;
   for(const c of daFare){
-    if(idPack) c.pack = idPack; else delete c.pack;
+    if(id) metteInPack(c, id, dentro); else delete c.pack;
     await salvaCarta(c, true, true);
     const st = $('#bl-stato'); if(st) st.textContent = `${++fatte}/${daFare.length}`;
-    segnala(`Assegno al pack… ${fatte}/${daFare.length}`,'lavoro');
+    segnala(`${verbo}… ${fatte}/${daFare.length}`,'lavoro');
     if(fatte % 50 === 0) await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
   }
   await riscriviElenco();
   await scriviFile(cart.dashboard,'dati.json', JSON.stringify(dati,null,1));
-  segnaStoria(`${daFare.length} carte assegnate a ${etichetta}`);
+  segnaStoria(`${daFare.length} carte ${dentro?'aggiunte a':'tolte da'} ${etichetta}`);
   await avvisaRicarica();
   $('#pannellodoc').className = '';
   disegnaBarraPack(); disegnaLista(); costruisciForm(); aggiornaAnteprima();
-  segnala(`${daFare.length} carte assegnate`,'ok');
+  segnala(`${daFare.length} carte ${dentro?'aggiunte':'tolte'}`,'ok');
 }
 
 /* ── rinomina ed elimina ───────────────────────────────────────────────── */
@@ -1613,10 +1653,11 @@ function mostraGestionePack(){
   const p = $('#pannellodoc');
   p.className = 'on';
   const quanti = {};
-  for(const c of dati.carte) if(c.pack) quanti[c.pack] = (quanti[c.pack]||0) + 1;
+  for(const c of dati.carte) for(const id of idPack(c)) quanti[id] = (quanti[id]||0) + 1;
   p.innerHTML = `<h3>Pack</h3>
     <div class="dett" style="margin-bottom:9px">Rinominare un pack obbliga a ridisegnare le sue
-      carte, perché il nome è stampato sopra. Eliminarlo invece le lascia dove sono, senza pack.</div>
+      carte, perché il nome è stampato sopra. Eliminarlo lo toglie dalle sue carte senza
+      cancellarle: quelle che stanno anche in altri pack restano in quelli.</div>
     <ul>${elencoPack().map(x => `<li class="pk-riga">
       <div class="pk-campo">
         <input type="text" class="pk-rin" data-p="${escapeHtml(x.id)}" value="${escapeHtml(x.nome)}" spellcheck="false">
@@ -1638,7 +1679,7 @@ async function rinominaPack(id){
   const nuovo = (campo ? campo.value : '').trim();
   if(!pk || !nuovo || nuovo === pk.nome){ return; }
   pk.nome = nuovo;
-  const sue = dati.carte.filter(c => c.pack === id);
+  const sue = dati.carte.filter(c => haPack(c, id));
   let fatte = 0;
   for(const c of sue){
     await salvaCarta(c, true, true);
@@ -1654,10 +1695,10 @@ async function rinominaPack(id){
 
 async function eliminaPack(id){
   if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
-  const sue = dati.carte.filter(c => c.pack === id);
+  const sue = dati.carte.filter(c => haPack(c, id));
   let fatte = 0;
   for(const c of sue){
-    delete c.pack;
+    metteInPack(c, id, false);
     await salvaCarta(c, true, true);
     const st = $('#pk-stato'); if(st) st.textContent = `${++fatte}/${sue.length}`;
   }
@@ -1669,7 +1710,7 @@ async function eliminaPack(id){
   await avvisaRicarica();
   $('#pannellodoc').className = '';
   disegnaBarraPack(); disegnaLista(); costruisciForm(); aggiornaAnteprima();
-  segnala(`Pack eliminato: ${sue.length} carte lasciate senza`,'ok');
+  segnala(`Pack eliminato: tolto da ${sue.length} ${sue.length===1?'carta':'carte'}`,'ok');
 }
 
 let vistaCompleta = false;
@@ -1937,8 +1978,8 @@ function costruisciForm(){
   };
 
   document.querySelectorAll('#packcarta .chip').forEach(b => b.onclick = ()=>{
-    // uno solo per carta: il clic sullo stesso pack lo toglie
-    if(c.pack === b.dataset.p) delete c.pack; else c.pack = b.dataset.p;
+    // quanti ne vuoi: il clic sullo stesso pack lo toglie
+    metteInPack(c, b.dataset.p, !haPack(c, b.dataset.p));
     cambiata(); costruisciForm();
   });
 
