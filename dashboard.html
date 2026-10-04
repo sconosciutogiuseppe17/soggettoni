@@ -202,13 +202,18 @@
   #campi.spento #zonalettura{pointer-events:auto;opacity:1}
 
   /* ── Pack: la barra del filtro e le pastiglie ──────────────────────────── */
-  #barrapack{display:none;align-items:flex-start;gap:12px;padding:7px 18px;font-size:12.5px;
-     border-bottom:1px solid var(--bordo);background:var(--pannello2);flex:none}
+  #barrapack{display:none;align-items:flex-start;flex-wrap:wrap;gap:12px;padding:7px 18px;
+     font-size:12.5px;border-bottom:1px solid var(--bordo);background:var(--pannello2);flex:none}
   #barrapack .et{color:var(--testo2);padding-top:4px;flex:none}
-  #barrapack .pkfiltri{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:6px}
+  /* Con venti o trenta pack le pastiglie si mangerebbero mezza finestra: tre righe
+     e poi si scorre, così la barra ha un'altezza che non cresce all'infinito. */
+  #barrapack .pkfiltri{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:6px;
+     max-height:98px;overflow-y:auto}
   #barrapack .pkazioni{flex:none;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+  /* il campo del pack nuovo prende una riga sua, invece di schiacciare le pastiglie */
+  #barrapack #pk-form{flex-basis:100%;display:flex;gap:6px;justify-content:flex-end}
   #barrapack input{background:var(--pannello);border:1px solid var(--bordo);color:var(--testo);
-     border-radius:7px;padding:4px 9px;font:inherit;width:170px}
+     border-radius:7px;padding:4px 9px;font:inherit;width:220px}
   #barrapack input:focus{outline:2px solid var(--arancio);outline-offset:-1px}
   .pk{background:var(--pannello);border:1px solid var(--bordo);color:var(--testo2);
      border-radius:20px;padding:3px 12px;font-size:12.5px;line-height:1.4}
@@ -238,7 +243,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v34 · più pack per carta</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v35 · campo pack, un solo aperto</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -1445,6 +1450,7 @@ const NOMEMANCANZA = { foto:'la foto', valori:'i valori', testo:'la descrizione'
    in un posto solo e si può correggere senza andare a caccia in 868 carte.    */
 
 let packVista = '';           // '' = tutti
+let formPackAperto = false;   // il campo del pack nuovo blocca il ridisegno della barra
 
 function elencoPack(){ return (dati && dati.pacchetti) || []; }
 
@@ -1509,9 +1515,10 @@ function disegnaBarraPack(){
   const b = $('#barrapack');
   if(!b) return;
   if(!dati){ b.style.display = 'none'; return; }
-  // il semaforo la ridisegna a ogni sbirciata: se stessi battendo il nome di un pack
-  // nuovo, il campo sparirebbe sotto le dita
-  if(b.querySelector('#pk-form')) return;
+  // il semaforo la ridisegna a ogni sbirciata: finché il campo del pack nuovo è
+  // aperto la barra non si tocca, altrimenti sparirebbe sotto le dita. Chi ha
+  // bisogno di ridisegnarla davvero chiude prima il campo con chiudiFormPack().
+  if(formPackAperto) return;
   b.style.display = 'flex';
   const pacchi = elencoPack();
   const quanti = {};
@@ -1548,23 +1555,38 @@ function disegnaBarraPack(){
     });
 }
 
+/* Il campo del pack nuovo è uno solo. Finché è aperto il tasto che lo apre resta
+   spento, e un clic che arrivasse lo stesso riporta il cursore in quello che c'è
+   invece di aggiungerne un altro. */
+function chiudiFormPack(){
+  formPackAperto = false;
+  const f = $('#pk-form'); if(f) f.remove();
+}
+
 function chiediNuovoPack(){
   if(!possoScrivere()){ segnala('Non hai la penna','err'); return; }
+  const gia = $('#pk-nome');
+  if(gia){ gia.focus(); gia.select(); return; }
   const b = $('#barrapack').querySelector('.pkazioni');
-  b.insertAdjacentHTML('beforeend',
-    `<span id="pk-form" style="display:flex;gap:6px"><input id="pk-nome" type="text" placeholder="nome del pack" spellcheck="false">
+  b.insertAdjacentHTML('afterend',
+    `<span id="pk-form"><input id="pk-nome" type="text" placeholder="nome del pack" spellcheck="false">
      <button type="button" id="pk-ok" class="minibtn">Crea</button>
      <button type="button" id="pk-no" class="minibtn">Annulla</button></span>`);
+  formPackAperto = true;
+  $('#pk-nuovo').disabled = true;
   const campo = $('#pk-nome'); campo.focus();
-  const chiudi = ()=> disegnaBarraPack();
+  const chiudi = ()=>{ chiudiFormPack(); disegnaBarraPack(); };
   const fatto = async ()=>{
     const p = creaPack(campo.value);
-    if(!p){ chiudi(); return; }
+    // il campo si chiude prima del ridisegno: è lui stesso a bloccare la barra,
+    // ed è per questo che il pack nuovo non si vedeva fino al ricaricamento
+    chiudiFormPack();
+    if(!p){ disegnaBarraPack(); return; }
     await salvaPacchetti();
     // la vista non si muove: il pack appena nato serve per assegnarci la carta che
     // hai davanti, e saltare su un elenco vuoto farebbe solo perdere il segno
     disegnaBarraPack(); costruisciForm();
-    segnala('Pack «'+p.nome+'» creato: ora compare fra le pastiglie','ok');
+    segnala('Pack «'+p.nome+'» creato','ok');   // corto: il messaggio sta nell'intestazione
   };
   $('#pk-ok').onclick = fatto;
   $('#pk-no').onclick = chiudi;
