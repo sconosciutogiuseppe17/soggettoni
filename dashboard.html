@@ -243,7 +243,7 @@
 
 <header>
   <h1>Soggettoni <span>· Le nuove leve</span></h1>
-  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v35 · campo pack, un solo aperto</span>
+  <span style="font-size:11px;color:var(--testo2);border:1px solid var(--bordo);border-radius:20px;padding:2px 9px">v36 · diretta riparata</span>
   <div id="famiglia">
     <button type="button" class="on" data-f="soggettone">Soggettoni</button>
     <button type="button" data-f="accessorio">Accessori</button>
@@ -2518,7 +2518,11 @@ async function tokenDrive(forza){
 async function chiamaDrive(url, opz = {}, secondoGiro = false){
   const t = await tokenDrive(false);
   const intestazioni = Object.assign({}, opz.headers || {}, { Authorization: 'Bearer ' + t });
-  const r = await fetch(url, Object.assign({}, opz, { headers: intestazioni }));
+  /* `no-store`: senza, il browser serve dalla propria cache le letture ripetute
+     dello stesso indirizzo. stato.json viene riletto ogni tre secondi sempre dallo
+     stesso indirizzo — è il caso che una cache tiene più volentieri — e chi guarda
+     resta cieco per sempre, convinto di essere aggiornato. */
+  const r = await fetch(url, Object.assign({ cache: 'no-store' }, opz, { headers: intestazioni }));
   if(r.status === 401 && !secondoGiro){ DRIVE.token = null; return chiamaDrive(url, opz, true); }
   if(!r.ok){
     let dettaglio = '';
@@ -2699,6 +2703,7 @@ async function apriDaDrive(clientId, cartellaId){
 const PENNA_DURATA = 60000;    // la penna scade da sola dopo un minuto di silenzio
 const BATTITO = 20000;         // ogni quanto lascio il mio segno di vita
 const SBIRCIATA = 3000;        // ogni quanto guardo cosa fanno gli altri
+const CODA_PUNTATE = 8;        // quante modifiche recenti restano in stato.json
 
 const S = {
   io: 'x' + Math.random().toString(36).slice(2, 10),
@@ -2707,7 +2712,8 @@ const S = {
 };
 
 function statoVuoto(){
-  return { revisione: 0, penna: null, presenti: [], ultima: null, richiesta: null, ricarica: 0 };
+  return { revisione: 0, penna: null, presenti: [], ultima: null, recenti: [],
+           richiesta: null, ricarica: 0 };
 }
 
 async function leggiStato(){
@@ -2766,9 +2772,20 @@ async function sbircia(){
   S.mia = pennaMia(s);
   if(eraMia && !S.mia) segnala('Hai perso la penna', 'err');
 
-  if(s.ultima && s.ultima.rev !== S.ultimaVista && s.ultima.io !== S.io){
-    S.ultimaVista = s.ultima.rev;
-    applicaDaRemoto(s.ultima);
+  /* Non basta prendere l'ultima carta annunciata: fra una sbirciata e l'altra chi
+     ha la penna può averne salvate due o tre, e quelle in mezzo sparirebbero senza
+     che nessuno se ne accorga. Si applicano tutte le puntate non ancora viste, in
+     ordine; se il salto è più lungo della coda si rilegge dati.json una volta. */
+  const coda = (s.recenti && s.recenti.length ? s.recenti : (s.ultima ? [s.ultima] : []))
+                 .slice().sort((a,b)=> a.rev - b.rev);
+  const nuove = coda.filter(x => x.rev > S.ultimaVista && x.io !== S.io);
+  if(nuove.length){
+    const saltate = nuove[0].rev > S.ultimaVista + 1;
+    S.ultimaVista = coda[coda.length-1].rev;
+    if(saltate && !S.mia) await ricaricaDati();
+    else for(const x of nuove) applicaDaRemoto(x);
+  }else if(coda.length){
+    S.ultimaVista = Math.max(S.ultimaVista, coda[coda.length-1].rev);
   }
   if(s.ricarica && s.ricarica !== S.ricaricaVista){
     S.ricaricaVista = s.ricarica;
@@ -2808,9 +2825,11 @@ async function annunciaCarta(c, tolta){
   try{
     await cambiaStato(s =>{
       s.revisione = (s.revisione || 0) + 1;
-      s.ultima = { rev: s.revisione, io: S.io, chi: S.chi, quando: Date.now(),
-                   carta: JSON.parse(JSON.stringify(c, (k,v)=> k==='_mod' ? undefined : v)),
-                   tolta: tolta || null };
+      const puntata = { rev: s.revisione, io: S.io, chi: S.chi, quando: Date.now(),
+                        carta: JSON.parse(JSON.stringify(c, (k,v)=> k==='_mod' ? undefined : v)),
+                        tolta: tolta || null };
+      s.ultima = puntata;                                  // per una scheda vecchia ancora aperta
+      s.recenti = [...(s.recenti || []), puntata].slice(-CODA_PUNTATE);
       miSegno(s, true);
     });
     S.ultimaVista = S.stato.revisione;
@@ -2834,6 +2853,7 @@ async function ricaricaDati(){
     const d = JSON.parse(await (await leggiFile(cart.dashboard,'dati.json')).text());
     dati.carte = d.carte;
     dati.scartate = d.scartate || [];
+    dati.pacchetti = d.pacchetti || [];     // senza questa riga i pack sparivano a ogni rilettura
     dati.carte.forEach(c=>{ c.zoom = c.zoom||1; c.panX = c.panX ?? .5; c.panY = c.panY ?? .38;
                             c.file = c.file || nomeFile(c); });
     ordinaCarte(); fotoCache.clear();
@@ -2919,7 +2939,9 @@ async function avviaSemaforo(){
   S.stato = s;
   if(pennaLibera(s)){ await cambiaStato(st =>{ if(pennaLibera(st)) miSegno(st, true); }); S.mia = pennaMia(S.stato); }
   else { await cambiaStato(st => miSegno(st, false)); S.mia = false; }
-  S.ultimaVista = (S.stato.ultima && S.stato.ultima.rev) || -1;
+  // all'apertura dati.json è appena stato letto, quindi siamo già pari con tutto
+  // quello che è stato annunciato finora: si riparte da lì, senza rigiocare la coda
+  S.ultimaVista = S.stato.revisione || 0;
   S.ricaricaVista = S.stato.ricarica || 0;
   clearInterval(S.tBattito); clearInterval(S.tSbircia);
   S.tBattito = setInterval(battito, BATTITO);
